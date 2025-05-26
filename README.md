@@ -4,3 +4,4 @@
 TODO: change statusbar
 TODO: change mini stater page
 TODO: orginize repo (add screenshots etc...)
+TODO: add obsidian/markdown support
