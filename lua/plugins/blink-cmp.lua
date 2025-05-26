@@ -39,7 +39,34 @@ return {
     },
 
     completion = {
-      auto_show = true,
+      menu = {
+        draw = {
+          components = {
+            kind_icon = {
+              text = function(ctx)
+                local icon = ctx.kind_icon
+                if ctx.item.source_name == 'LSP' then
+                  local color_item = require('nvim-highlight-colors').format(ctx.item.documentation, { kind = ctx.kind })
+                  if color_item and color_item.abbr ~= '' then
+                    icon = color_item.abbr
+                  end
+                end
+                return icon .. ctx.icon_gap
+              end,
+              highlight = function(ctx)
+                local highlight = 'BlinkCmpKind' .. ctx.kind
+                if ctx.item.source_name == 'LSP' then
+                  local color_item = require('nvim-highlight-colors').format(ctx.item.documentation, { kind = ctx.kind })
+                  if color_item and color_item.abbr_hl_group then
+                    highlight = color_item.abbr_hl_group
+                  end
+                end
+                return highlight
+              end,
+            },
+          },
+        },
+      },
       documentation = { auto_show = false, auto_show_delay_ms = 500 },
       ghost_text = {
         enabled = true,
@@ -47,7 +74,7 @@ return {
     },
 
     sources = {
-      default = { 'lsp', 'path', 'snippets', 'lazydev', 'emoji' },
+      default = { 'lsp', 'path', 'snippets', 'lazydev', 'buffer', 'emoji' },
       providers = {
         lazydev = { module = 'lazydev.integrations.blink', score_offset = 100 },
         emoji = {
@@ -56,11 +83,7 @@ return {
           score_offset = 15,
           opts = { insert = true },
           should_show_items = function()
-            return vim.tbl_contains(
-              -- Enable emoji completion only for git commits and markdown.
-              { 'gitcommit', 'markdown' },
-              vim.o.filetype
-            )
+            return vim.tbl_contains({ 'gitcommit', 'markdown' }, vim.o.filetype)
           end,
         },
       },

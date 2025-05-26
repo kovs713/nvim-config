@@ -1,4 +1,4 @@
----@diagnostic disable: 113
+--- diagnostic disable: 113
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
@@ -14,6 +14,8 @@ vim.opt.showmode = true
 vim.schedule(function()
   vim.opt.clipboard = 'unnamedplus'
 end)
+
+vim.opt.termguicolors = true
 
 vim.opt.breakindent = true
 
@@ -118,12 +120,17 @@ require('lazy').setup({
   require 'plugins.debug',
   require 'plugins.indent_line',
   require 'plugins.lint',
+  require 'plugins.colorizer',
   require 'plugins.autopairs',
   require 'plugins.neo-tree',
+  -- require 'plugins.oil',
+  require 'plugins.fzf',
+  require 'plugins.snacks',
+  require 'plugins.flash',
+  require 'plugins.which-key',
   require 'plugins.tailwind-tools',
   require 'plugins.surround',
   require 'plugins.statusline',
-  require 'plugins.fzf',
   require 'plugins.ts-autotag',
   require 'plugins.typesctipt-tools',
   require 'plugins.gitsigns',
