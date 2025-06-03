@@ -58,7 +58,7 @@ vim.keymap.set('n', '<leader>o', 'o<Esc>k', { desc = 'Add line below' })
 vim.keymap.set('n', '<leader>O', 'O<Esc>j', { desc = 'Add line above' })
 vim.keymap.set('n', '<leader>s', '<cmd>wall<CR>', { desc = 'Save all buffers' })
 vim.keymap.set('n', '<leader>g', ':lua vim.lsp.buf.format()<CR>', { desc = 'Format file' })
-vim.keymap.set('n', '<leader>a', 'ggVG', { desc = 'Select all' })
+vim.keymap.set('n', '<C-a>', 'ggVG', { desc = 'Select all' })
 
 vim.keymap.set('n', '<C-d>', '<C-d>zz', {})
 vim.keymap.set('n', '<C-u>', '<C-u>zz', {})
@@ -116,14 +116,18 @@ require('lazy').setup({
   require 'plugins.fzf',
   require 'plugins.gitsigns',
   require 'plugins.gruvbox',
+  require 'plugins.harpoon',
+  require 'plugins.incline',
   require 'plugins.indent-line',
   require 'plugins.lazydev',
   require 'plugins.lint',
   require 'plugins.lsp-config',
   require 'plugins.lspsaga',
+  require 'plugins.mason',
   require 'plugins.mini',
   require 'plugins.neo-tree',
   require 'plugins.noice',
+  require 'plugins.nvim-cmp',
   require 'plugins.nvim-treesitter',
   require 'plugins.sleuth',
   require 'plugins.snacks',

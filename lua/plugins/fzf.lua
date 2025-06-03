@@ -46,49 +46,49 @@ return {
       function()
         require('fzf-lua').live_grep()
       end,
-      desc = '[F]ind by [G]rep',
+      desc = '[F]ind by Grep x[D]',
     },
     {
       '<leader>fo',
       function()
         require('fzf-lua').buffers()
       end,
-      desc = '[B]uffers',
+      desc = '[F]ind Buffers :[O]',
     },
     {
       '<leader>fr',
       function()
         require('fzf-lua').oldfiles()
       end,
-      desc = '[O]pen [R]ecent File',
+      desc = '[F]ind [R]ecent File',
     },
     {
-      '<leader>fg',
+      '<leader>fc',
       function()
         require('fzf-lua').git_commits()
       end,
-      desc = '[G]it [C]ommits',
+      desc = '[F]ind Git [C]ommits',
     },
     {
       '<leader>fb',
       function()
         require('fzf-lua').git_branches()
       end,
-      desc = '[G]it [B]ranches',
+      desc = '[F]ind Git [B]ranches',
     },
     {
-      '<leader>gss',
+      '<leader>fs',
       function()
         require('fzf-lua').git_status()
       end,
-      desc = '[G]it [S]tatus',
+      desc = '[F]ind Git [S]tatus',
     },
     {
-      '<leader>gs',
+      '<leader>ft',
       function()
         require('fzf-lua').git_stash()
       end,
-      desc = '[G]it [S]tash',
+      desc = '[F]ind Git S[t]ash',
     },
   },
 }

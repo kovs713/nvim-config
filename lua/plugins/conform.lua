@@ -8,28 +8,48 @@ return {
       function()
         require('conform').format { async = true, lsp_format = 'fallback' }
       end,
-      mode = '',
+      mode = 'n',
       desc = '[F]ormat buffer',
     },
   },
-  opts = {
-    notify_on_error = false,
-    format_on_save = function(bufnr)
-      local disable_filetypes = {}
-      if disable_filetypes[vim.bo[bufnr].filetype] then
-        return nil
-      else
-        return {
-          timeout_ms = 500,
-          lsp_format = 'fallback',
-        }
-      end
-    end,
-    formatters_by_ft = {
-      lua = { 'stylua' },
-      python = { 'isort', 'black' },
-      typescript = { 'prettierd', 'prettier', stop_after_first = true },
-      javascript = { 'prettierd', 'prettier', stop_after_first = true },
-    },
-  },
+  config = function()
+    local conform = require 'conform'
+
+    conform.setup({
+      notify_on_error = false,
+      format_on_save = {
+        timeout_ms = 500,
+        lsp_format = "fallback",
+      },
+      formatters_by_ft = {
+        javascript = { 'prettier' },
+        typescript = { 'prettier' },
+        javascriptreact = { 'prettier' },
+        typescriptreact = { 'prettier' },
+        svelte = { 'prettier' },
+        css = { 'prettier' },
+        html = { 'prettier' },
+        json = { 'prettier' },
+        yaml = { 'prettier' },
+        graphql = { 'prettier' },
+        liquid = { 'prettier' },
+        lua = { 'stylua' },
+        python = { 'black' },
+      },
+    })
+
+    conform.formatters.prettier = {
+      args = {
+        '--stdin-filepath',
+        '$FILENAME',
+        '--tab-width',
+        '4',
+        '--use-tabs',
+        'false',
+      },
+    }
+    conform.formatters.shfmt = {
+      prepend_args = { '-i', '4' },
+    }
+  end,
 }
