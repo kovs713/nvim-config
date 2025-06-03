@@ -123,6 +123,7 @@ require('lazy').setup({
   require 'plugins.lint',
   require 'plugins.lsp-config',
   require 'plugins.lspsaga',
+  require 'plugins.markdown',
   require 'plugins.mason',
   require 'plugins.mini',
   require 'plugins.neo-tree',
