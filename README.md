@@ -1,7 +1,7 @@
 # Personal Neovim setup
 
 
-TODO: change statusbar
-TODO: change mini stater page
-TODO: orginize repo (add screenshots etc...)
-TODO: add obsidian/markdown support
+- [ ] change statusbar
+- [ ] change mini stater page
+- [ ] orginize repo (add screenshots etc...)
+- [ ] add obsidian/markdown support
