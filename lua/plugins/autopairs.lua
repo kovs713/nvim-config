@@ -9,6 +9,7 @@ return {
       ts_config = {
         lua = { 'string' },
         javascript = { 'template_string' },
+        go = { 'string' },
         java = false,
       },
     }

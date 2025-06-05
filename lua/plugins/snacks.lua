@@ -16,6 +16,23 @@ return {
           },
         },
       },
+      image = {
+        enabled = true,
+        doc = {
+          float = true,
+          inline = false,
+          max_width = 50,
+          max_height = 30,
+          wo = {
+            wrap = false,
+          },
+        },
+        convert = {
+          notify = true,
+          command = 'magick',
+        },
+        img_dirs = { 'img', 'images', 'assets', 'static', 'public', 'media', 'attachments', 'archives/all-vault-images/', '~/downloads' },
+      },
     },
     keys = {
       {
@@ -23,28 +40,28 @@ return {
         function()
           require('snacks').lazygit()
         end,
-        desc = 'Lazygit',
+        desc = '[F]loat [L]azygit',
       },
       {
         '<leader>gl',
         function()
           require('snacks').lazygit.log()
         end,
-        desc = 'Lazygit logs',
+        desc = 'Lazy[G]it [L]ogs',
       },
       {
         '<leader>rN',
         function()
           require('snacks').rename.rename_file()
         end,
-        desc = 'Rename file',
+        desc = '[R]ename [F]ile',
       },
       {
         '<leader>fp',
         function()
           require('snacks.picker').projects()
         end,
-        desc = 'Find projects',
+        desc = '[F]ind [P]rojects',
       },
     },
   },

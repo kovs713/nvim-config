@@ -7,7 +7,18 @@ return {
   },
   config = function()
     require('nvim-treesitter.configs').setup {
-      ensure_installed = { 'typescript', 'tsx', 'javascript', 'html', 'css', 'python', 'lua', 'go', 'java' },
+      ensure_installed = {
+        'markdown',
+        'markdown_inline',
+        'typescript',
+        'tsx',
+        'javascript',
+        'html',
+        'css',
+        'python',
+        'lua',
+        'go',
+      },
       sync_install = true,
       auto_install = true,
 

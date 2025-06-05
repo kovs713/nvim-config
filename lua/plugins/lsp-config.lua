@@ -1,142 +1,147 @@
 return {
-    "neovim/nvim-lspconfig",
-    event = { "BufReadPre", "BufNewFile" },
-    dependencies = {
-        "saghen/blink.cmp",
-        { "antosha417/nvim-lsp-file-operations", config = true },
-    },
-    config = function()
-        -- NOTE: LSP Keybinds
-        vim.api.nvim_create_autocmd("LspAttach", {
-            group = vim.api.nvim_create_augroup("UserLspConfig", {}),
-            callback = function(ev)
-                -- Buffer local mappings
-                -- Check `:help vim.lsp.*` for documentation on any of the below functions
-                local opts = { buffer = ev.buf, silent = true }
+  'neovim/nvim-lspconfig',
+  event = { 'BufReadPre', 'BufNewFile' },
+  dependencies = {
+    'saghen/blink.cmp',
+    { 'antosha417/nvim-lsp-file-operations', config = true },
+  },
+  config = function()
+    -- NOTE: LSP Keybinds
+    vim.api.nvim_create_autocmd('LspAttach', {
+      group = vim.api.nvim_create_augroup('UserLspConfig', {}),
+      callback = function(ev)
+        -- Buffer local mappings
+        -- Check `:help vim.lsp.*` for documentation on any of the below functions
+        local opts = { buffer = ev.buf, silent = true }
 
-                opts.desc = "See available code actions"
-                vim.keymap.set({ "n", "v" }, "<leader>ca", function()
-                    require('fzf-lua').lsp_code_actions()
-                end, opts) -- see available code actions, in visual mode will apply to selection
+        opts.desc = 'See available code actions'
+        vim.keymap.set({ 'n', 'v' }, '<leader>ca', function()
+          require('fzf-lua').lsp_code_actions()
+        end, opts) -- see available code actions, in visual mode will apply to selection
 
-                opts.desc = "Restart LSP"
-                vim.keymap.set("n", "<leader>rs", ":LspRestart<CR>", opts) -- mapping to restart lsp if necessary
+        opts.desc = '[L]sp [I]mplimentations'
+        vim.keymap.set('n', '<leader>li', function()
+          require('fzf-lua').lsp_implementations()
+        end, opts)
 
-                vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
-            end,
-        })
+        opts.desc = 'Restart LSP'
+        vim.keymap.set('n', '<leader>rs', ':LspRestart<CR>', opts) -- mapping to restart lsp if necessary
 
-        -- Define sign icons for each severity
-        local signs = {
-            [vim.diagnostic.severity.ERROR] = " ",
-            [vim.diagnostic.severity.WARN]  = " ",
-            [vim.diagnostic.severity.HINT]  = "󰠠 ",
-            [vim.diagnostic.severity.INFO]  = " ",
-        }
+        vim.keymap.set('i', '<C-h>', function()
+          vim.lsp.buf.signature_help()
+        end, opts)
+      end,
+    })
 
-        -- Set the diagnostic config with all icons
-        vim.diagnostic.config({
-            signs = {
-                text = signs          -- Enable signs in the gutter
+    -- Define sign icons for each severity
+    local signs = {
+      [vim.diagnostic.severity.ERROR] = ' ',
+      [vim.diagnostic.severity.WARN] = ' ',
+      [vim.diagnostic.severity.HINT] = '󰠠 ',
+      [vim.diagnostic.severity.INFO] = ' ',
+    }
+
+    -- Set the diagnostic config with all icons
+    vim.diagnostic.config {
+      signs = {
+        text = signs, -- Enable signs in the gutter
+      },
+      virtual_text = true, -- Specify Enable virtual text for diagnostics
+      underline = true, -- Specify Underline diagnostics
+      update_in_insert = false, -- Keep diagnostics active in insert mode
+    }
+
+    -- Setup servers
+    local lspconfig = require 'lspconfig'
+    local capabilities = require('blink.cmp').get_lsp_capabilities() -- Import capabilities from blink.cmp
+
+    -- Configure lua_ls
+    lspconfig.lua_ls.setup {
+      capabilities = capabilities,
+      settings = {
+        Lua = {
+          diagnostics = {
+            globals = { 'vim' },
+          },
+          completion = {
+            callSnippet = 'Replace',
+          },
+          workspace = {
+            library = {
+              [vim.fn.expand '$VIMRUNTIME/lua'] = true,
+              [vim.fn.stdpath 'config' .. '/lua'] = true,
             },
-            virtual_text = true,      -- Specify Enable virtual text for diagnostics
-            underline = true,         -- Specify Underline diagnostics
-            update_in_insert = false, -- Keep diagnostics active in insert mode
-        })
+          },
+        },
+      },
+    }
 
+    -- -- Configure tsserver (TypeScript and JavaScript)
+    lspconfig.ts_ls.setup {
+      capabilities = capabilities,
+      root_dir = function(fname)
+        local util = lspconfig.util
+        return not util.root_pattern('deno.json', 'deno.jsonc')(fname) and util.root_pattern('tsconfig.json', 'package.json', 'jsconfig.json', '.git')(fname)
+      end,
+      single_file_support = false,
+      on_attach = function(client, bufnr)
+        -- Disable formatting if you're using a separate formatter like Prettier
+        client.server_capabilities.documentFormattingProvider = false
+      end,
+      init_options = {
+        preferences = {
+          includeCompletionsWithSnippetText = true,
+          includeCompletionsForImportStatements = true,
+        },
+      },
+    }
 
-        -- Setup servers
-        local lspconfig = require("lspconfig")
-        local capabilities = require("blink.cmp").get_lsp_capabilities() -- Import capabilities from blink.cmp
+    -- emmet_ls
+    lspconfig.emmet_ls.setup {
+      capabilities = capabilities,
+      filetypes = {
+        'html',
+        'typescriptreact',
+        'javascriptreact',
+        'css',
+        'sass',
+        'scss',
+        'less',
+        'svelte',
+      },
+    }
 
-        -- Configure lua_ls
-        lspconfig.lua_ls.setup({
-            capabilities = capabilities,
-            settings = {
-                Lua = {
-                    diagnostics = {
-                        globals = { "vim" },
-                    },
-                    completion = {
-                        callSnippet = "Replace",
-                    },
-                    workspace = {
-                        library = {
-                            [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-                            [vim.fn.stdpath("config") .. "/lua"] = true,
-                        },
-                    },
-                },
-            },
-        })
+    -- emmet_language_server
+    lspconfig.emmet_language_server.setup {
+      capabilities = capabilities,
+      filetypes = {
+        'css',
+        'eruby',
+        'html',
+        'javascript',
+        'javascriptreact',
+        'less',
+        'sass',
+        'scss',
+        'pug',
+        'typescriptreact',
+      },
+      init_options = {
+        includeLanguages = {},
+        excludeLanguages = {},
+        extensionsPath = {},
+        preferences = {},
+        showAbbreviationSuggestions = true,
+        showExpandedAbbreviation = 'always',
+        showSuggestionsAsSnippets = false,
+        syntaxProfiles = {},
+        variables = {},
+      },
+    }
 
-        -- -- Configure tsserver (TypeScript and JavaScript)
-        lspconfig.ts_ls.setup({
-            capabilities = capabilities,
-            root_dir = function(fname)
-                local util = lspconfig.util
-                return not util.root_pattern('deno.json', 'deno.jsonc')(fname)
-                    and util.root_pattern('tsconfig.json', 'package.json', 'jsconfig.json', '.git')(fname)
-            end,
-            single_file_support = false,
-            on_attach = function(client, bufnr)
-                -- Disable formatting if you're using a separate formatter like Prettier
-                client.server_capabilities.documentFormattingProvider = false
-            end,
-            init_options = {
-                preferences = {
-                    includeCompletionsWithSnippetText = true,
-                    includeCompletionsForImportStatements = true,
-                },
-            },
-        })
-
-        -- emmet_ls
-        lspconfig.emmet_ls.setup({
-            capabilities = capabilities,
-            filetypes = {
-                "html",
-                "typescriptreact",
-                "javascriptreact",
-                "css",
-                "sass",
-                "scss",
-                "less",
-                "svelte",
-            },
-        })
-
-        -- emmet_language_server
-        lspconfig.emmet_language_server.setup({
-            capabilities = capabilities,
-            filetypes = {
-                "css",
-                "eruby",
-                "html",
-                "javascript",
-                "javascriptreact",
-                "less",
-                "sass",
-                "scss",
-                "pug",
-                "typescriptreact",
-            },
-            init_options = {
-                includeLanguages = {},
-                excludeLanguages = {},
-                extensionsPath = {},
-                preferences = {},
-                showAbbreviationSuggestions = true,
-                showExpandedAbbreviation = "always",
-                showSuggestionsAsSnippets = false,
-                syntaxProfiles = {},
-                variables = {},
-            },
-        })
-
-        -- Add other LSP servers as needed, e.g., gopls, eslint, html, etc.
-        lspconfig.gopls.setup({ capabilities = capabilities })
-        lspconfig.html.setup({ capabilities = capabilities })
-        lspconfig.cssls.setup({ capabilities = capabilities })
-    end,
+    -- Add other LSP servers as needed, e.g., gopls, eslint, html, etc.
+    lspconfig.gopls.setup { capabilities = capabilities }
+    lspconfig.html.setup { capabilities = capabilities }
+    lspconfig.cssls.setup { capabilities = capabilities }
+  end,
 }
