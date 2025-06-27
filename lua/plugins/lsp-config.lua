@@ -52,10 +52,39 @@ return {
     }
 
     -- Setup servers
-    local lspconfig = require 'lspconfig'
     local capabilities = require('blink.cmp').get_lsp_capabilities() -- Import capabilities from blink.cmp
+    local lspconfig = require 'lspconfig'
+    local vue_language_server_path = vim.fn.stdpath 'data' .. '/mason/packages/vue-language-server/node_modules/@vue/language-server'
 
-    -- Configure lua_ls
+    -- Configure tsserver (TypeScript and JavaScript)
+    lspconfig.ts_ls.setup {
+      capabilities = capabilities,
+      root_dir = function(fname)
+        local util = lspconfig.util
+        return not util.root_pattern('deno.json', 'deno.jsonc')(fname) and util.root_pattern('tsconfig.json', 'package.json', 'jsconfig.json', '.git')(fname)
+      end,
+      single_file_support = false,
+      on_attach = function(client, bufnr)
+        -- Disable formatting if you're using a separate formatter like Prettier
+        client.server_capabilities.documentFormattingProvider = false
+      end,
+      init_options = {
+        plugins = {
+          {
+            name = '@vue/typescript-plugin',
+            location = vue_language_server_path,
+            languages = { 'vue' },
+          },
+        },
+        preferences = {
+          includeCompletionsWithSnippetText = true,
+          includeCompletionsForImportStatements = true,
+        },
+      },
+      filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
+    }
+
+    -- Configure lua_ls (Lua)
     lspconfig.lua_ls.setup {
       capabilities = capabilities,
       settings = {
@@ -76,27 +105,7 @@ return {
       },
     }
 
-    -- -- Configure tsserver (TypeScript and JavaScript)
-    lspconfig.ts_ls.setup {
-      capabilities = capabilities,
-      root_dir = function(fname)
-        local util = lspconfig.util
-        return not util.root_pattern('deno.json', 'deno.jsonc')(fname) and util.root_pattern('tsconfig.json', 'package.json', 'jsconfig.json', '.git')(fname)
-      end,
-      single_file_support = false,
-      on_attach = function(client, bufnr)
-        -- Disable formatting if you're using a separate formatter like Prettier
-        client.server_capabilities.documentFormattingProvider = false
-      end,
-      init_options = {
-        preferences = {
-          includeCompletionsWithSnippetText = true,
-          includeCompletionsForImportStatements = true,
-        },
-      },
-    }
-
-    -- emmet_ls
+    -- emmet_ls ()
     lspconfig.emmet_ls.setup {
       capabilities = capabilities,
       filetypes = {

@@ -107,7 +107,7 @@ require('lazy').setup({
   require 'plugins.colorizer',
   require 'plugins.comment',
   require 'plugins.conform',
-  -- require 'plugins.debug',
+  require 'plugins.debug',
   require 'plugins.dressing',
   require 'plugins.emmet',
   require 'plugins.flash',
