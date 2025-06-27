@@ -15,12 +15,12 @@ return {
   config = function()
     local conform = require 'conform'
 
-    conform.setup({
+    conform.setup {
       notify_on_error = false,
-      format_on_save = {
-        timeout_ms = 500,
-        lsp_format = "fallback",
-      },
+      -- format_on_save = {
+      --   timeout_ms = 500,
+      --   lsp_format = "fallback",
+      -- },
       formatters_by_ft = {
         javascript = { 'prettier' },
         typescript = { 'prettier' },
@@ -36,17 +36,14 @@ return {
         lua = { 'stylua' },
         python = { 'black' },
       },
-    })
+    }
 
     conform.formatters.prettier = {
       args = {
         '--stdin-filepath',
         '$FILENAME',
-        '--tab-width',
-        '4',
-        '--use-tabs',
-        'false',
       },
+      cwd = require("conform.util").root_file({ ".prettierrc", "package.json", ".git" }),
     }
     conform.formatters.shfmt = {
       prepend_args = { '-i', '4' },
