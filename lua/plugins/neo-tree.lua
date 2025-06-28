@@ -57,17 +57,18 @@ return {
         },
       },
 
-      source_selector = {
-        winbar = true,
-        sources = {
-          { source = 'filesystem', display_name = '   Files ' },
-          { source = 'buffers', display_name = '   Bufs ' },
-          { source = 'git_status', display_name = '   Git ' },
-        },
-      },
+      -- source_selector = {
+        -- winbar = true,
+        -- sources = {
+        --   { source = 'filesystem', display_name = '   Files ' },
+        --   { source = 'buffers', display_name = '   Bufs ' },
+        --   { source = 'git_status', display_name = '   Git ' },
+        -- },
+      -- },
 
       filesystem = {
-        group_empty_dirs = true,
+        -- group_empty_dirs = true,
+        group_empty_dirs = false,
         use_libuv_file_watcher = true,
         filtered_items = {
           hide_dotfiles = false,
