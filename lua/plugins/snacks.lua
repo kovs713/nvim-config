@@ -36,14 +36,14 @@ return {
     },
     keys = {
       {
-        '<leader>fl',
+        '<leader>gl',
         function()
           require('snacks').lazygit()
         end,
         desc = '[F]loat [L]azygit',
       },
       {
-        '<leader>gl',
+        '<leader>go',
         function()
           require('snacks').lazygit.log()
         end,
