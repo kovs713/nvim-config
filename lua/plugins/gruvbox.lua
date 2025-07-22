@@ -4,9 +4,10 @@ return {
   config = function()
     require('gruvbox').setup {
       terminal_colors = true,
-      contrast = 'hard',
+      contrast = 'soft',
       transparent_mode = true,
     }
+    -- vim.o.background = "light"
     vim.cmd 'colorscheme gruvbox'
   end,
 }

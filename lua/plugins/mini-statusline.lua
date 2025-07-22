@@ -23,12 +23,11 @@ return {
 
           return MiniStatusline.combine_groups {
             { hl = mode_hl, strings = { mode } },
-            { hl = 'MiniStatuslineDevinfo', strings = { git, diff, diag } },
+            { hl = 'MiniStatuslineDevinfo', strings = { git, diff } },
             '%<',
             { hl = 'MiniStatuslineFilename', strings = { filename } },
             '%=',
-            { hl = 'MiniStatuslineFileinfo', strings = { filetype } },
-            { hl = mode_hl, strings = { ' ' .. time } },
+            { hl = 'MiniStatuslineFileinfo', strings = { diag } },
           }
         end,
 

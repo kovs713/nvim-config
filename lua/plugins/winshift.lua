@@ -17,9 +17,9 @@ return {
       },
     }
     vim.keymap.set('n', '<C-W>m', '<Cmd>WinShift<CR>')
-    vim.keymap.set('n', '<C-H>', '<cmd>WinShift left<CR>', { desc = 'Move window left' })
-    vim.keymap.set('n', '<C-J>', '<cmd>WinShift down<CR>', { desc = 'Move window down' })
-    vim.keymap.set('n', '<C-K>', '<cmd>WinShift up<CR>', { desc = 'Move window up' })
-    vim.keymap.set('n', '<C-L>', '<cmd>WinShift right<CR>', { desc = 'Move window right' })
+    vim.keymap.set('n', '<C-A-h>', '<cmd>WinShift left<CR>', { desc = 'Move window left' })
+    vim.keymap.set('n', '<C-A-j>', '<cmd>WinShift down<CR>', { desc = 'Move window down' })
+    vim.keymap.set('n', '<C-A-k>', '<cmd>WinShift up<CR>', { desc = 'Move window up' })
+    vim.keymap.set('n', '<C-A-l>', '<cmd>WinShift right<CR>', { desc = 'Move window right' })
   end,
 }

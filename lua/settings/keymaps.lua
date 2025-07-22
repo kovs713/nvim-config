@@ -32,3 +32,6 @@ vim.keymap.set('n', '<M-=>', '<C-w>+', { desc = 'Resize window +' })
 vim.keymap.set('n', '<M-->', '<C-w>-', { desc = 'Resize window -' })
 vim.keymap.set('n', '<M-,>', '<C-w>>', { desc = 'Resize window >' })
 vim.keymap.set('n', '<M-.>', '<C-w><', { desc = 'Resize window <' })
+
+vim.keymap.set('n', '<leader>sh', '<cmd>split<CR>', { desc = 'Open split horizontal window' })
+vim.keymap.set('n', '<leader>sv', '<cmd>vsplit<CR>', { desc = 'Open split vertical window' })
