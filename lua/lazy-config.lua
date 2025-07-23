@@ -14,7 +14,7 @@ require('lazy').setup({
   require 'plugins.gruvbox',
   require 'plugins.harpoon',
   require 'plugins.img-clip',
-  require 'plugins.incline',
+  -- require 'plugins.incline',
   require 'plugins.lazydev',
   require 'plugins.lint',
   require 'plugins.lsp-config',
