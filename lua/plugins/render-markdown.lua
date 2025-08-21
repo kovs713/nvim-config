@@ -6,7 +6,6 @@ return {
     'echasnovski/mini.icons',
   },
   ---@module 'render-markdown'
-  ft = { 'markdown', 'norg', 'rmd', 'org' },
   opts = {
     heading = {
       sign = false,

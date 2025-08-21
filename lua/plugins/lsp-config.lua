@@ -19,6 +19,8 @@ return {
           require('fzf-lua').lsp_code_actions()
         end, opts) -- see available code actions, in visual mode will apply to selection
 
+        vim.keymap.set({ 'n', 'v' }, '<leader>ll', '<cmd>LspRestart<CR>', opts) -- see available code actions, in visual mode will apply to selection
+
         opts.desc = '[L]sp [I]mplimentations'
         vim.keymap.set('n', '<leader>li', function()
           require('fzf-lua').lsp_implementations()
