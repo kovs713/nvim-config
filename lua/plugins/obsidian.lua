@@ -7,10 +7,11 @@ return {
     'echasnovski/mini.icons',
   },
   opts = {
+    legacy_commands = false,
     workspaces = {
       {
         name = 'main',
-        path = '~/obsidian/mainVault/',
+        path = '~/obsidian-vault/',
       },
     },
 
@@ -32,54 +33,6 @@ return {
       min_chars = 2,
     },
 
-    mappings = {
-      ['gf'] = {
-        action = function()
-          return require('obsidian').util.gf_passthrough()
-        end,
-        opts = { desc = '[G]oto markdown [F]ile', noremap = false, expr = true, buffer = true },
-      },
-
-      ['<cr>'] = {
-        action = function()
-          return require('obsidian').util.smart_action()
-        end,
-        opts = { buffer = true, expr = true },
-      },
-
-      ['<leader>ox'] = {
-        action = function()
-          return require('obsidian').util.toggle_checkbox()
-        end,
-        opts = { desc = '[O]bsidian toggle checkbo[X]' },
-      },
-
-      ['<leader>od'] = {
-        action = '<CMD>Obsidian dailies<CR>',
-        opts = { desc = '[O]bsidian open [D]ailies menu' },
-      },
-
-      ['<leader>ont'] = {
-        action = '<CMD>Obsidian today<CR>',
-        opts = { desc = '[O]bsidian [N]ew [T]oday note' },
-      },
-
-      ['<leader>ony'] = {
-        action = '<CMD>Obsidian yesterday<CR>',
-        opts = { desc = '[O]bsidian [N]ew [Y]esterday note' },
-      },
-
-      ['<leader>onn'] = {
-        action = '<CMD>Obsidian new<CR>',
-        opts = { desc = '[O]bsidian [N]ew [N]ote' },
-      },
-
-      ['<leader>os'] = {
-        action = '<CMD>Obsidian search<CR>',
-        opts = { desc = '[O]bsidian [S]earch notes' },
-      },
-    },
-
     picker = {
       name = 'fzf-lua',
       note_mappings = {
@@ -87,6 +40,38 @@ return {
         new = '<C-n>',
         insert_link = '<C-p>',
       },
+    },
+    callbacks = {
+      enter_note = function(_, note)
+        local bufnr = note.bufnr
+        local obsidian = require 'obsidian'
+
+        pcall(vim.keymap.del, 'n', '<CR>', { buffer = bufnr })
+
+        vim.keymap.set('n', '<leader>od', '<cmd>Obsidian dailies<cr>', { buffer = bufnr, desc = '[O]bsidian [D]ailies' })
+        vim.keymap.set('n', '<leader>ont', '<cmd>Obsidian today<cr>', { buffer = bufnr, desc = '[O]bsidian [N]ew [T]oday' })
+        vim.keymap.set('n', '<leader>ony', '<cmd>Obsidian yesterday<cr>', { buffer = bufnr, desc = '[O]bsidian [N]ew [Y]esterday' })
+        vim.keymap.set('n', '<leader>onn', '<cmd>Obsidian new<cr>', { buffer = bufnr, desc = '[O]bsidian [N]ew [N]ote' })
+        vim.keymap.set('n', '<leader>os', '<cmd>Obsidian search<cr>', { buffer = bufnr, desc = '[O]bsidian [S]earch' })
+
+        -- gf: passthrough
+        vim.keymap.set('n', 'gf', function()
+          return obsidian.util.gf_passthrough()
+        end, { buffer = bufnr, desc = '[G]oto markdown [F]ile', noremap = false, expr = true })
+
+        -- Smart action на <CR> (если хочешь оставить — просто раскомментируй)
+        vim.keymap.set("n", "<CR>", function()
+          return obsidian.util.smart_action()
+        end, { buffer = bufnr, expr = true, desc = "Obsidian smart action" })
+
+        vim.keymap.set('n', '<Tab>', function()
+          require('obsidian.api').nav_link 'next'
+        end, { buffer = bufnr, desc = 'Go to next link' })
+
+        vim.keymap.set('n', '<S-Tab>', function()
+          require('obsidian.api').nav_link 'prev'
+        end, { buffer = bufnr, desc = 'Go to previous link' })
+      end,
     },
   },
 }

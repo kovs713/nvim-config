@@ -154,5 +154,13 @@ return {
     lspconfig.gopls.setup { capabilities = capabilities }
     lspconfig.html.setup { capabilities = capabilities }
     lspconfig.cssls.setup { capabilities = capabilities }
+    lspconfig.yaml.setup {
+      capabilities = capabilities,
+      filetypes = { 'yml' },
+    }
+    lspconfig.prisma.setup {
+      capabilities = capabilities,
+      filetypes = { 'prisma' },
+    }
   end,
 }
