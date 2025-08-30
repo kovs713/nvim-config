@@ -5,6 +5,7 @@ require('lazy').setup({
   require 'plugins.colorizer',
   require 'plugins.comment',
   require 'plugins.conform',
+  require 'plugins.cord',
   require 'plugins.debug',
   require 'plugins.dressing',
   require 'plugins.emmet',

@@ -1,4 +1,4 @@
-vim.keymap.set('n', '<leader>i', '<cmd>TSToolsOrganizeImports<CR>')
+vim.keymap.set('n', '<leader>i', '<cmd>TSToolsOrganizeImports<CR>', { desc = 'TS tools organize imports' })
 vim.keymap.set('n', '<leader>s', '<cmd>wall<CR>', { desc = 'Save all buffers' })
 vim.keymap.set('n', '<C-a>', 'ggVG', { desc = 'Select all' })
 
