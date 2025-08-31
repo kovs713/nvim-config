@@ -118,11 +118,11 @@ return {
         }),
 
         plugins = {
-          -- ['cord.plugins.diagnostics'] = {
-          --   scope = 'buffer',
-          --   severity = { min = vim.diagnostic.severity.WARN },
-          --   override = true,
-          -- },
+          ['cord.plugins.diagnostics'] = {
+            scope = 'buffer',
+            severity = { min = vim.diagnostic.severity.WARN },
+            override = true,
+          },
           -- ['cord.plugins.scoped_timestamps'] = {
           --   scope = 'workspace',
           --   pause = true,

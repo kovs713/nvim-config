@@ -37,7 +37,7 @@ require('lazy').setup({
   require 'plugins.todo-comments',
   require 'plugins.trouble',
   require 'plugins.ts-autotag',
-  require 'plugins.typesctipt-tools',
+  -- require 'plugins.typesctipt-tools',
   require 'plugins.wakatime',
   require 'plugins.which-key',
   require 'plugins.winshift',
