@@ -1,10 +1,16 @@
 return {
   'neovim/nvim-lspconfig',
   event = { 'BufReadPre', 'BufNewFile' },
-  dependencies = {
-    'saghen/blink.cmp',
-    { 'antosha417/nvim-lsp-file-operations', config = true },
+  ft = { 'typescript', 'typescriptreact', 'javascript', 'javascriptreact' },
+  dependencies = { 'saghen/blink.cmp', { 'antosha417/nvim-lsp-file-operations', config = true } },
+  opts = {
+    servers = {
+      tsserver = { enabled = false },
+      ts_ls = { enabled = false },
+      vtsls = { enabled = false },
+    },
   },
+
   config = function()
     -- NOTE: LSP Keybinds
     vim.api.nvim_create_autocmd('LspAttach', {
@@ -56,35 +62,35 @@ return {
     -- Setup servers
     local capabilities = require('blink.cmp').get_lsp_capabilities() -- Import capabilities from blink.cmp
     local lspconfig = require 'lspconfig'
-    local vue_language_server_path = vim.fn.stdpath 'data' .. '/mason/packages/vue-language-server/node_modules/@vue/language-server'
 
-    -- Configure tsserver (TypeScript and JavaScript)
-    lspconfig.ts_ls.setup {
-      capabilities = capabilities,
-      root_dir = function(fname)
-        local util = lspconfig.util
-        return not util.root_pattern('deno.json', 'deno.jsonc')(fname) and util.root_pattern('tsconfig.json', 'package.json', 'jsconfig.json', '.git')(fname)
-      end,
-      single_file_support = false,
-      on_attach = function(client, bufnr)
-        -- Disable formatting if you're using a separate formatter like Prettier
-        client.server_capabilities.documentFormattingProvider = false
-      end,
-      init_options = {
-        plugins = {
-          {
-            name = '@vue/typescript-plugin',
-            location = vue_language_server_path,
-            languages = { 'vue' },
-          },
-        },
-        preferences = {
-          includeCompletionsWithSnippetText = true,
-          includeCompletionsForImportStatements = true,
-        },
-      },
-      filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
-    }
+    -- Configure tsserver (TypeScript and JavaScript and VueJS)
+    -- local vue_language_server_path = vim.fn.stdpath 'data' .. '/mason/packages/vue-language-server/node_modules/@vue/language-server'
+    -- lspconfig.ts_ls.setup {
+    --   capabilities = capabilities,
+    --   root_dir = function(fname)
+    --     local util = lspconfig.util
+    --     return not util.root_pattern('deno.json', 'deno.jsonc')(fname) and util.root_pattern('tsconfig.json', 'package.json', 'jsconfig.json', '.git')(fname)
+    --   end,
+    --   single_file_support = false,
+    --   on_attach = function(client, bufnr)
+    --     -- Disable formatting if you're using a separate formatter like Prettier
+    --     client.server_capabilities.documentFormattingProvider = false
+    --   end,
+    --   init_options = {
+    --     plugins = {
+    --       {
+    --         name = '@vue/typescript-plugin',
+    --         location = vue_language_server_path,
+    --         languages = { 'vue' },
+    --       },
+    --     },
+    --     preferences = {
+    --       includeCompletionsWithSnippetText = true,
+    --       includeCompletionsForImportStatements = true,
+    --     },
+    --   },
+    --   filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
+    -- }
 
     -- Configure lua_ls (Lua)
     lspconfig.lua_ls.setup {

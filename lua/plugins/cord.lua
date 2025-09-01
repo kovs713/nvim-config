@@ -121,18 +121,18 @@ return {
           ['cord.plugins.diagnostics'] = {
             scope = 'buffer',
             severity = { min = vim.diagnostic.severity.WARN },
-            override = true,
+            override = false,
           },
-          -- ['cord.plugins.scoped_timestamps'] = {
-          --   scope = 'workspace',
-          --   pause = true,
-          -- },
-          ['cord.plugins.persistent_timer'] = {
+          ['cord.plugins.scoped_timestamps'] = {
             scope = 'workspace',
-            mode = 'all',
-            save_on = { 'exit', 'focus_change', 'periodic' },
-            save_interval = 30,
+            pause = true,
           },
+          -- ['cord.plugins.persistent_timer'] = {
+          --   scope = 'workspace',
+          --   mode = 'all',
+          --   save_on = { 'exit', 'focus_change', 'periodic' },
+          --   save_interval = 30,
+          -- },
         },
 
         advanced = {
