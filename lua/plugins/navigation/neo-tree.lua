@@ -7,9 +7,8 @@ return {
     'MunifTanjim/nui.nvim',
   },
   config = function()
-    vim.keymap.set('n', '<leader>ef', '<cmd>Neotree toggle float<CR>', { desc = 'Open Nvim-Neo-Tree floating' })
-    vim.keymap.set('n', '<leader>er', '<cmd>Neotree toggle position=right<CR>', { desc = 'Open Nvim-Neo-Tree on the right' })
-    vim.keymap.set('n', '<leader>ee', '<cmd>Neotree<CR>', { desc = 'Open Nvim-Neo-Tree' })
+    vim.keymap.set('n', '<leader>ef', '<cmd>Neotree toggle float<CR>', { desc = 'Open Neo-Tree [E]xplorer [F]loating' })
+    vim.keymap.set('n', '<leader>er', '<cmd>Neotree toggle position=right<CR>', { desc = 'Open Neo-Tree [E]xplorer on the [R]ight' })
     require('neo-tree').setup {
       close_if_last_window = true,
       popup_border_style = 'single',
@@ -58,12 +57,12 @@ return {
       },
 
       -- source_selector = {
-        -- winbar = true,
-        -- sources = {
-        --   { source = 'filesystem', display_name = '   Files ' },
-        --   { source = 'buffers', display_name = '   Bufs ' },
-        --   { source = 'git_status', display_name = '   Git ' },
-        -- },
+      -- winbar = true,
+      -- sources = {
+      --   { source = 'filesystem', display_name = '   Files ' },
+      --   { source = 'buffers', display_name = '   Bufs ' },
+      --   { source = 'git_status', display_name = '   Git ' },
+      -- },
       -- },
 
       filesystem = {

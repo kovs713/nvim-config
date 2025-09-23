@@ -1,12 +1,3 @@
--- [[ Setting options ]]
-require 'settings.options'
-
--- [[ Basic Autocommands ]]
-require 'settings.autocmd'
-
--- [[ Configure basic keymaps ]]
-require 'settings.keymaps'
-
 -- [[ Install `lazy.nvim` plugin manager ]]
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
@@ -18,5 +9,8 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+-- [[ Configure settings (options, autocommands, keymaps) ]]
+require 'settings'
+
 -- [[ Configure and install plugins ]]
-require 'lazy-config'
+require 'plugins'

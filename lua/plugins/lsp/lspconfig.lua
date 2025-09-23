@@ -12,28 +12,23 @@ return {
   },
 
   config = function()
-    -- NOTE: LSP Keybinds
     vim.api.nvim_create_autocmd('LspAttach', {
       group = vim.api.nvim_create_augroup('UserLspConfig', {}),
       callback = function(ev)
-        -- Buffer local mappings
-        -- Check `:help vim.lsp.*` for documentation on any of the below functions
         local opts = { buffer = ev.buf, silent = true }
 
-        opts.desc = 'See available code actions'
+        opts.desc = '[C]ode [A]ctions'
         vim.keymap.set({ 'n', 'v' }, '<leader>ca', function()
           require('fzf-lua').lsp_code_actions()
-        end, opts) -- see available code actions, in visual mode will apply to selection
+        end, opts)
 
-        vim.keymap.set({ 'n', 'v' }, '<leader>ll', '<cmd>LspRestart<CR>', opts) -- see available code actions, in visual mode will apply to selection
+        opts.desc = '[L][L]sp Restart'
+        vim.keymap.set({ 'n', 'v' }, '<leader>ll', '<cmd>LspRestart<CR>', opts)
 
         opts.desc = '[L]sp [I]mplimentations'
         vim.keymap.set('n', '<leader>li', function()
           require('fzf-lua').lsp_implementations()
         end, opts)
-
-        opts.desc = 'Restart LSP'
-        vim.keymap.set('n', '<leader>rs', ':LspRestart<CR>', opts) -- mapping to restart lsp if necessary
 
         vim.keymap.set('i', '<C-h>', function()
           vim.lsp.buf.signature_help()
@@ -156,17 +151,10 @@ return {
       },
     }
 
-    -- Add other LSP servers as needed, e.g., gopls, eslint, html, etc.
     lspconfig.gopls.setup { capabilities = capabilities }
+
     lspconfig.html.setup { capabilities = capabilities }
+
     lspconfig.cssls.setup { capabilities = capabilities }
-    lspconfig.yaml.setup {
-      capabilities = capabilities,
-      filetypes = { 'yml' },
-    }
-    lspconfig.prisma.setup {
-      capabilities = capabilities,
-      filetypes = { 'prisma' },
-    }
   end,
 }

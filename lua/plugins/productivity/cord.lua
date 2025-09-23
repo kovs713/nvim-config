@@ -4,6 +4,7 @@ return {
     build = ':Cord update',
     event = 'VeryLazy',
     opts = function()
+      -- functions helpers for daily activity counter hooks
       local data_path = vim.fn.stdpath 'data' .. '/cord/plugins/daily_timer/data.json'
 
       local state = {
@@ -45,7 +46,6 @@ return {
       local function roll_day(now)
         local today = os.date('%F', now)
         if state.day ~= today then
-          -- закрываем старый день
           flush(now)
           state.day = today
           state.start = now
@@ -59,19 +59,6 @@ return {
           ['.*/.*%.service%.ts'] = 'typescript',
         },
       }
-
-      vim.keymap.set('n', '<leader>ct', function()
-        require('cord.api.command').toggle_presence()
-      end)
-      -- {desc: "Toogle cord presence"}
-      vim.keymap.set('n', '<leader>ci', function()
-        require('cord.api.command').toggle_idle_force()
-      end)
-      -- {desc: "Toogle cord idle"}
-      vim.keymap.set('n', '<leader>cu', function()
-        require('cord.api.command').update()
-      end)
-      -- {desc: "Update cord"}
 
       return {
         enabled = true,
@@ -121,6 +108,47 @@ return {
           dashboard = 'Home',
         },
 
+        assets = vim.tbl_extend('force', (assets or {}), {
+          ['.ts'] = {
+            icon = require('cord.api.icon').get 'typescript',
+            tooltip = 'TypeScript',
+            type = 'language',
+          },
+
+          ['.tsx'] = {
+            icon = require('cord.api.icon').get 'typescript',
+            tooltip = 'TypeScript React',
+            type = 'language',
+          },
+
+          lazy = {
+            name = 'Lazy',
+            type = 'plugin_manager',
+            tooltip = 'lazy.nvim plugin manager',
+          },
+        }),
+
+        variables = true,
+
+        advanced = {
+          plugin = {
+            autocmds = true,
+            cursor_update = 'on_hold',
+            match_in_mappings = true,
+          },
+          server = {
+            update = 'fetch',
+            timeout = 300000,
+          },
+          discord = {
+            reconnect = { enabled = true, interval = 5000, initial = true },
+          },
+          workspace = {
+            limit_to_cwd = false,
+          },
+        },
+
+        -- optional buttons for repo you're working on
         -- buttons = {
         --   {
         --     label = function(opts)
@@ -132,21 +160,8 @@ return {
         --   },
         -- },
 
-        assets = vim.tbl_extend('force', (assets or {}), {
-          ['.ts'] = { icon = require('cord.api.icon').get 'typescript', tooltip = 'TypeScript', type = 'language' },
-          ['.tsx'] = { icon = require('cord.api.icon').get 'typescript', tooltip = 'TypeScript React', type = 'language' },
-
-          lazy = {
-            name = 'Lazy',
-            type = 'plugin_manager',
-            tooltip = 'lazy.nvim plugin manager',
-          },
-        }),
-
-        variables = true,
-
         hooks = vim.tbl_extend('force', (hooks or {}), {
-
+          -- hook that replace angular icons by typescript icon for nestjs files
           post_activity = function(opts, activity)
             local v = vim.version()
             activity.assets.small_text = string.format('Neovim %d.%d.%d', v.major, v.minor, v.patch)
@@ -166,29 +181,28 @@ return {
               activity.assets.large_text = 'NestJS'
             end
           end,
-          pre_activity = function(opts) -- перед сборкой активности можно подменить таймстамп
+
+          -- hook that count daily time for project you're working on
+          pre_activity = function(opts)
             local now = os.time()
             roll_day(now)
 
-            -- застрахуемся на первом вызове
             state.ws = state.ws or (opts.workspace or 'global')
             state.start = state.start or now
             state.active = not opts.is_idle
 
-            -- текущая сумма за сегодня + незавершённый активный отрезок
             local acc = ((state.data[state.day] or {})[state.ws] or 0)
             if state.active and state.start then
               acc = acc + (now - state.start)
             end
 
-            -- Discord ждёт стартовую метку: ставим (now - acc)
-            opts.timestamp = (now - acc) * 1000 -- миллисекунды
+            opts.timestamp = (now - acc) * 1000
           end,
 
           workspace_change = function(opts)
             local now = os.time()
             roll_day(now)
-            flush(now) -- добьём предыдущий ws
+            flush(now)
             state.ws = opts.workspace or 'global'
             state.start = now
             state.active = not opts.is_idle
@@ -198,7 +212,7 @@ return {
           idle_enter = function(_)
             local now = os.time()
             roll_day(now)
-            flush(now) -- закрываем активный отрезок
+            flush(now)
             state.active = false
             save_json(data_path, state.data)
           end,
@@ -215,42 +229,6 @@ return {
             save_json(data_path, state.data)
           end,
         }),
-
-        plugins = {
-          ['cord.plugins.diagnostics'] = {
-            scope = 'buffer',
-            severity = { min = vim.diagnostic.severity.WARN },
-            override = false,
-          },
-          -- ['cord.plugins.scoped_timestamps'] = {
-          --   scope = 'workspace',
-          --   pause = true,
-          -- },
-          -- ['cord.plugins.persistent_timer'] = {
-          --   scope = 'workspace',
-          --   mode = 'all',
-          --   save_on = { 'exit', 'focus_change', 'periodic' },
-          --   save_interval = 30,
-          -- },
-        },
-
-        advanced = {
-          plugin = {
-            autocmds = true,
-            cursor_update = 'on_hold',
-            match_in_mappings = true,
-          },
-          server = {
-            update = 'fetch',
-            timeout = 300000,
-          },
-          discord = {
-            reconnect = { enabled = true, interval = 5000, initial = true },
-          },
-          workspace = {
-            limit_to_cwd = false,
-          },
-        },
       }
     end,
   },

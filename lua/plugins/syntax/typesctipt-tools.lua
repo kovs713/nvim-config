@@ -3,7 +3,8 @@ return {
   dependencies = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
   opts = {
     on_attach = function(client)
-      vim.keymap.set('n', '<leader>rf', '<cmd>TSToolsRenameFile<CR>', { desc = 'TS: Rename File + Fix Imports' })
+      vim.keymap.set('n', '<leader>rf', '<cmd>TSToolsRenameFile<CR>', { desc = 'TS [R]ename [F]ile + Fix Imports' })
+      vim.keymap.set('n', '<leader>i', '<cmd>TSToolsOrganizeImports<CR>', { desc = 'TS Tools Organize [I]mports' })
       client.server_capabilities.documentFormattingProvider = false
     end,
     include_inlay_parameter_name_hints = 'all',

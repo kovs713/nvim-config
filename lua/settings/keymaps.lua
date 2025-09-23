@@ -1,4 +1,3 @@
-vim.keymap.set('n', '<leader>i', '<cmd>TSToolsOrganizeImports<CR>', { desc = 'TS tools organize imports' })
 vim.keymap.set('n', '<leader>s', '<cmd>wall<CR>', { desc = 'Save all buffers' })
 vim.keymap.set('n', '<C-a>', 'ggVG', { desc = 'Select all' })
 
@@ -22,16 +21,3 @@ vim.keymap.set({ 'n', 'x', 'o' }, 'L', 'g_', { desc = 'Go to end of line' })
 vim.keymap.set('n', '<C-i>', '<C-o>', { desc = 'Replace goto next' })
 vim.keymap.set('n', '<C-o>', '<C-i>', { desc = 'Replace goto prev' })
 vim.keymap.set('n', '<esc>', '<cmd>noh<CR>', { silent = true, desc = 'Clear search' })
-
-vim.keymap.set('n', '<M-h>', '<C-w>h', { desc = 'Moving between windows' })
-vim.keymap.set('n', '<M-j>', '<C-w>j', { desc = 'Moving between windows' })
-vim.keymap.set('n', '<M-k>', '<C-w>k', { desc = 'Moving between windows' })
-vim.keymap.set('n', '<M-l>', '<C-w>l', { desc = 'Moving between windows' })
-
-vim.keymap.set('n', '<M-=>', '<C-w>+', { desc = 'Resize window +' })
-vim.keymap.set('n', '<M-->', '<C-w>-', { desc = 'Resize window -' })
-vim.keymap.set('n', '<M-,>', '<C-w>>', { desc = 'Resize window >' })
-vim.keymap.set('n', '<M-.>', '<C-w><', { desc = 'Resize window <' })
-
--- vim.keymap.set('n', '<leader>sh', '<cmd>split<CR>', { desc = 'Open split horizontal window' })
--- vim.keymap.set('n', '<leader>sv', '<cmd>vsplit<CR>', { desc = 'Open split vertical window' })

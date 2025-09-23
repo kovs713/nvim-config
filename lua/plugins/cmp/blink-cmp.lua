@@ -3,7 +3,7 @@ return {
   event = 'VimEnter',
   version = '1.*',
   dependencies = {
-    -- { 'fang2hou/blink-copilot' },
+    -- Lua snippets
     {
       'L3MON4D3/LuaSnip',
       version = '2.*',
@@ -112,12 +112,6 @@ return {
       default = { 'lsp', 'path', 'snippets', 'lazydev', 'buffer', 'emoji' },
       providers = {
         lazydev = { module = 'lazydev.integrations.blink', score_offset = 100 },
-        -- copilot = {
-        --   name = 'copilot',
-        --   module = 'blink-copilot',
-        --   score_offset = 100,
-        --   async = true,
-        -- },
         emoji = {
           module = 'blink-emoji',
           name = 'Emoji',
@@ -136,17 +130,4 @@ return {
 
     signature = { enabled = true },
   },
-  -- {
-  --   'zbirenbaum/copilot.lua',
-  --   cmd = 'Copilot',
-  --   event = 'InsertEnter',
-  --   opts = {
-  --     suggestion = { enabled = false },
-  --     panel = { enabled = false },
-  --     filetypes = {
-  --       markdown = true,
-  --       help = true,
-  --     },
-  --   },
-  -- },
 }
