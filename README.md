@@ -1,6 +1,23 @@
-# Personal Neovim Setup
+<div align="center">
+  <p>
+    <img alt="Linux" src="https://img.shields.io/badge/Linux-%23.svg?style=flat-square&#x26;logo=linux&#x26;color=FCC624&#x26;logoColor=black">
+    <a href="https://github.com/neovim/neovim/releases/tag/stable">
+        <img src="https://img.shields.io/badge/Neovim-0.11.4-blueviolet.svg?style=flat-square&logo=Neovim&logoColor=green" alt="Neovim minimum version"/>
+    </a>
+    <img src="https://img.shields.io/github/languages/top/kamusari713/nvim-config" alt="Top languages">
+    <a href="https://github.com/kamusari713/nvim-config/graphs/commit-activity">
+        <img src="https://img.shields.io/github/commit-activity/m/kamusari713/nvim-config?style=flat-square">
+    </a>
+    <a href="https://github.com/kamusari713/nvim-config/blob/master/LICENSE.md">
+        <img src="https://img.shields.io/github/repo-size/kamusari713/nvim-config?style=flat-square">
+    </a>
+    <img src="https://img.shields.io/github/license/kamusari713/nvim-config?style=flat-square&#x26;logo=GNU&#x26;label=License" alt="License">
+  </p>
+</div>
 
-My personal Lua-based Neovim configuration. Focused on productivity, modern UI, and developer tools  (likely for typescript development).
+# Neovim Config
+
+My personal Lua-based Neovim configuration. Focused on productivity, modern UI, and developer tools  (likely for TypeScript development).
 
 ## Installation
 
@@ -12,60 +29,86 @@ My personal Lua-based Neovim configuration. Focused on productivity, modern UI, 
 
 This config uses [lazy.nvim](https://github.com/folke/lazy.nvim) for plugin management, with plugins organized into enabled/disabled folders and categorized for easy maintenance. It includes LSP support, Obsidian notes tooling, Treesitter syntax, Git integration, and more.
 
+### Features
+- **Modern UI**: Customizable dashboard, statusline, notifications, and markdown rendering.
+- **Coding Tools**: LSP with diagnostics, code actions, refactoring, formatting, and linting.
+- **Syntax & Completion**: Treesitter-based highlighting, auto-tagging, Tailwind/Emmet support, and fast completion.
+- **Editing Enhancements**: Auto-pairs, comments, TODO highlighting, and indentation visualization.
+- **Navigation**: Fuzzy finders, file explorers, quick jumps, and window management.
+- **Git Integration**: Signs for changes, hunk staging, blame, and diffs.
+- **Productivity**: Note-taking with Obsidian, time tracking, Discord presence, and image pasting.
+- **Modular Mini.nvim**: Lightweight modules for surroundings, textobjects, icons, and more.
+- **Customization**: Easily enable/disable plugins by moving files between folders.
+
+### Requirements
+- Neovim v0.11.4
+- Git (for repo management).
+- Node.js (for some LSP servers like TypeScript).
+- Optional: ripgrep (for faster searching), fd (for file finding), ImageMagick (for image previews).
+
 ### Screenshots
 
 <details>
 <summary>Mini-starter</summary>
-
-![mini-starter](/overview/starter.png)
+<p align="center">
+  <img src="/overview/starter.png" alt="mini-starter" />
+</p>
 </details>
 
 <details>
 <summary>Snacks projects util</summary>
-
-![snacks-projects-util](/overview/snacks-projects.png)
+<p align="center">
+  <img src="/overview/snacks-projects.png" alt="snacks-projects-util" />
+</p>
 </details>
 
 <details>
 <summary>Lazygit integration</summary>
-
-![lazygit-integration](/overview/lazygit-integration.png)
+<p align="center">
+  <img src="/overview/lazygit-integration.png" alt="lazygit-integration" />
+</p>
 </details>
 
 <details>
 <summary>Gitsigns support</summary> 
-
-![gitsigns](/overview/gitsigns.png)
+<p align="center">
+  <img src="/overview/gitsigns.png" alt="gitsigns" />
+</p>
 </details>
 
 <details>
 <summary>LSP support</summary>
-
-![lsp-support](/overview/lsp-support.png)
+<p align="center">
+  <img src="/overview/lsp-support.png" alt="lsp-support" />
+</p>
 </details>
 
 <details>
 <summary>Fzf and grep finder</summary>
-
-![fzf-grep-finder](overview/fzf-grep-finder.png)
+<p align="center">
+  <img src="overview/fzf-grep-finder.png" alt="fzf-grep-finder" />
+</p>
 </details>
 
 <details>
 <summary>Obsidian daily note taking</summary>
-
-![obsidian-dailies](overview/obsidian-daily-notes.png)
+<p align="center">
+  <img src="overview/obsidian-daily-notes.png" alt="obsidian-dailies" />
+</p>
 </details>
 
 <details>
 <summary>Markdown render support</summary>
-
-![render-markdown](overview/render-markdown.png)
+<p align="center">
+  <img src="overview/render-markdown.png" alt="render-markdown" />
+</p>
 </details>
 
 <details>
 <summary>Discord RPC support</summary>
-
-![discord](overview/discord-rpc.png)
+<p align="center">
+  <img src="overview/discord-rpc.png" alt="discord" />
+</p>
 </details>
 
 ## Keymaps
@@ -280,15 +323,57 @@ This config uses [lazy.nvim](https://github.com/folke/lazy.nvim) for plugin mana
 
 Plugins are organized into categories under `plugins/enabled/`. Each category contains individual `.lua` files for plugin configs.
 
-| Category     | Plugins |
-|--------------|---------|
-| Appearance  | colorizer, dressing, incline, mini-starter, mini-statusline, noice, render-markdown, rosepine |
-| Cmp  | blink-cmp |
-| LSP         | debug, lazydev, lspconfig, lspsaga, mason |
-| Formatting  | conform, lint |
-| Syntax      | emmet, nvim-treesitter, tailwind-tools, ts-autotag, typescript-tools |
-| Editing     | autopairs, bullets, comment, refactoring, sleuth, todo-comments |
-| Navigation  | flash, fzf, harpoon, neo-tree, snacks, trouble, which-key, winshift |
-| Git         | gitsigns |
-| Productivity| cord, img-clip, obsidian, wakatime |
-| Mini        | mini-surround, mini-ai, mini-icons, mini-pairs, mini-indentscoope, mini-cursorword |
+| Category | Plugin | Repo | Description |
+|----------|--------|------|-------------|
+| Appearance | colorizer | [NvChad/nvim-colorizer.lua](https://github.com/NvChad/nvim-colorizer.lua) | High-performance color highlighter for code. |
+| Appearance | dressing | [stevearc/dressing.nvim](https://github.com/stevearc/dressing.nvim) | Improves default vim.ui interfaces like input and select. |
+| Appearance | incline | [b0o/incline.nvim](https://github.com/b0o/incline.nvim) | Floating statuslines for windows (winbar alternative). |
+| Appearance | mini-starter | [echasnovski/mini.nvim](https://github.com/echasnovski/mini.nvim) | Minimalistic start screen module. |
+| Appearance | mini-statusline | [echasnovski/mini.nvim](https://github.com/echasnovski/mini.nvim) | Configurable, compact or fancy statusline. |
+| Appearance | noice | [folke/noice.nvim](https://github.com/folke/noice.nvim) | Replaces UI for messages, cmdline, and popupmenu. |
+| Appearance | render-markdown | [MeanderingProgrammer/render-markdown.nvim](https://github.com/MeanderingProgrammer/render-markdown.nvim) | Improves viewing Markdown files in Neovim. |
+| Appearance | rosepine | [rose-pine/neovim](https://github.com/rose-pine/neovim) | Soho vibes colorscheme for Neovim. |
+| Cmp | blink-cmp | [Saghen/blink.cmp](https://github.com/Saghen/blink.cmp) | Performant, batteries-included completion plugin. |
+| LSP | debug | [mfussenegger/nvim-dap](https://github.com/mfussenegger/nvim-dap) | Debug Adapter Protocol client implementation. |
+| LSP | lazydev | [folke/lazydev.nvim](https://github.com/folke/lazydev.nvim) | Faster LuaLS setup for editing Neovim configs. |
+| LSP | lspconfig | [neovim/nvim-lspconfig](https://github.com/neovim/nvim-lspconfig) | Quickstart configs for Nvim LSP. |
+| LSP | lspsaga | [nvimdev/lspsaga.nvim](https://github.com/nvimdev/lspsaga.nvim) | Lightweight LSP plugin with performant UI. |
+| LSP | mason | [williamboman/mason.nvim](https://github.com/williamboman/mason.nvim) | Portable package manager for installing LSP servers, linters, etc. |
+| Formatting | conform | [stevearc/conform.nvim](https://github.com/stevearc/conform.nvim) | Lightweight yet powerful formatter plugin. |
+| Formatting | lint | [mfussenegger/nvim-lint](https://github.com/mfussenegger/nvim-lint) | Asynchronous linter plugin. |
+| Syntax | emmet | [olrtg/nvim-emmet](https://github.com/olrtg/nvim-emmet) | Emmet abbreviation and expansion for Neovim. |
+| Syntax | nvim-treesitter | [nvim-treesitter/nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) | Treesitter configurations and abstraction layer. |
+| Syntax | tailwind-tools | [luckasRanarison/tailwind-tools.nvim](https://github.com/luckasRanarison/tailwind-tools.nvim) | Unofficial Tailwind CSS integration and tooling. |
+| Syntax | ts-autotag | [windwp/nvim-ts-autotag](https://github.com/windwp/nvim-ts-autotag) | Uses Treesitter to auto-close and rename tags. |
+| Syntax | typescript-tools | [pmizio/typescript-tools.nvim](https://github.com/pmizio/typescript-tools.nvim) | TypeScript integration with LSP features. |
+| Editing | autopairs | [windwp/nvim-autopairs](https://github.com/windwp/nvim-autopairs) | Autopairs written in Lua. |
+| Editing | bullets | [bullets-vim/bullets.vim](https://github.com/bullets-vim/bullets.vim) | Automated bullet and numbered lists for Markdown. |
+| Editing | comment | [numToStr/Comment.nvim](https://github.com/numToStr/Comment.nvim) | Smart and powerful commenting. |
+| Editing | refactoring | [ThePrimeagen/refactoring.nvim](https://github.com/ThePrimeagen/refactoring.nvim) | Refactoring library based on Martin Fowler's book. |
+| Editing | sleuth | [tpope/vim-sleuth](https://github.com/tpope/vim-sleuth) | Heuristically sets shiftwidth and expandtab. |
+| Editing | todo-comments | [folke/todo-comments.nvim](https://github.com/folke/todo-comments.nvim) | Highlights and searches TODO comments. |
+| Navigation | flash | [folke/flash.nvim](https://github.com/folke/flash.nvim) | Enhances search with labels for quick jumps. |
+| Navigation | fzf | [ibhagwan/fzf-lua](https://github.com/ibhagwan/fzf-lua) | Improved fzf.vim written in Lua. |
+| Navigation | harpoon | [ThePrimeagen/harpoon](https://github.com/ThePrimeagen/harpoon) | Per-project marks for fast file navigation. |
+| Navigation | neo-tree | [nvim-neo-tree/neo-tree.nvim](https://github.com/nvim-neo-tree/neo-tree.nvim) | File system and tree-like structure manager. |
+| Navigation | snacks | [folke/snacks.nvim](https://github.com/folke/snacks.nvim) | Collection of lightweight Neovim plugins. |
+| Navigation | trouble | [folke/trouble.nvim](https://github.com/folke/trouble.nvim) | Pretty diagnostics, references, and lists. |
+| Navigation | which-key | [folke/which-key.nvim](https://github.com/folke/which-key.nvim) | Displays possible keybindings in popup. |
+| Navigation | winshift | [sindrets/winshift.nvim](https://github.com/sindrets/winshift.nvim) | Rearranges windows with ease. |
+| Git | gitsigns | [lewis6991/gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim) | Git integration with signs for changes. |
+| Productivity | cord | [vyfor/cord.nvim](https://github.com/vyfor/cord.nvim) | Discord Rich Presence for Neovim. |
+| Productivity | img-clip | [HakonHarnes/img-clip.nvim](https://github.com/HakonHarnes/img-clip.nvim) | Effortlessly embeds images into markup. |
+| Productivity | obsidian | [epwalsh/obsidian.nvim](https://github.com/epwalsh/obsidian.nvim) | Obsidian vault integration for notes. |
+| Productivity | wakatime | [wakatime/vim-wakatime](https://github.com/wakatime/vim-wakatime) | Automatic time tracking for coding. |
+| Mini | mini-surround | [echasnovski/mini.nvim](https://github.com/echasnovski/mini.nvim) | Fast and feature-rich surround actions. |
+| Mini | mini-ai | [echasnovski/mini.nvim](https://github.com/echasnovski/mini.nvim) | Extends and creates a/i textobjects. |
+| Mini | mini-icons | [echasnovski/mini.nvim](https://github.com/echasnovski/mini.nvim) | Icon provider with caching and customization. |
+| Mini | mini-pairs | [echasnovski/mini.nvim](https://github.com/echasnovski/mini.nvim) | Minimal and fast autopair module. |
+| Mini | mini-indentscope | [echasnovski/mini.nvim](https://github.com/echasnovski/mini.nvim) | Visualizes and operates on indent scopes. |
+| Mini | mini-cursorword | [echasnovski/mini.nvim](https://github.com/echasnovski/mini.nvim) | Auto-highlights word under cursor. |
+
+## Contributing
+Feel free to fork and submit pull requests for improvements, bug fixes, or new features.
+
+## License
+MIT License - see [LICENSE](LICENSE.md) for details.
