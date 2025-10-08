@@ -9,6 +9,7 @@ require('lazy').setup({
   { import = 'plugins.navigation' },
   { import = 'plugins.productivity' },
   { import = 'plugins.syntax' },
+  { import = 'plugins.theme' },
 }, {
   ui = {
     icons = {
