@@ -338,7 +338,7 @@ Plugins are organized into categories under `plugins/enabled/`. Each category co
 | LSP | lazydev | [folke/lazydev.nvim](https://github.com/folke/lazydev.nvim) | Faster LuaLS setup for editing Neovim configs. |
 | LSP | lspconfig | [neovim/nvim-lspconfig](https://github.com/neovim/nvim-lspconfig) | Quickstart configs for Nvim LSP. |
 | LSP | lspsaga | [nvimdev/lspsaga.nvim](https://github.com/nvimdev/lspsaga.nvim) | Lightweight LSP plugin with performant UI. |
-| LSP | mason | [williamboman/mason.nvim](https://github.com/williamboman/mason.nvim) | Portable package manager for installing LSP servers, linters, etc. |
+| LSP | mason | [mason-org/mason.nvim](https://github.com/mason-org/mason.nvim) | Portable package manager for installing LSP servers, linters, etc. |
 | Formatting | conform | [stevearc/conform.nvim](https://github.com/stevearc/conform.nvim) | Lightweight yet powerful formatter plugin. |
 | Formatting | lint | [mfussenegger/nvim-lint](https://github.com/mfussenegger/nvim-lint) | Asynchronous linter plugin. |
 | Syntax | emmet | [olrtg/nvim-emmet](https://github.com/olrtg/nvim-emmet) | Emmet abbreviation and expansion for Neovim. |

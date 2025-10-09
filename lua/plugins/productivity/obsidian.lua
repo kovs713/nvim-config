@@ -4,7 +4,7 @@ return {
   lazy = true,
   ft = 'markdown',
   dependencies = {
-    'echasnovski/mini.icons',
+    'nvim-mini/mini.icons',
   },
   opts = {
     legacy_commands = false,
@@ -60,9 +60,9 @@ return {
         end, { buffer = bufnr, desc = '[G]oto markdown [F]ile', noremap = false, expr = true })
 
         -- Smart action на <CR> (если хочешь оставить — просто раскомментируй)
-        vim.keymap.set("n", "<CR>", function()
+        vim.keymap.set('n', '<CR>', function()
           return obsidian.util.smart_action()
-        end, { buffer = bufnr, expr = true, desc = "Obsidian smart action" })
+        end, { buffer = bufnr, expr = true, desc = 'Obsidian smart action' })
 
         vim.keymap.set('n', '<Tab>', function()
           require('obsidian.api').nav_link 'next'

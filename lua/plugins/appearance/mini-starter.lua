@@ -1,5 +1,5 @@
 return {
-  'echasnovski/mini.starter',
+  'nvim-mini/mini.starter',
   version = '*',
   config = function()
     local starter = require 'mini.starter'

@@ -1,5 +1,5 @@
 return {
-  'echasnovski/mini.statusline',
+  'nvim-mini/mini.statusline',
   version = false,
   config = function()
     vim.api.nvim_create_autocmd('FileType', {
