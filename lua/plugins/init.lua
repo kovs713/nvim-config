@@ -1,4 +1,5 @@
 require('lazy').setup({
+  { import = 'plugins.theme' },
   { import = 'plugins.appearance' },
   { import = 'plugins.cmp' },
   { import = 'plugins.editing' },
@@ -9,7 +10,6 @@ require('lazy').setup({
   { import = 'plugins.navigation' },
   { import = 'plugins.productivity' },
   { import = 'plugins.syntax' },
-  { import = 'plugins.theme' },
 }, {
   ui = {
     icons = {
