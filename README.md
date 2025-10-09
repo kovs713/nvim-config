@@ -330,7 +330,6 @@ Plugins are organized into categories under `plugins/enabled/`. Each category co
 | Appearance | incline | [b0o/incline.nvim](https://github.com/b0o/incline.nvim) | Floating statuslines for windows (winbar alternative). |
 | Appearance | mini-starter | [echasnovski/mini.nvim](https://github.com/echasnovski/mini.nvim) | Minimalistic start screen module. |
 | Appearance | mini-statusline | [echasnovski/mini.nvim](https://github.com/echasnovski/mini.nvim) | Configurable, compact or fancy statusline. |
-| Appearance | noice | [folke/noice.nvim](https://github.com/folke/noice.nvim) | Replaces UI for messages, cmdline, and popupmenu. |
 | Appearance | render-markdown | [MeanderingProgrammer/render-markdown.nvim](https://github.com/MeanderingProgrammer/render-markdown.nvim) | Improves viewing Markdown files in Neovim. |
 | Appearance | rosepine | [rose-pine/neovim](https://github.com/rose-pine/neovim) | Soho vibes colorscheme for Neovim. |
 | Cmp | blink-cmp | [Saghen/blink.cmp](https://github.com/Saghen/blink.cmp) | Performant, batteries-included completion plugin. |
