@@ -43,13 +43,6 @@ return {
         desc = '[F]loat [L]azygit',
       },
       {
-        '<leader>go',
-        function()
-          require('snacks').lazygit.log()
-        end,
-        desc = 'Lazy[G]it [L]ogs',
-      },
-      {
         '<leader>rN',
         function()
           require('snacks').rename.rename_file()
