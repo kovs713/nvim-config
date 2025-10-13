@@ -56,6 +56,13 @@ return {
         end,
         desc = '[F]ind [P]rojects',
       },
+      {
+        '<leader>fu',
+        function()
+          require('snacks.picker').undo()
+        end,
+        desc = '[F] [U]ndo tree',
+      },
     },
   },
 }
