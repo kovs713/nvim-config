@@ -7,7 +7,6 @@ return {
     'MunifTanjim/nui.nvim',
   },
   config = function()
-    vim.keymap.set('n', '<leader>ef', '<cmd>Neotree toggle float<CR>', { desc = 'Open Neo-Tree [E]xplorer [F]loating' })
     vim.keymap.set('n', '<leader>er', '<cmd>Neotree toggle position=right<CR>', { desc = 'Open Neo-Tree [E]xplorer on the [R]ight' })
     require('neo-tree').setup {
       close_if_last_window = true,
@@ -18,7 +17,7 @@ return {
       sort_case_insensitive = true,
 
       window = {
-        position = 'float',
+        position = 'right',
         width = 30,
         mappings = {
           ['h'] = 'close_node',
