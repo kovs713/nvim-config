@@ -4,4 +4,5 @@ return {
   { 'mfussenegger/nvim-lint', enabled = false },
   { 'akinsho/bufferline.nvim', enabled = false },
   { 'nvim-lualine/lualine.nvim', enabled = false },
+  { 'b0o/incline.nvim', enabled = false },
 }
