@@ -4,14 +4,14 @@
     <a href="https://github.com/neovim/neovim/releases/tag/stable">
         <img src="https://img.shields.io/badge/Neovim-0.11.4-blueviolet.svg?style=flat-square&logo=Neovim&logoColor=green" alt="Neovim minimum version"/>
     </a>
-    <img src="https://img.shields.io/github/languages/top/kamusari713/nvim-config" alt="Top languages">
-    <a href="https://github.com/kamusari713/nvim-config/graphs/commit-activity">
-        <img src="https://img.shields.io/github/commit-activity/m/kamusari713/nvim-config?style=flat-square">
+    <img src="https://img.shields.io/github/languages/top/kovs713/nvim-config" alt="Top languages">
+    <a href="https://github.com/kovs713/nvim-config/graphs/commit-activity">
+        <img src="https://img.shields.io/github/commit-activity/m/kovs713/nvim-config?style=flat-square">
     </a>
-    <a href="https://github.com/kamusari713/nvim-config/blob/master/LICENSE.md">
-        <img src="https://img.shields.io/github/repo-size/kamusari713/nvim-config?style=flat-square">
+    <a href="https://github.com/kovs713/nvim-config/blob/master/LICENSE.md">
+        <img src="https://img.shields.io/github/repo-size/kovs713/nvim-config?style=flat-square">
     </a>
-    <img src="https://img.shields.io/github/license/kamusari713/nvim-config?style=flat-square&#x26;logo=GNU&#x26;label=License" alt="License">
+    <img src="https://img.shields.io/github/license/kovs713/nvim-config?style=flat-square&#x26;logo=GNU&#x26;label=License" alt="License">
   </p>
 </div>
 
@@ -22,7 +22,7 @@ My personal Lua-based Neovim configuration. Focused on productivity, modern UI, 
 ## Installation
 
 1. Backup your current Neovim config: `mv ~/.config/nvim ~/.config/nvim.bak`
-2. Clone this repo: `git clone https://github.com/kamusari713/nvim-config.git ~/.config/nvim`
+2. Clone this repo: `git clone https://github.com/kovs713/nvim-config.git ~/.config/nvim`
 3. Launch Neovim: `nvim` (plugins will auto-install via lazy.nvim)
 
 ## Overview
