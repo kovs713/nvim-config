@@ -22,72 +22,70 @@ vim.keymap.set({ 'n', 'x', 'o' }, 'L', 'g_', { desc = 'Go to end of line' })
 vim.keymap.set('n', '<esc>', '<cmd>noh<CR>', { silent = true, desc = 'Clear search' })
 
 -- LazyVim shit keymaps
-vim.keymap.del('n', '[b')
-vim.keymap.del('n', ']b')
-vim.keymap.del('n', '<leader>bb')
-vim.keymap.del('n', '<leader>`')
-vim.keymap.del('n', '<leader>bd')
-vim.keymap.del('n', '<leader>bo')
-vim.keymap.del('n', '<leader>bD')
+local keymaps_to_del = {
+  { 'n', '[b' },
+  { 'n', ']b' },
+  { 'n', '<leader>bb' },
+  { 'n', '<leader>`' },
+  { 'n', '<leader>bd' },
+  { 'n', '<leader>bo' },
+  { 'n', '<leader>bD' },
+  { 'n', '<leader>e' },
+  { 'n', '<leader>sa' },
+  { 'n', '<leader>sb' },
+  { 'n', '<leader>sc' },
+  { 'n', '<leader>sC' },
+  { 'n', '<leader>sd' },
+  { 'n', '<leader>sD' },
+  { 'n', '<leader>sg' },
+  { 'n', '<leader>sG' },
+  { 'n', '<leader>sh' },
+  { 'n', '<leader>sH' },
+  { 'n', '<leader>sj' },
+  { 'n', '<leader>sk' },
+  { 'n', '<leader>sl' },
+  { 'n', '<leader>sm' },
+  { 'n', '<leader>sM' },
+  { 'n', '<leader>ss' },
+  { 'n', '<leader>sS' },
+  { 'n', '<leader>st' },
+  { 'n', '<leader>sT' },
+  { 'n', '<leader>sw' },
+  { 'n', '<leader>sW' },
+  { 'n', '<leader>s"' },
+  { 'n', '<leader>sq' },
+  { 'n', '<leader>sR' },
+  { 'n', '<leader>s/' },
+  { 'n', '<leader>K' },
+  { 'n', '<leader>S' },
+  { 'n', '<leader>be' },
+  { 'n', '<leader>cl' },
+  { 'n', '<leader>cd' },
+  { 'n', '<leader>cf' },
+  { 'n', '<leader>cF' },
+  { 'n', '<leader>cs' },
+  { 'n', '<leader>fb' },
+  { 'n', '<leader>fc' },
+  { 'n', '<leader>fF' },
+  { 'n', '<leader>fg' },
+  { 'n', '<leader>fr' },
+  { 'n', '<leader>fR' },
+  { 'n', '<leader>fn' },
+  { 'n', '<leader>fe' },
+  { 'n', '<leader>fE' },
+  { 'n', '<leader>fT' },
+  { 'n', '<leader>gg' },
+  { 'n', '<leader>gY' },
+  { 'n', '<leader>gL' },
+  { 'n', '<leader><space>' },
+  { 'n', '<leader>.' },
+  { 'n', '<leader>/' },
+  { 'n', '<leader>:' },
+  { 'n', '<leader>,' },
+  { 'n', '<leader>?' },
+  { 'n', '<Tab>' },
+}
 
-vim.keymap.del('n', '<leader>e')
-
-vim.keymap.del('n', '<leader>sa')
-vim.keymap.del('n', '<leader>sb')
-vim.keymap.del('n', '<leader>sc')
-vim.keymap.del('n', '<leader>sC')
-vim.keymap.del('n', '<leader>sd')
-vim.keymap.del('n', '<leader>sD')
-vim.keymap.del('n', '<leader>sg')
-vim.keymap.del('n', '<leader>sG')
-vim.keymap.del('n', '<leader>sh')
-vim.keymap.del('n', '<leader>sH')
-vim.keymap.del('n', '<leader>sj')
-vim.keymap.del('n', '<leader>sk')
-vim.keymap.del('n', '<leader>sl')
-vim.keymap.del('n', '<leader>sm')
-vim.keymap.del('n', '<leader>sM')
-vim.keymap.del('n', '<leader>ss')
-vim.keymap.del('n', '<leader>sS')
-vim.keymap.del('n', '<leader>st')
-vim.keymap.del('n', '<leader>sT')
-vim.keymap.del('n', '<leader>sw')
-vim.keymap.del('n', '<leader>sW')
-vim.keymap.del('n', '<leader>s"')
-vim.keymap.del('n', '<leader>sq')
-vim.keymap.del('n', '<leader>sR')
-vim.keymap.del('n', '<leader>s/')
-
-vim.keymap.del('n', '<leader>K')
-vim.keymap.del('n', '<leader>S')
-
-vim.keymap.del('n', '<leader>be')
-
-vim.keymap.del('n', '<leader>cl')
-vim.keymap.del('n', '<leader>cd')
-vim.keymap.del('n', '<leader>cf')
-vim.keymap.del('n', '<leader>cF')
-vim.keymap.del('n', '<leader>cs')
-
-vim.keymap.del('n', '<leader>fb')
-vim.keymap.del('n', '<leader>fc')
-vim.keymap.del('n', '<leader>fF')
-vim.keymap.del('n', '<leader>fg')
-vim.keymap.del('n', '<leader>fr')
-vim.keymap.del('n', '<leader>fR')
-vim.keymap.del('n', '<leader>fn')
-vim.keymap.del('n', '<leader>fe')
-vim.keymap.del('n', '<leader>fE')
-vim.keymap.del('n', '<leader>fT')
-
-vim.keymap.del('n', '<leader>gg')
-vim.keymap.del('n', '<leader>gY')
-vim.keymap.del('n', '<leader>gL')
-
-vim.keymap.del('n', '<leader><space>')
-vim.keymap.del('n', '<leader>.')
-vim.keymap.del('n', '<leader>/')
-vim.keymap.del('n', '<leader>:')
-vim.keymap.del('n', '<leader>,')
-vim.keymap.del('n', '<leader>?')
-vim.keymap.del('n', '<Tab>')
+for _, keymap in ipairs(keymaps_to_del) do
+  pcall(vim.keymap.del, keymap[1], keymap[2])
+end
