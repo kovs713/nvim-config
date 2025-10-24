@@ -6,6 +6,10 @@ return {
   lazy = false,
   config = function()
     require('oil').setup()
-    vim.keymap.set('n', '<leader>ef', '<cmd>Oil<CR>', { desc = 'Open [E]xplorer [O]il' })
+    vim.keymap.set('n', '<leader>er', function()
+      vim.cmd 'vsplit'
+      vim.cmd 'Oil'
+      vim.cmd 'vertical resize 30'
+    end, { desc = 'Open [E]xplorer [O]il' })
   end,
 }
