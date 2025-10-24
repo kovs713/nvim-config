@@ -20,7 +20,7 @@ return {
     vim.keymap.set('n', '<leader>]d', '<cmd>Lspsaga diagnostic_jump_next<CR>', { desc = '[D]iagnostic prev' })
     vim.keymap.set('n', 'gd', '<cmd>Lspsaga goto_definition<CR>', { desc = '[G]oto [D]efinition' })
     vim.keymap.set('n', '<leader>lr', function()
-      require('fzf-lua').lsp_references()
+      require('fzf-lua').lsp_references { silent = true }
     end, { desc = '[L]sp Peek [R]eferences' })
     vim.keymap.set('n', '<leader>le', '<cmd>lua vim.diagnostic.open_float()<CR>', { desc = '[L]sp Diagnostic Float [E]' })
   end,

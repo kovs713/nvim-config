@@ -19,7 +19,7 @@ return {
 
         opts.desc = '[C]ode [A]ctions'
         vim.keymap.set({ 'n', 'v' }, '<leader>ca', function()
-          require('fzf-lua').lsp_code_actions()
+          require('fzf-lua').lsp_code_actions { silent = true }
         end, opts)
 
         opts.desc = '[L][L]sp Restart'
@@ -27,7 +27,7 @@ return {
 
         opts.desc = '[L]sp [I]mplimentations'
         vim.keymap.set('n', '<leader>li', function()
-          require('fzf-lua').lsp_implementations()
+          require('fzf-lua').lsp_implementations { silent = true }
         end, opts)
 
         vim.keymap.set('i', '<C-h>', function()

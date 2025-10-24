@@ -37,56 +37,56 @@ return {
     {
       '<leader>ff',
       function()
-        require('fzf-lua').files()
+        require('fzf-lua').files { silent = true }
       end,
       desc = '[F]ind [F]iles',
     },
     {
       '<leader>fd',
       function()
-        require('fzf-lua').live_grep()
+        require('fzf-lua').live_grep { silent = true }
       end,
       desc = '[F]ind by Grep x[D]',
     },
     {
       '<leader>fo',
       function()
-        require('fzf-lua').buffers()
+        require('fzf-lua').buffers { silent = true }
       end,
       desc = '[F]ind Buffers :[O]',
     },
     {
       '<leader>fr',
       function()
-        require('fzf-lua').oldfiles()
+        require('fzf-lua').oldfiles { silent = true }
       end,
       desc = '[F]ind [R]ecent File',
     },
     {
       '<leader>fc',
       function()
-        require('fzf-lua').git_commits()
+        require('fzf-lua').git_commits { silent = true }
       end,
       desc = '[F]ind Git [C]ommits',
     },
     {
       '<leader>fb',
       function()
-        require('fzf-lua').git_branches()
+        require('fzf-lua').git_branches { silent = true }
       end,
       desc = '[F]ind Git [B]ranches',
     },
     {
       '<leader>fs',
       function()
-        require('fzf-lua').git_status()
+        require('fzf-lua').git_status { silent = true }
       end,
       desc = '[F]ind Git [S]tatus',
     },
     {
       '<leader>ft',
       function()
-        require('fzf-lua').git_stash()
+        require('fzf-lua').git_stash { silent = true }
       end,
       desc = '[F]ind Git S[t]ash',
     },
