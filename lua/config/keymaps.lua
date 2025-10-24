@@ -19,8 +19,6 @@ vim.keymap.set('v', 'p', '"_dP', { desc = 'Paste without saving' })
 vim.keymap.set({ 'n', 'x', 'o' }, 'H', '^', { desc = 'Go to start of line' })
 vim.keymap.set({ 'n', 'x', 'o' }, 'L', 'g_', { desc = 'Go to end of line' })
 
-vim.keymap.set('n', '<C-i>', '<C-o>', { desc = 'Replace goto next' })
-vim.keymap.set('n', '<C-o>', '<C-i>', { desc = 'Replace goto prev' })
 vim.keymap.set('n', '<esc>', '<cmd>noh<CR>', { silent = true, desc = 'Clear search' })
 
 -- LazyVim shit keymaps
