@@ -23,7 +23,7 @@ return {
         end, opts)
 
         opts.desc = '[L][L]sp Restart'
-        vim.keymap.set({ 'n', 'v' }, '<leader>ll', '<cmd>LspRestart<CR>', opts)
+        vim.keymap.set({ 'n', 'v' }, '<leader>lL', '<cmd>LspRestart<CR>', opts)
 
         opts.desc = '[L]sp [I]mplimentations'
         vim.keymap.set('n', '<leader>li', function()
