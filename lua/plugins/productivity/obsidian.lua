@@ -41,37 +41,30 @@ return {
         insert_link = '<C-p>',
       },
     },
-    callbacks = {
-      enter_note = function(_, note)
-        local bufnr = note.bufnr
-        local obsidian = require 'obsidian'
+    config = function()
+      local obsidian = require 'obsidian'
 
-        pcall(vim.keymap.del, 'n', '<CR>', { buffer = bufnr })
+      vim.keymap.set('n', '<leader>od', '<cmd>Obsidian dailies<cr>', { desc = '[O]bsidian [D]ailies' })
+      vim.keymap.set('n', '<leader>ont', '<cmd>Obsidian today<cr>', { desc = '[O]bsidian [N]ew [T]oday' })
+      vim.keymap.set('n', '<leader>ony', '<cmd>Obsidian yesterday<cr>', { desc = '[O]bsidian [N]ew [Y]esterday' })
+      vim.keymap.set('n', '<leader>onn', '<cmd>Obsidian new<cr>', { desc = '[O]bsidian [N]ew [N]ote' })
+      vim.keymap.set('n', '<leader>os', '<cmd>Obsidian search<cr>', { desc = '[O]bsidian [S]earch' })
 
-        vim.keymap.set('n', '<leader>od', '<cmd>Obsidian dailies<cr>', { buffer = bufnr, desc = '[O]bsidian [D]ailies' })
-        vim.keymap.set('n', '<leader>ont', '<cmd>Obsidian today<cr>', { buffer = bufnr, desc = '[O]bsidian [N]ew [T]oday' })
-        vim.keymap.set('n', '<leader>ony', '<cmd>Obsidian yesterday<cr>', { buffer = bufnr, desc = '[O]bsidian [N]ew [Y]esterday' })
-        vim.keymap.set('n', '<leader>onn', '<cmd>Obsidian new<cr>', { buffer = bufnr, desc = '[O]bsidian [N]ew [N]ote' })
-        vim.keymap.set('n', '<leader>os', '<cmd>Obsidian search<cr>', { buffer = bufnr, desc = '[O]bsidian [S]earch' })
+      vim.keymap.set('n', 'gf', function()
+        return obsidian.util.gf_passthrough()
+      end, { desc = '[G]oto markdown [F]ile', noremap = false, expr = true })
 
-        -- gf: passthrough
-        vim.keymap.set('n', 'gf', function()
-          return obsidian.util.gf_passthrough()
-        end, { buffer = bufnr, desc = '[G]oto markdown [F]ile', noremap = false, expr = true })
+      vim.keymap.set('n', '<CR>', function()
+        return obsidian.util.smart_action()
+      end, { expr = true, desc = 'Obsidian smart action' })
 
-        -- Smart action на <CR> (если хочешь оставить — просто раскомментируй)
-        vim.keymap.set('n', '<CR>', function()
-          return obsidian.util.smart_action()
-        end, { buffer = bufnr, expr = true, desc = 'Obsidian smart action' })
+      vim.keymap.set('n', '<Tab>', function()
+        require('obsidian.api').nav_link 'next'
+      end, { desc = 'Go to next link' })
 
-        vim.keymap.set('n', '<Tab>', function()
-          require('obsidian.api').nav_link 'next'
-        end, { buffer = bufnr, desc = 'Go to next link' })
-
-        vim.keymap.set('n', '<S-Tab>', function()
-          require('obsidian.api').nav_link 'prev'
-        end, { buffer = bufnr, desc = 'Go to previous link' })
-      end,
-    },
+      vim.keymap.set('n', '<S-Tab>', function()
+        require('obsidian.api').nav_link 'prev'
+      end, { desc = 'Go to previous link' })
+    end,
   },
 }
