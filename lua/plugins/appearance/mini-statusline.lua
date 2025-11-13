@@ -9,32 +9,44 @@ return {
       end,
     })
 
+    local function get_relative_path()
+      local filepath = vim.fn.expand '%:p'
+      if filepath == '' or not vim.fn.filereadable(filepath) then
+        return '[No Name]'
+      end
+
+      local cwd = vim.fn.getcwd()
+      if cwd:sub(-1) ~= '/' then
+        cwd = cwd .. '/'
+      end
+
+      if filepath:sub(1, #cwd) == cwd then
+        return filepath:sub(#cwd + 1)
+      else
+        -- fallback: relative to home or full path
+        return vim.fn.fnamemodify(filepath, ':~:.')
+      end
+    end
+
     local statusline = require 'mini.statusline'
     statusline.setup {
       content = {
         active = function()
-          local mode, mode_hl = MiniStatusline.section_mode { trunc_width = 120 }
+          local mode, mode_hl = MiniStatusline.section_mode { trunc_width = 100 }
+          local path = get_relative_path()
           local git = MiniStatusline.section_git { trunc_width = 40 }
-          local diff = MiniStatusline.section_diff { trunc_width = 75 }
-          local diag = MiniStatusline.section_diagnostics { trunc_width = 75 }
-          local filename = MiniStatusline.section_filename { trunc_width = 140 }
-          local filetype = MiniStatusline.section_fileinfo { trunc_width = 120 }
-          local time = os.date '%R'
 
           return MiniStatusline.combine_groups {
             { hl = mode_hl, strings = { mode } },
-            { hl = 'MiniStatuslineDevinfo', strings = { git, diff } },
-            '%<',
-            { hl = 'MiniStatuslineFilename', strings = { filename } },
-            '%=',
-            { hl = 'MiniStatuslineFileinfo', strings = { diag } },
+            { hl = 'MiniStatuslineFilename', strings = { path } },
+            { hl = 'MiniStatuslineDevinfo', strings = { git } },
           }
         end,
 
         inactive = function()
-          local filename = MiniStatusline.section_filename { trunc_width = 140 }
+          local path = get_relative_path()
           return MiniStatusline.combine_groups {
-            { hl = 'MiniStatuslineFilename', strings = { filename } },
+            { hl = 'MiniStatuslineFilename', strings = { path } },
           }
         end,
       },
