@@ -41,14 +41,16 @@ return {
         insert_link = '<C-p>',
       },
     },
+    keys = {
+      { '<leader>od', '<cmd>Obsidian dailies<cr>', desc = '[O]bsidian [D]ailies' },
+      { '<leader>ont', '<cmd>Obsidian today<cr>', desc = '[O]bsidian [N]ew [T]oday' },
+      { '<leader>ony', '<cmd>Obsidian yesterday<cr>', desc = '[O]bsidian [N]ew [Y]esterday' },
+      { '<leader>ony', '<cmd>Obsidian yesterday<cr>', desc = '[O]bsidian [N]ew [Y]esterday' },
+      { '<leader>os', '<cmd>Obsidian search<cr>', desc = '[O]bsidian [S]earch' },
+    },
+
     config = function()
       local obsidian = require 'obsidian'
-
-      vim.keymap.set('n', '<leader>od', '<cmd>Obsidian dailies<cr>', { desc = '[O]bsidian [D]ailies' })
-      vim.keymap.set('n', '<leader>ont', '<cmd>Obsidian today<cr>', { desc = '[O]bsidian [N]ew [T]oday' })
-      vim.keymap.set('n', '<leader>ony', '<cmd>Obsidian yesterday<cr>', { desc = '[O]bsidian [N]ew [Y]esterday' })
-      vim.keymap.set('n', '<leader>onn', '<cmd>Obsidian new<cr>', { desc = '[O]bsidian [N]ew [N]ote' })
-      vim.keymap.set('n', '<leader>os', '<cmd>Obsidian search<cr>', { desc = '[O]bsidian [S]earch' })
 
       vim.keymap.set('n', 'gf', function()
         return obsidian.util.gf_passthrough()
