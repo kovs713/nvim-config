@@ -34,6 +34,7 @@ return {
         graphql = { 'prettier' },
         lua = { 'stylua' },
         python = { 'black' },
+        go = { 'gofmt' },
       },
     }
 
