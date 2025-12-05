@@ -2,12 +2,15 @@ return {
   'neovim/nvim-lspconfig',
   event = { 'BufReadPre', 'BufNewFile' },
   ft = { 'typescript', 'typescriptreact', 'javascript', 'javascriptreact' },
-  dependencies = { 'saghen/blink.cmp', { 'antosha417/nvim-lsp-file-operations', config = true } },
+  dependencies = {
+    { 'antosha417/nvim-lsp-file-operations', config = true },
+    'saghen/blink.cmp',
+  },
   opts = {
     servers = {
       tsserver = { enabled = false },
       ts_ls = { enabled = false },
-      vtsls = { enabled = false },
+      -- vtsls = { enabled = false },
     },
   },
 
@@ -59,33 +62,29 @@ return {
     local lspconfig = require 'lspconfig'
 
     -- Configure tsserver (TypeScript and JavaScript and VueJS)
-    -- local vue_language_server_path = vim.fn.stdpath 'data' .. '/mason/packages/vue-language-server/node_modules/@vue/language-server'
-    -- lspconfig.ts_ls.setup {
-    --   capabilities = capabilities,
-    --   root_dir = function(fname)
-    --     local util = lspconfig.util
-    --     return not util.root_pattern('deno.json', 'deno.jsonc')(fname) and util.root_pattern('tsconfig.json', 'package.json', 'jsconfig.json', '.git')(fname)
-    --   end,
-    --   single_file_support = false,
-    --   on_attach = function(client, bufnr)
-    --     -- Disable formatting if you're using a separate formatter like Prettier
-    --     client.server_capabilities.documentFormattingProvider = false
-    --   end,
-    --   init_options = {
-    --     plugins = {
-    --       {
-    --         name = '@vue/typescript-plugin',
-    --         location = vue_language_server_path,
-    --         languages = { 'vue' },
-    --       },
-    --     },
-    --     preferences = {
-    --       includeCompletionsWithSnippetText = true,
-    --       includeCompletionsForImportStatements = true,
-    --     },
-    --   },
-    --   filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
-    -- }
+    local vue_language_server_path = vim.fn.expand '$MASON/packages' .. '/vue-language-server' .. '/node_modules/@vue/language-server'
+    local tsserver_filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' }
+    local vue_plugin = {
+      name = '@vue/typescript-plugin',
+      location = vue_language_server_path,
+      languages = { 'vue' },
+      configNamespace = 'typescript',
+    }
+    local vtsls_config = {
+      settings = {
+        vtsls = {
+          tsserver = {
+            globalPlugins = {
+              vue_plugin,
+            },
+          },
+        },
+      },
+      filetypes = tsserver_filetypes,
+    }
+    local vue_ls_config = {}
+    vim.lsp.config('vtsls', vtsls_config)
+    vim.lsp.enable { 'vtsls', 'vue_ls' }
 
     -- Configure lua_ls (Lua)
     lspconfig.lua_ls.setup {
@@ -151,10 +150,168 @@ return {
       },
     }
 
-    lspconfig.gopls.setup { capabilities = capabilities }
+    lspconfig.gopls.setup {
+      capabilities = capabilities,
+      settings = {
+        gopls = {
+          -- automaticly import packages
+          completeUnimported = true,
+          -- adds placeholders for functions parameters
+          usePlaceholders = true,
+          analyses = {
+            -- give warning for parameters not used
+            unusedparams = true,
+          },
+        },
+      },
+      filetypes = {
+        'go',
+        'gomod',
+        'gowork',
+        'gotmpl',
+      },
+    }
 
     lspconfig.html.setup { capabilities = capabilities }
 
-    lspconfig.cssls.setup { capabilities = capabilities }
+    local tw_capabilities = require('blink.cmp').get_lsp_capabilities()
+    tw_capabilities.textDocument.completion.completionItem.snippetSupport = false
+    tw_capabilities.textDocument.colorProvider = { dynamicRegistration = false }
+    tw_capabilities.textDocument.foldingRange = {
+      dynamicRegistration = false,
+      lineFoldingOnly = true,
+    }
+
+    lspconfig.tailwindcss.setup {
+      capabilities = tw_capabilities,
+      settings = {
+        tailwindCSS = {
+          lint = {
+            cssConflict = 'warning',
+            invalidApply = 'error',
+            invalidConfigPath = 'error',
+            invalidScreen = 'error',
+            invalidTailwindDirective = 'error',
+            invalidVariant = 'error',
+            recommendedVariantOrder = 'warning',
+          },
+          experimental = {
+            classRegex = {
+              'tw`([^`]*)',
+              'tw="([^"]*)',
+              'tw={"([^"}]*)',
+              'tw\\.\\w+`([^`]*)',
+              'tw\\(.*?\\)`([^`]*)',
+              { 'clsx\\(([^)]*)\\)', "(?:'|\"|`)([^']*)(?:'|\"|`)" },
+              { 'classnames\\(([^)]*)\\)', "'([^']*)'" },
+              { 'cva\\(([^)]*)\\)', '["\'`]([^"\'`]*).*?["\'`]' },
+              { 'cn\\(([^)]*)\\)', "(?:'|\"|`)([^']*)(?:'|\"|`)" },
+            },
+          },
+          validate = true,
+        },
+      },
+      filetypes = { 'html', 'mdx', 'javascript', 'typescript', 'javascriptreact', 'typescriptreact', 'vue', 'svelte' },
+    }
+
+    lspconfig.cssls.setup {
+      capabilities = capabilities,
+      on_attach = function(client)
+        client.server_capabilities.documentFormattingProvider = true
+        client.server_capabilities.documentRangeFormattingProvider = true
+      end,
+      settings = {
+        css = {
+          lint = {
+            unknownAtRules = 'ignore',
+          },
+        },
+        scss = {
+          lint = {
+            unknownAtRules = 'ignore',
+          },
+        },
+      },
+    }
+
+    lspconfig.jsonls.setup {
+      capabilities = capabilities,
+      settings = {
+        json = {
+          schemas = {
+            {
+              fileMatch = { 'package.json' },
+              url = 'https://json.schemastore.org/package.json',
+            },
+            {
+              fileMatch = { 'tsconfig*.json' },
+              url = 'https://json.schemastore.org/tsconfig.json',
+            },
+            {
+              fileMatch = { '.prettierrc', '.prettierrc.json', 'prettier.config.json' },
+              url = 'https://json.schemastore.org/prettierrc.json',
+            },
+            {
+              fileMatch = { '.eslintrc', '.eslintrc.json' },
+              url = 'https://json.schemastore.org/eslintrc.json',
+            },
+            {
+              fileMatch = { '.babelrc', '.babelrc.json', 'babel.config.json' },
+              url = 'https://json.schemastore.org/babelrc.json',
+            },
+            {
+              fileMatch = { 'lerna.json' },
+              url = 'https://json.schemastore.org/lerna.json',
+            },
+            {
+              fileMatch = { 'now.json', 'vercel.json' },
+              url = 'https://json.schemastore.org/now.json',
+            },
+            {
+              fileMatch = { 'ecosystem.json' },
+              url = 'https://json.schemastore.org/pm2-ecosystem.json',
+            },
+          },
+        },
+      },
+    }
+
+    lspconfig.eslint.setup {
+      on_attach = function(client, bufnr)
+        client.server_capabilities.documentFormattingProvider = true
+        local function buf_set_option(...)
+          vim.api.nvim_buf_set_option(bufnr, ...)
+        end
+
+        buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+      end,
+      settings = {
+        codeAction = {
+          disableRuleComment = {
+            enable = true,
+            location = 'separateLine',
+          },
+          showDocumentation = {
+            enable = true,
+          },
+        },
+        codeActionOnSave = {
+          enable = false,
+          mode = 'all',
+        },
+        format = true,
+        nodePath = '',
+        onIgnoredFiles = 'off',
+        packageManager = 'npm',
+        quiet = false,
+        rulesCustomizations = {},
+        run = 'onType',
+        useESLintClass = false,
+        validate = 'on',
+        workingDirectory = {
+          mode = 'location',
+        },
+      },
+    }
   end,
 }

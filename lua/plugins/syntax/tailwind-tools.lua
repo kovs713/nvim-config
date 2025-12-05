@@ -1,37 +1,41 @@
 return {
   {
     'luckasRanarison/tailwind-tools.nvim',
-    ft = { 'html', 'vue', 'svelte', 'astro' },
-    config = function()
-      vim.g.tailwind_sort_classnames = 1
-    end,
+    name = 'tailwind-tools',
+    build = ':UpdateRemotePlugins',
+    dependencies = {
+      'nvim-treesitter/nvim-treesitter',
+      'neovim/nvim-lspconfig',
+    },
+    opts = {}, -- your configuration
   },
-  { "roobert/tailwindcss-colorizer-cmp.nvim",
+  {
+    'roobert/tailwindcss-colorizer-cmp.nvim',
     {
-      "NvChad/nvim-colorizer.lua",
-      dependencies = { "nvim-treesitter/nvim-treesitter" },
+      'NvChad/nvim-colorizer.lua',
+      dependencies = { 'nvim-treesitter/nvim-treesitter' },
       opts = {},
       config = function()
-        local nvchadcolorizer = require("colorizer")
-        local tailwindcolorizer = require("tailwindcss-colorizer-cmp")
+        local nvchadcolorizer = require 'colorizer'
+        local tailwindcolorizer = require 'tailwindcss-colorizer-cmp'
 
-        nvchadcolorizer.setup({
+        nvchadcolorizer.setup {
           user_default_options = {
             tailwind = true,
           },
-          filetypes = { "html", "css", "javascript", "typescript", "jsx", "tsx", "vue", "svelte" },
-        })
+          filetypes = { 'html', 'css', 'javascript', 'typescript', 'jsx', 'tsx', 'vue', 'svelte' },
+        }
 
-        tailwindcolorizer.setup({
+        tailwindcolorizer.setup {
           color_square_width = 2,
-        })
+        }
 
-        vim.api.nvim_create_autocmd({ "BufReadPost", "BufNewFile" }, {
+        vim.api.nvim_create_autocmd({ 'BufReadPost', 'BufNewFile' }, {
           callback = function()
-            vim.cmd("ColorizerAttachToBuffer")
+            vim.cmd 'ColorizerAttachToBuffer'
           end,
         })
       end,
     },
-  }
+  },
 }

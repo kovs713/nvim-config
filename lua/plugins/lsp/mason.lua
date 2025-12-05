@@ -36,7 +36,6 @@ return {
         'emmet_language_server',
         'eslint',
         'marksman',
-        'gofumtl',
         'jsonls',
         'yamlls',
       },
