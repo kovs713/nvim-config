@@ -8,8 +8,8 @@ return {
   },
   opts = {
     servers = {
-      tsserver = { enabled = false },
-      ts_ls = { enabled = false },
+      -- tsserver = { enabled = false },
+      -- ts_ls = { enabled = false },
       -- vtsls = { enabled = false },
     },
   },
@@ -107,21 +107,6 @@ return {
       },
     }
 
-    -- emmet_ls ()
-    lspconfig.emmet_ls.setup {
-      capabilities = capabilities,
-      filetypes = {
-        'html',
-        'typescriptreact',
-        'javascriptreact',
-        'css',
-        'sass',
-        'scss',
-        'less',
-        'svelte',
-      },
-    }
-
     -- emmet_language_server
     lspconfig.emmet_language_server.setup {
       capabilities = capabilities,
@@ -136,6 +121,7 @@ return {
         'scss',
         'pug',
         'typescriptreact',
+        'vue',
       },
       init_options = {
         includeLanguages = {},
@@ -272,44 +258,6 @@ return {
               url = 'https://json.schemastore.org/pm2-ecosystem.json',
             },
           },
-        },
-      },
-    }
-
-    lspconfig.eslint.setup {
-      on_attach = function(client, bufnr)
-        client.server_capabilities.documentFormattingProvider = true
-        local function buf_set_option(...)
-          vim.api.nvim_buf_set_option(bufnr, ...)
-        end
-
-        buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
-      end,
-      settings = {
-        codeAction = {
-          disableRuleComment = {
-            enable = true,
-            location = 'separateLine',
-          },
-          showDocumentation = {
-            enable = true,
-          },
-        },
-        codeActionOnSave = {
-          enable = false,
-          mode = 'all',
-        },
-        format = true,
-        nodePath = '',
-        onIgnoredFiles = 'off',
-        packageManager = 'npm',
-        quiet = false,
-        rulesCustomizations = {},
-        run = 'onType',
-        useESLintClass = false,
-        validate = 'on',
-        workingDirectory = {
-          mode = 'location',
         },
       },
     }

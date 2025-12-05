@@ -1,6 +1,8 @@
 -- My keymaps
 vim.keymap.set('n', '<leader>s', '<cmd>wall<CR>', { desc = 'Save all buffers' })
 vim.keymap.set('n', '<C-a>', 'ggVG', { desc = 'Select all' })
+vim.keymap.set('n', '<C-i>', '<C-o>', { desc = 'Switch to previous buffer' })
+vim.keymap.set('n', '<C-o>', '<C-i>', { desc = 'Switch to next buffer' })
 
 vim.keymap.set('n', '<C-d>', '<C-d>zz', {})
 vim.keymap.set('n', '<C-u>', '<C-u>zz', {})
