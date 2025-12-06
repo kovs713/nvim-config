@@ -8,9 +8,9 @@ return {
   },
   opts = {
     servers = {
-      -- tsserver = { enabled = false },
-      -- ts_ls = { enabled = false },
-      -- vtsls = { enabled = false },
+      tsserver = { enabled = false },
+      ts_ls = { enabled = false },
+      vtsls = { enabled = false },
     },
   },
 
@@ -62,29 +62,29 @@ return {
     local lspconfig = require 'lspconfig'
 
     -- Configure tsserver (TypeScript and JavaScript and VueJS)
-    local vue_language_server_path = vim.fn.expand '$MASON/packages' .. '/vue-language-server' .. '/node_modules/@vue/language-server'
-    local tsserver_filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' }
-    local vue_plugin = {
-      name = '@vue/typescript-plugin',
-      location = vue_language_server_path,
-      languages = { 'vue' },
-      configNamespace = 'typescript',
-    }
-    local vtsls_config = {
-      settings = {
-        vtsls = {
-          tsserver = {
-            globalPlugins = {
-              vue_plugin,
-            },
-          },
-        },
-      },
-      filetypes = tsserver_filetypes,
-    }
-    local vue_ls_config = {}
-    vim.lsp.config('vtsls', vtsls_config)
-    vim.lsp.enable { 'vtsls', 'vue_ls' }
+    -- local vue_language_server_path = vim.fn.expand '$MASON/packages' .. '/vue-language-server' .. '/node_modules/@vue/language-server'
+    -- local tsserver_filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' }
+    -- local vue_plugin = {
+    --   name = '@vue/typescript-plugin',
+    --   location = vue_language_server_path,
+    --   languages = { 'vue' },
+    --   configNamespace = 'typescript',
+    -- }
+    -- local vtsls_config = {
+    --   settings = {
+    --     vtsls = {
+    --       tsserver = {
+    --         globalPlugins = {
+    --           vue_plugin,
+    --         },
+    --       },
+    --     },
+    --   },
+    --   filetypes = tsserver_filetypes,
+    -- }
+    -- local vue_ls_config = {}
+    -- vim.lsp.config('vtsls', vtsls_config)
+    -- vim.lsp.enable { 'vtsls', 'vue_ls' }
 
     -- Configure lua_ls (Lua)
     lspconfig.lua_ls.setup {
