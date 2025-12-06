@@ -85,7 +85,6 @@ local keymaps_to_del = {
   { 'n', '<leader>:' },
   { 'n', '<leader>,' },
   { 'n', '<leader>?' },
-  { 'n', '<Tab>' },
 }
 
 for _, keymap in ipairs(keymaps_to_del) do
