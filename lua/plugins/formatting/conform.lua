@@ -26,6 +26,7 @@ return {
         typescript = { 'prettier', 'oxlint' },
         javascriptreact = { 'prettier', 'oxlint' },
         typescriptreact = { 'prettier', 'oxlint' },
+        vue = { 'prettier', 'oxlint' },
         svelte = { 'prettier' },
         css = { 'prettier' },
         html = { 'prettier' },
