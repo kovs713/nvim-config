@@ -1,44 +1,94 @@
 --- diagnostic disable: 113
+local severity = vim.diagnostic.severity
+vim.diagnostic.config {
+  signs = {
+    text = {
+      [severity.ERROR] = ' ',
+      [severity.WARN] = ' ',
+      [severity.HINT] = '󰠠 ',
+      [severity.INFO] = ' ',
+    },
+  },
+  virtual_text = {
+    source = 'if_many',
+    spacing = 2,
+    format = function(diagnostic)
+      local diagnostic_message = {
+        [severity.ERROR] = diagnostic.message,
+        [severity.WARN] = diagnostic.message,
+        [severity.INFO] = diagnostic.message,
+        [severity.HINT] = diagnostic.message,
+      }
+      return diagnostic_message[diagnostic.severity]
+    end,
+  },
+  underline = true,
+  update_in_insert = false,
+}
+
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 vim.g.have_nerd_font = false
 
-vim.opt.number = true
-vim.opt.relativenumber = true
+vim.g.deprecation_warnings = false
 
-vim.opt.mouse = 'a'
-vim.opt.showmode = true
+vim.cmd 'let g:netrw_liststyle = 3'
 
 vim.schedule(function()
   vim.opt.clipboard = 'unnamedplus'
 end)
 
--- vim.opt.termguicolors = false
+local opt = vim.opt
 
-vim.opt.breakindent = true
+opt.number = true
+opt.relativenumber = true
 
-vim.opt.undofile = true
+opt.mouse = 'a'
+opt.showmode = true
 
-vim.opt.ignorecase = true
-vim.opt.smartcase = true
+opt.breakindent = true
 
-vim.opt.signcolumn = 'yes'
+opt.undofile = true
 
-vim.opt.updatetime = 250
+opt.ignorecase = true
+opt.smartcase = true
 
-vim.opt.timeoutlen = 300
+opt.signcolumn = 'yes'
 
-vim.opt.splitright = true
-vim.opt.splitbelow = true
+opt.updatetime = 250
 
-vim.opt.list = true
-vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+opt.timeoutlen = 300
 
-vim.opt.inccommand = 'split'
+opt.splitright = true
+opt.splitbelow = true
 
-vim.opt.cursorline = true
+opt.list = true
+opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 
-vim.opt.scrolloff = 10
-vim.opt.laststatus = 2
-vim.opt.cmdheight = 1
+opt.inccommand = 'split'
+
+opt.cursorline = true
+
+opt.scrolloff = 10
+opt.laststatus = 2
+opt.cmdheight = 1
+
+opt.autowrite = true
+opt.conceallevel = 2
+opt.confirm = true
+opt.fillchars = {
+  foldopen = '',
+  foldclose = '',
+  fold = ' ',
+  foldsep = ' ',
+  diff = '╱',
+  eob = ' ',
+}
+opt.expandtab = true
+opt.jumpoptions = 'view'
+opt.linebreak = true
+opt.ruler = false
+opt.shiftround = true
+opt.shiftwidth = 2
+opt.timeoutlen = vim.g.vscode and 1000 or 300

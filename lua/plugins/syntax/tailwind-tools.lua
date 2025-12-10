@@ -1,14 +1,15 @@
 return {
-  {
-    'luckasRanarison/tailwind-tools.nvim',
-    name = 'tailwind-tools',
-    build = ':UpdateRemotePlugins',
-    dependencies = {
-      'nvim-treesitter/nvim-treesitter',
-      'neovim/nvim-lspconfig',
-    },
-    opts = {}, -- your configuration
-  },
+  -- deprecated plugin
+  -- {
+  --   'luckasRanarison/tailwind-tools.nvim',
+  --   name = 'tailwind-tools',
+  --   build = ':UpdateRemotePlugins',
+  --   dependencies = {
+  --     'nvim-treesitter/nvim-treesitter',
+  --     'neovim/nvim-lspconfig',
+  --   },
+  --   opts = {}, -- your configuration
+  -- },
   {
     'roobert/tailwindcss-colorizer-cmp.nvim',
     {

@@ -1,93 +1,38 @@
 return {
   'neovim/nvim-lspconfig',
-  event = { 'BufReadPre', 'BufNewFile' },
-  ft = { 'typescript', 'typescriptreact', 'javascript', 'javascriptreact' },
   dependencies = {
     { 'antosha417/nvim-lsp-file-operations', config = true },
+    { 'j-hui/fidget.nvim', opts = {} },
     'saghen/blink.cmp',
-  },
-  opts = {
-    servers = {
-      tsserver = { enabled = false },
-      ts_ls = { enabled = false },
-      vtsls = { enabled = false },
-    },
   },
 
   config = function()
-    vim.api.nvim_create_autocmd('LspAttach', {
-      group = vim.api.nvim_create_augroup('UserLspConfig', {}),
-      callback = function(ev)
-        local opts = { buffer = ev.buf, silent = true }
-
-        opts.desc = '[C]ode [A]ctions'
-        vim.keymap.set({ 'n', 'v' }, '<leader>ca', function()
-          require('fzf-lua').lsp_code_actions { silent = true }
-        end, opts)
-
-        opts.desc = '[L][L]sp Restart'
-        vim.keymap.set({ 'n', 'v' }, '<leader>lL', '<cmd>LspRestart<CR>', opts)
-
-        opts.desc = '[L]sp [I]mplimentations'
-        vim.keymap.set('n', '<leader>li', function()
-          require('fzf-lua').lsp_implementations { silent = true }
-        end, opts)
-
-        vim.keymap.set('i', '<C-h>', function()
-          vim.lsp.buf.signature_help()
-        end, opts)
-      end,
-    })
-
-    -- Define sign icons for each severity
-    local signs = {
-      [vim.diagnostic.severity.ERROR] = ' ',
-      [vim.diagnostic.severity.WARN] = ' ',
-      [vim.diagnostic.severity.HINT] = '󰠠 ',
-      [vim.diagnostic.severity.INFO] = ' ',
-    }
-
-    -- Set the diagnostic config with all icons
-    vim.diagnostic.config {
-      signs = {
-        text = signs, -- Enable signs in the gutter
-      },
-      virtual_text = true, -- Specify Enable virtual text for diagnostics
-      underline = true, -- Specify Underline diagnostics
-      update_in_insert = false, -- Keep diagnostics active in insert mode
-    }
-
-    -- Setup servers
     local capabilities = require('blink.cmp').get_lsp_capabilities() -- Import capabilities from blink.cmp
-    local lspconfig = require 'lspconfig'
 
-    -- Configure tsserver (TypeScript and JavaScript and VueJS)
+    -- bullshit
     -- local vue_language_server_path = vim.fn.expand '$MASON/packages' .. '/vue-language-server' .. '/node_modules/@vue/language-server'
-    -- local tsserver_filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' }
-    -- local vue_plugin = {
-    --   name = '@vue/typescript-plugin',
-    --   location = vue_language_server_path,
-    --   languages = { 'vue' },
-    --   configNamespace = 'typescript',
-    -- }
     -- local vtsls_config = {
     --   settings = {
     --     vtsls = {
     --       tsserver = {
     --         globalPlugins = {
-    --           vue_plugin,
+    --           {
+    --             name = '@vue/typescript-plugin',
+    --             location = vue_language_server_path,
+    --             languages = { 'vue' },
+    --             configNamespace = 'typescript',
+    --           },
     --         },
     --       },
     --     },
     --   },
-    --   filetypes = tsserver_filetypes,
+    --   filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
     -- }
-    -- local vue_ls_config = {}
     -- vim.lsp.config('vtsls', vtsls_config)
-    -- vim.lsp.enable { 'vtsls', 'vue_ls' }
+    -- vim.lsp.enable 'vtsls'
 
     -- Configure lua_ls (Lua)
-    lspconfig.lua_ls.setup {
+    local lua_ls_config = {
       capabilities = capabilities,
       settings = {
         Lua = {
@@ -106,9 +51,11 @@ return {
         },
       },
     }
+    vim.lsp.config('lua_ls', lua_ls_config)
+    vim.lsp.enable 'lua_ls'
 
     -- emmet_language_server
-    lspconfig.emmet_language_server.setup {
+    local emmet_language_server_config = {
       capabilities = capabilities,
       filetypes = {
         'css',
@@ -136,7 +83,10 @@ return {
       },
     }
 
-    lspconfig.gopls.setup {
+    vim.lsp.config('emmet_ls', emmet_language_server_config)
+    vim.lsp.enable 'emmet_ls'
+
+    local gopls_config = {
       capabilities = capabilities,
       settings = {
         gopls = {
@@ -157,8 +107,10 @@ return {
         'gotmpl',
       },
     }
+    vim.lsp.config('gopls', gopls_config)
+    vim.lsp.enable 'gopls'
 
-    lspconfig.html.setup { capabilities = capabilities }
+    vim.lsp.enable 'html'
 
     local tw_capabilities = require('blink.cmp').get_lsp_capabilities()
     tw_capabilities.textDocument.completion.completionItem.snippetSupport = false
@@ -167,8 +119,7 @@ return {
       dynamicRegistration = false,
       lineFoldingOnly = true,
     }
-
-    lspconfig.tailwindcss.setup {
+    local tailwindcss_config = {
       capabilities = tw_capabilities,
       settings = {
         tailwindCSS = {
@@ -199,8 +150,10 @@ return {
       },
       filetypes = { 'html', 'mdx', 'javascript', 'typescript', 'javascriptreact', 'typescriptreact', 'vue', 'svelte' },
     }
+    vim.lsp.config('tailwindcss', tailwindcss_config)
+    vim.lsp.enable 'tailwindcss'
 
-    lspconfig.cssls.setup {
+    local cssls_config = {
       capabilities = capabilities,
       on_attach = function(client)
         client.server_capabilities.documentFormattingProvider = true
@@ -219,8 +172,10 @@ return {
         },
       },
     }
+    vim.lsp.config('cssls', cssls_config)
+    vim.lsp.enable 'cssls'
 
-    lspconfig.jsonls.setup {
+    local jsonls_config = {
       capabilities = capabilities,
       settings = {
         json = {
@@ -261,5 +216,7 @@ return {
         },
       },
     }
+    vim.lsp.config('jsonls', jsonls_config)
+    vim.lsp.enable 'jsonls'
   end,
 }

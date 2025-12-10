@@ -1,92 +1,106 @@
--- My keymaps
-vim.keymap.set('n', '<leader>s', '<cmd>wall<CR>', { desc = 'Save all buffers' })
-vim.keymap.set('n', '<C-a>', 'ggVG', { desc = 'Select all' })
-vim.keymap.set('n', '<C-i>', '<C-o>', { desc = 'Switch to previous buffer' })
-vim.keymap.set('n', '<C-o>', '<C-i>', { desc = 'Switch to next buffer' })
+local map = vim.keymap.set
 
-vim.keymap.set('n', '<C-d>', '<C-d>zz', {})
-vim.keymap.set('n', '<C-u>', '<C-u>zz', {})
-vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv", { desc = 'Move line down in Visual mode' })
-vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv", { desc = 'Move line up in Visual mode' })
-vim.keymap.set('n', 'n', 'nzz', {})
-vim.keymap.set('n', 'N', 'Nzz', {})
-vim.keymap.set('n', '*', '*zz', {})
-vim.keymap.set('n', '#', '#zz', {})
-vim.keymap.set('n', 'g*', 'g*zz', {})
-vim.keymap.set('n', 'g#', 'g#zz', {})
-vim.keymap.set('v', '<', '<g', {})
-vim.keymap.set('v', '>', '>g', {})
-vim.keymap.set('v', 'p', '"_dP', { desc = 'Paste without saving' })
+map('n', '<leader>s', '<CMD>wall<CR><ESC>', { desc = 'Save all buffers' })
+map('n', '<C-a>', 'ggVG', { desc = 'Select all' })
+map('n', '<C-i>', '<C-o>', { desc = 'Switch to previous buffer' })
+map('n', '<C-o>', '<C-i>', { desc = 'Switch to next buffer' })
 
-vim.keymap.set({ 'n', 'x', 'o' }, 'H', '^', { desc = 'Go to start of line' })
-vim.keymap.set({ 'n', 'x', 'o' }, 'L', 'g_', { desc = 'Go to end of line' })
+map('n', '<C-d>', '<C-d>zz', {})
+map('n', '<C-u>', '<C-u>zz', {})
+map('v', 'J', ":m '>+1<CR>gv=gv", { desc = 'Move line down in Visual mode' })
+map('v', 'K', ":m '<-2<CR>gv=gv", { desc = 'Move line up in Visual mode' })
 
-vim.keymap.set('n', '<esc>', '<cmd>noh<CR>', { silent = true, desc = 'Clear search' })
+map('n', 'n', "'Nn'[v:searchforward].'zv'", { expr = true, desc = 'Next Search Result' })
+map('x', 'n', "'Nn'[v:searchforward]", { expr = true, desc = 'Next Search Result' })
+map('o', 'n', "'Nn'[v:searchforward]", { expr = true, desc = 'Next Search Result' })
+map('n', 'N', "'nN'[v:searchforward].'zv'", { expr = true, desc = 'Prev Search Result' })
+map('x', 'N', "'nN'[v:searchforward]", { expr = true, desc = 'Prev Search Result' })
+map('o', 'N', "'nN'[v:searchforward]", { expr = true, desc = 'Prev Search Result' })
+
+map('n', '*', '*zz', {})
+map('n', '#', '#zz', {})
+map('n', 'g*', 'g*zz', {})
+map('n', 'g#', 'g#zz', {})
+map('v', '<', '<g', {})
+map('v', '>', '>g', {})
+map('v', 'p', '"_dP', { desc = 'Paste without saving' })
+
+map({ 'n', 'x', 'o' }, 'H', '^', { desc = 'Go to start of line' })
+map({ 'n', 'x', 'o' }, 'L', 'g_', { desc = 'Go to end of line' })
+
+map('n', '<ESC>', '<CMD>noh<CR>', { silent = true, desc = 'Clear search' })
+
+map('n', '<A-j>', "<CMD>execute 'move .+' . v:count1<cr>==", { desc = 'Move Down' })
+map('n', '<A-k>', "<CMD>execute 'move .-' . (v:count1 + 1)<cr>==", { desc = 'Move Up' })
+map('i', '<A-j>', '<ESC><CMD>m .+1<cr>==gi', { desc = 'Move Down' })
+map('i', '<A-k>', '<ESC><CMD>m .-2<cr>==gi', { desc = 'Move Up' })
+map('v', '<A-j>', ":<C-u>execute \"'<,'>move '>+\" . v:count1<cr>gv=gv", { desc = 'Move Down' })
+map('v', '<A-k>', ":<C-u>execute \"'<,'>move '<-\" . (v:count1 + 1)<cr>gv=gv", { desc = 'Move Up' })
 
 -- LazyVim shit keymaps
-local keymaps_to_del = {
-  { 'n', '[b' },
-  { 'n', ']b' },
-  { 'n', '<leader>bb' },
-  { 'n', '<leader>`' },
-  { 'n', '<leader>bd' },
-  { 'n', '<leader>bo' },
-  { 'n', '<leader>bD' },
-  { 'n', '<leader>e' },
-  { 'n', '<leader>sa' },
-  { 'n', '<leader>sb' },
-  { 'n', '<leader>sc' },
-  { 'n', '<leader>sC' },
-  { 'n', '<leader>sd' },
-  { 'n', '<leader>sD' },
-  { 'n', '<leader>sg' },
-  { 'n', '<leader>sG' },
-  { 'n', '<leader>sh' },
-  { 'n', '<leader>sH' },
-  { 'n', '<leader>sj' },
-  { 'n', '<leader>sk' },
-  { 'n', '<leader>sl' },
-  { 'n', '<leader>sm' },
-  { 'n', '<leader>sM' },
-  { 'n', '<leader>ss' },
-  { 'n', '<leader>sS' },
-  { 'n', '<leader>st' },
-  { 'n', '<leader>sT' },
-  { 'n', '<leader>sw' },
-  { 'n', '<leader>sW' },
-  { 'n', '<leader>s"' },
-  { 'n', '<leader>sq' },
-  { 'n', '<leader>sR' },
-  { 'n', '<leader>s/' },
-  { 'n', '<leader>K' },
-  { 'n', '<leader>S' },
-  { 'n', '<leader>be' },
-  { 'n', '<leader>cl' },
-  { 'n', '<leader>cd' },
-  { 'n', '<leader>cf' },
-  { 'n', '<leader>cF' },
-  { 'n', '<leader>cs' },
-  { 'n', '<leader>fb' },
-  { 'n', '<leader>fc' },
-  { 'n', '<leader>fF' },
-  { 'n', '<leader>fg' },
-  { 'n', '<leader>fr' },
-  { 'n', '<leader>fR' },
-  { 'n', '<leader>fn' },
-  { 'n', '<leader>fe' },
-  { 'n', '<leader>fE' },
-  { 'n', '<leader>fT' },
-  { 'n', '<leader>gg' },
-  { 'n', '<leader>gY' },
-  { 'n', '<leader>gL' },
-  { 'n', '<leader><space>' },
-  { 'n', '<leader>.' },
-  { 'n', '<leader>/' },
-  { 'n', '<leader>:' },
-  { 'n', '<leader>,' },
-  { 'n', '<leader>?' },
-}
-
-for _, keymap in ipairs(keymaps_to_del) do
-  pcall(vim.keymap.del, keymap[1], keymap[2])
-end
+-- local keymaps_to_del = {
+--   { 'n', '[b' },
+--   { 'n', ']b' },
+--   { 'n', '<leader>bb' },
+--   { 'n', '<leader>`' },
+--   { 'n', '<leader>bd' },
+--   { 'n', '<leader>bo' },
+--   { 'n', '<leader>bD' },
+--   { 'n', '<leader>e' },
+--   { 'n', '<leader>sa' },
+--   { 'n', '<leader>sb' },
+--   { 'n', '<leader>sc' },
+--   { 'n', '<leader>sC' },
+--   { 'n', '<leader>sd' },
+--   { 'n', '<leader>sD' },
+--   { 'n', '<leader>sg' },
+--   { 'n', '<leader>sG' },
+--   { 'n', '<leader>sh' },
+--   { 'n', '<leader>sH' },
+--   { 'n', '<leader>sj' },
+--   { 'n', '<leader>sk' },
+--   { 'n', '<leader>sl' },
+--   { 'n', '<leader>sm' },
+--   { 'n', '<leader>sM' },
+--   { 'n', '<leader>ss' },
+--   { 'n', '<leader>sS' },
+--   { 'n', '<leader>st' },
+--   { 'n', '<leader>sT' },
+--   { 'n', '<leader>sw' },
+--   { 'n', '<leader>sW' },
+--   { 'n', '<leader>s"' },
+--   { 'n', '<leader>sq' },
+--   { 'n', '<leader>sR' },
+--   { 'n', '<leader>s/' },
+--   { 'n', '<leader>K' },
+--   { 'n', '<leader>S' },
+--   { 'n', '<leader>be' },
+--   { 'n', '<leader>cl' },
+--   { 'n', '<leader>cd' },
+--   { 'n', '<leader>cf' },
+--   { 'n', '<leader>cF' },
+--   { 'n', '<leader>cs' },
+--   { 'n', '<leader>fb' },
+--   { 'n', '<leader>fc' },
+--   { 'n', '<leader>fF' },
+--   { 'n', '<leader>fg' },
+--   { 'n', '<leader>fr' },
+--   { 'n', '<leader>fR' },
+--   { 'n', '<leader>fn' },
+--   { 'n', '<leader>fe' },
+--   { 'n', '<leader>fE' },
+--   { 'n', '<leader>fT' },
+--   { 'n', '<leader>gg' },
+--   { 'n', '<leader>gY' },
+--   { 'n', '<leader>gL' },
+--   { 'n', '<leader><space>' },
+--   { 'n', '<leader>.' },
+--   { 'n', '<leader>/' },
+--   { 'n', '<leader>:' },
+--   { 'n', '<leader>,' },
+--   { 'n', '<leader>?' },
+-- }
+--
+-- for _, keymap in ipairs(keymaps_to_del) do
+--   pcall(vim.keymap.del, keymap[1], keymap[2])
+-- end
