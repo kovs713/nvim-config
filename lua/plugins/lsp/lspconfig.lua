@@ -218,5 +218,28 @@ return {
     }
     vim.lsp.config('jsonls', jsonls_config)
     vim.lsp.enable 'jsonls'
+
+    local eslint_config = {
+      capabilities = capabilities,
+      settings = {
+        useESLintClass = false,
+        validate = 'on',
+        problems = {
+          shortenToSingleLine = false,
+        },
+        workingDirectory = {
+          mode = 'auto',
+        },
+        codeAction = {
+          disableRuleComment = {
+            enable = true,
+            location = 'separateLine',
+          },
+          showDocumentation = {
+            enable = true,
+          },
+        },
+      },
+    }
   end,
 }
