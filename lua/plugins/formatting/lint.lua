@@ -8,8 +8,8 @@ return {
       java = { 'checkstyle' },
       python = { 'pyright' },
       go = { 'golangcilint' },
-      typescript = { 'eslint_d' },
-      typescriptreact = { 'eslint_d' },
+      -- typescript = { 'eslint_d' },
+      -- typescriptreact = { 'eslint_d' },
       lua = { 'luacheck' },
     }
 

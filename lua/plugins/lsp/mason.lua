@@ -16,7 +16,6 @@ return {
         'emmet_ls',     -- emmet
         'prismals',     -- prisma
         'pyright',      -- pytgon
-        'eslint',       -- eslint
       },
     },
     dependencies = {
