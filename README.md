@@ -2,7 +2,7 @@
   <p>
     <img alt="Linux" src="https://img.shields.io/badge/Linux-%23.svg?style=flat-square&#x26;logo=linux&#x26;color=FCC624&#x26;logoColor=black">
     <a href="https://github.com/neovim/neovim/releases/tag/stable">
-        <img src="https://img.shields.io/badge/Neovim-0.11.4-blueviolet.svg?style=flat-square&logo=Neovim&logoColor=green" alt="Neovim minimum version"/>
+        <img src="https://img.shields.io/badge/Neovim-0.11.5-blueviolet.svg?style=flat-square&logo=Neovim&logoColor=green" alt="Neovim minimum version"/>
     </a>
     <img src="https://img.shields.io/github/languages/top/kovs713/nvim-config" alt="Top languages">
     <a href="https://github.com/kovs713/nvim-config/graphs/commit-activity">
@@ -41,7 +41,7 @@ This config uses [lazy.nvim](https://github.com/folke/lazy.nvim) for plugin mana
 - **Customization**: Easily enable/disable plugins by moving files between folders.
 
 ### Requirements
-- Neovim v0.11.4
+- Neovim v0.11.5
 - Git (for repo management).
 - Node.js (for some LSP servers like TypeScript).
 - Optional: ripgrep (for faster searching), fd (for file finding), ImageMagick (for image previews).
