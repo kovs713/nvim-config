@@ -1,15 +1,4 @@
 return {
-  -- deprecated plugin
-  -- {
-  --   'luckasRanarison/tailwind-tools.nvim',
-  --   name = 'tailwind-tools',
-  --   build = ':UpdateRemotePlugins',
-  --   dependencies = {
-  --     'nvim-treesitter/nvim-treesitter',
-  --     'neovim/nvim-lspconfig',
-  --   },
-  --   opts = {}, -- your configuration
-  -- },
   {
     'roobert/tailwindcss-colorizer-cmp.nvim',
     {
@@ -24,16 +13,19 @@ return {
           user_default_options = {
             tailwind = true,
           },
-          filetypes = { 'html', 'css', 'javascript', 'typescript', 'jsx', 'tsx', 'vue', 'svelte' },
+          filetypes = { 'html', 'css' },
         }
 
         tailwindcolorizer.setup {
           color_square_width = 2,
         }
 
-        vim.api.nvim_create_autocmd({ 'BufReadPost', 'BufNewFile' }, {
-          callback = function()
-            vim.cmd 'ColorizerAttachToBuffer'
+        vim.api.nvim_create_autocmd({ 'BufReadPost', 'BufNewFile', 'FileType' }, {
+          pattern = { '<filetype>' },
+          callback = function(filetype)
+            if filetype == 'css' or filetype == 'html' then
+              vim.cmd 'ColorizerAttachToBuffer'
+            end
           end,
         })
       end,

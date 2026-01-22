@@ -63,7 +63,7 @@ opt.timeoutlen = 300
 opt.splitright = true
 opt.splitbelow = true
 
-opt.list = true
+opt.list = false
 opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 
 opt.inccommand = 'split'

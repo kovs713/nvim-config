@@ -70,7 +70,7 @@ return {
         },
 
         display = {
-          theme = 'default',
+          theme = 'minecraft',
           flavor = 'accent',
           view = 'full',
           swap_fields = false,

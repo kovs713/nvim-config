@@ -6,10 +6,10 @@ return {
 
     lint.linters_by_ft = {
       java = { 'checkstyle' },
-      -- python = { 'pyright' },
+      python = { 'pyright' },
       go = { 'golangcilint' },
-      -- typescript = { 'eslint_d' },
-      -- typescriptreact = { 'eslint_d' },
+      typescript = { 'eslint_d' },
+      typescriptreact = { 'eslint_d' },
       lua = { 'luacheck' },
     }
 
@@ -22,5 +22,9 @@ return {
         end
       end,
     })
+
+    vim.keymap.set('n', '<leader>lt', function()
+      vim.diagnostic.enable(not vim.diagnostic.is_enabled())
+    end, { desc = '[L]int [T]oggle' })
   end,
 }
