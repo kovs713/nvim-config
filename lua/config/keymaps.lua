@@ -1,8 +1,11 @@
 local map = vim.keymap.set
+local del_map = vim.keymap.del
 
 map('n', '<leader>s', '<CMD>wall<CR><ESC>', { desc = 'Save all buffers' })
 map('n', '<C-a>', 'ggVG', { desc = 'Select all' })
+pcall(del_map, 'n', 'C-i')
 map('n', '<C-i>', '<C-o>', { desc = 'Switch to previous buffer' })
+pcall(del_map, 'n', 'C-o')
 map('n', '<C-o>', '<C-i>', { desc = 'Switch to next buffer' })
 
 map('n', '<C-d>', '<C-d>zz', {})

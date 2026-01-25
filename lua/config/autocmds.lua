@@ -36,27 +36,3 @@ vim.api.nvim_create_autocmd('FileType', {
     vim.treesitter.start()
   end,
 })
-
--- transparent background
--- vim.api.nvim_set_hl(-1, "Normal", { bg = "none" })
--- vim.api.nvim_set_hl(-1, "NormalFloat", { bg = "none" })
--- vim.api.nvim_set_hl(-1, "FloatBorder", { bg = "none" })
--- vim.api.nvim_set_hl(-1, "Pmenu", { bg = "none" })
--- vim.api.nvim_set_hl(-1, "Terminal", { bg = "none" })
--- vim.api.nvim_set_hl(-1, "EndOfBuffer", { bg = "none" })
--- vim.api.nvim_set_hl(-1, "FoldColumn", { bg = "none" })
--- vim.api.nvim_set_hl(-1, "Folded", { bg = "none" })
--- vim.api.nvim_set_hl(-1, "SignColumn", { bg = "none" })
--- vim.api.nvim_set_hl(-1, "NormalNC", { bg = "none" })
--- vim.api.nvim_set_hl(-1, "WhichKeyFloat", { bg = "none" })
--- vim.api.nvim_set_hl(-1, "TelescopeBorder", { bg = "none" })
--- vim.api.nvim_set_hl(-1, "TelescopeNormal", { bg = "none" })
--- vim.api.nvim_set_hl(-1, "TelescopePromptBorder", { bg = "none" })
--- vim.api.nvim_set_hl(-1, "TelescopePromptTitle", { bg = "none" })
-
--- transparent background for neotree
--- vim.api.nvim_set_hl(-1, "NeoTreeNormal", { bg = "none" })
--- vim.api.nvim_set_hl(-1, "NeoTreeNormalNC", { bg = "none" })
--- vim.api.nvim_set_hl(-1, "NeoTreeVertSplit", { bg = "none" })
--- vim.api.nvim_set_hl(-1, "NeoTreeWinSeparator", { bg = "none" })
--- vim.api.nvim_set_hl(-1, "NeoTreeEndOfBuffer", { bg = "none" })
