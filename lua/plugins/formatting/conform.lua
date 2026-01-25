@@ -12,7 +12,7 @@ return {
       desc = '[F]ormat buffer',
     },
   },
-  opts = function()
+  config = function()
     local conform = require 'conform'
 
     conform.setup {
