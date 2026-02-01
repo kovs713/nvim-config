@@ -5,5 +5,6 @@ return {
     local neocodeium = require 'neocodeium'
     neocodeium.setup()
     vim.keymap.set('i', '<A-f>', neocodeium.accept)
+    vim.keymap.set('n', '<leader>nt', '<CMD>NeoCodeium toggle<CR>', { silent = true })
   end,
 }

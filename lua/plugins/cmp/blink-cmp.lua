@@ -29,8 +29,13 @@ return {
   --- @module 'blink.cmp'
   --- @type blink.cmp.Config
   opts = {
+    enabled = function()
+      return vim.bo.filetype ~= 'lua'
+    end,
+
     keymap = {
-      preset = 'enter',
+      preset = 'default',
+      ['C-space'] = { 'show_and_insert' },
       ['<Tab>'] = { 'select_next', 'fallback' },
       ['<S-Tab>'] = { 'select_prev', 'fallback' },
     },
