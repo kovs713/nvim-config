@@ -3,19 +3,19 @@ return {
     'williamboman/mason-lspconfig.nvim',
     opts = {
       ensure_installed = {
-        'gopls',        -- golang
-        'marksman',     -- markdown
-        'jsonls',       -- json
-        'yamlls',       -- yaml
-        'html',         -- html
-        'cssls',        -- css
-        'tailwindcss',  -- tailwind
-        'svelte',       -- svelte
-        'lua_ls',       -- lua
-        'graphql',      -- grqphql
-        'emmet_ls',     -- emmet
-        'prismals',     -- prisma
-        'pyright',      -- pytgon
+        'gopls', -- golang
+        'marksman', -- markdown
+        'jsonls', -- json
+        'yamlls', -- yaml
+        'html', -- html
+        'cssls', -- css
+        'tailwindcss', -- tailwind
+        'svelte', -- svelte
+        'lua_ls', -- lua
+        'graphql', -- grqphql
+        'emmet_ls', -- emmet
+        'prismals', -- prisma
+        'pyright', -- pytgon
       },
     },
     dependencies = {
@@ -40,10 +40,12 @@ return {
       ensure_installed = {
         'prettier', -- prettier formatter
         'eslint_d', -- js linter
-        'stylua',   -- lua formatter
-        'isort',    -- python formatter
-        'black',    -- python formatter
-        'pylint',   -- python linter
+        'stylua', -- lua formatter
+        'isort', -- python formatter
+        'black', -- python formatter
+        'pylint', -- python linter
+        'gofumpt', -- golang formatter
+        'golangci-lint', -- golang lint
       },
     },
     dependencies = {

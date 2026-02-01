@@ -8,6 +8,8 @@ map('n', '<C-i>', '<C-o>', { desc = 'Switch to previous buffer' })
 pcall(del_map, 'n', 'C-o')
 map('n', '<C-o>', '<C-i>', { desc = 'Switch to next buffer' })
 
+map('n', '<leader>gr', '<CMD>!go run .<CR>', { desc = 'Run go project' })
+
 map('n', '<C-d>', '<C-d>zz', {})
 map('n', '<C-u>', '<C-u>zz', {})
 map('v', 'J', ":m '>+1<CR>gv=gv", { desc = 'Move line down in Visual mode' })
