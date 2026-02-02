@@ -9,6 +9,15 @@ pcall(del_map, 'n', 'C-o')
 map('n', '<C-o>', '<C-i>', { desc = 'Switch to next buffer' })
 
 map('n', '<leader>gr', '<CMD>!go run .<CR>', { desc = 'Run go project' })
+map('n', '<leader>ge', function()
+  local lines = {
+    'if err != nil {',
+    '    return err',
+    '}',
+  }
+  vim.api.nvim_put(lines, 'l', true, true)
+  vim.lsp.buf.format()
+end)
 
 map('n', '<C-d>', '<C-d>zz', {})
 map('n', '<C-u>', '<C-u>zz', {})

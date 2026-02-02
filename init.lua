@@ -19,3 +19,5 @@ vim.opt.rtp:prepend(lazypath)
 require 'config'
 
 require 'plugins'
+
+require 'snippets'
