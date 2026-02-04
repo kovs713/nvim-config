@@ -1,5 +1,7 @@
 local map = vim.keymap.set
-local del_map = vim.keymap.del
+local del_map = vim.keymap.de
+
+map('i', '<C-l>', '<C-^>', { noremap = true, desc = '' })
 
 local function organize_imports()
   vim.lsp.buf.code_action {

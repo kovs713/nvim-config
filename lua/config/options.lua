@@ -5,6 +5,12 @@ vim.diagnostic.config {
   update_in_insert = false,
 }
 
+vim.cmd [[
+  set keymap=russian-jcukenwin
+  set iminsert=0
+  set imsearch=0
+]]
+
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
