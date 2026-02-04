@@ -125,28 +125,51 @@ return {
     vim.lsp.config('emmet_ls', emmet_language_server_config)
     vim.lsp.enable 'emmet_ls'
 
-    local gopls_config = {
-      capabilities = capabilities,
+    local hints = vim.empty_dict()
+    hints.assignVariableTypes = true
+    hints.compositeLiteralFields = true
+    hints.compositeLiteralTypes = true
+    hints.constantValues = true
+    hints.functionTypeParameters = true
+    hints.parameterNames = true
+    hints.rangeVariableTypes = true
+    vim.lsp.config('gopls', {
       settings = {
         gopls = {
-          -- automaticly import packages
+          codelenses = {
+            test = true,
+            gc_details = true,
+            generate = true,
+            run_govulncheck = true,
+            tidy = true,
+            upgrade_dependency = true,
+            vendor = true,
+          },
+          gofumpt = true,
           completeUnimported = true,
-          -- adds placeholders for functions parameters
-          usePlaceholders = true,
+          usePlaceholders = false,
+          staticcheck = true,
+          hints = hints,
           analyses = {
-            -- give warning for parameters not used
+            recursiveiter = true,
+            maprange = true,
+            framepointer = true,
+            modernize = true,
+            nilness = true,
+            hostport = true,
+            gofix = true,
+            sigchanyzer = true,
+            stdversion = true,
+            unreachable = true,
+            unusedfunc = true,
             unusedparams = true,
+            unusedvariable = true,
+            unusedwrite = true,
+            useany = true,
           },
         },
       },
-      filetypes = {
-        'go',
-        'gomod',
-        'gowork',
-        'gotmpl',
-      },
-    }
-    vim.lsp.config('gopls', gopls_config)
+    })
     vim.lsp.enable 'gopls'
 
     vim.lsp.enable 'html'

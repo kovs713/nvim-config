@@ -1,14 +1,23 @@
 local map = vim.keymap.set
 local del_map = vim.keymap.del
 
+local function organize_imports()
+  vim.lsp.buf.code_action {
+    context = { only = { 'source.organizeImports' } },
+    apply = true,
+  }
+end
+
+map('n', '<leader>gi', organize_imports, { desc = 'Fix Go Imports' })
+
 map('n', '<leader>s', '<CMD>wall<CR><ESC>', { desc = 'Save all buffers' })
-map('n', '<C-a>', 'ggVG', { desc = 'Select all' })
+-- map('n', '<C-a>', 'ggVG', { desc = 'Select all' })
 pcall(del_map, 'n', 'C-i')
 map('n', '<C-i>', '<C-o>', { desc = 'Switch to previous buffer' })
 pcall(del_map, 'n', 'C-o')
 map('n', '<C-o>', '<C-i>', { desc = 'Switch to next buffer' })
 
-map('n', '<leader>gr', '<CMD>!go run .<CR>', { desc = 'Run go project' })
+map('n', '<leader>gn', '<CMD>!go run .<CR>', { desc = '[G]o Ru[N] current project' })
 map('n', '<leader>ge', function()
   local lines = {
     'if err != nil {',
@@ -17,7 +26,7 @@ map('n', '<leader>ge', function()
   }
   vim.api.nvim_put(lines, 'l', true, true)
   vim.lsp.buf.format()
-end)
+end, { desc = '[G]o [E]rror handle pattern' })
 
 map('n', '<C-d>', '<C-d>zz', {})
 map('n', '<C-u>', '<C-u>zz', {})
