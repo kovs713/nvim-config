@@ -29,17 +29,6 @@ My personal Lua-based Neovim configuration. Focused on productivity, modern UI, 
 
 This config uses [lazy.nvim](https://github.com/folke/lazy.nvim) for plugin management, with plugins organized into enabled/disabled folders and categorized for easy maintenance. It includes LSP support, Obsidian notes tooling, Treesitter syntax, Git integration, and more.
 
-### Features
-- **Modern UI**: Customizable dashboard, statusline, notifications, and markdown rendering.
-- **Coding Tools**: LSP with diagnostics, code actions, refactoring, formatting, and linting.
-- **Syntax & Completion**: Treesitter-based highlighting, auto-tagging, Tailwind/Emmet support, and fast completion.
-- **Editing Enhancements**: Auto-pairs, comments, TODO highlighting, and indentation visualization.
-- **Navigation**: Fuzzy finders, file explorers, quick jumps, and window management.
-- **Git Integration**: Signs for changes, hunk staging, blame, and diffs.
-- **Productivity and Life Quality**: Note-taking with Obsidian, time tracking, Discord presence, and image pasting etc.
-- **Modular Mini.nvim**: Lightweight modules for surroundings, textobjects, icons, and more.
-- **Customization**: Easily enable/disable plugins by moving files between folders.
-
 ### Requirements
 - Neovim v0.11.5
 - Git (for repo management).
