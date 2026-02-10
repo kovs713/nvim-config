@@ -282,9 +282,14 @@ return {
     vim.lsp.enable 'jsonls'
 
     vim.lsp.config('pyright', {
-      cmd = { 'pyright-langserver', '--stdio' },
-      filetypes = { 'python' },
-      root_markers = { 'pyproject.toml', '.git' },
+      settings = {
+        python = {
+          analysis = {
+            typeCheckingMode = 'basic',
+            diagnosticMode = 'openFilesOnly',
+          },
+        },
+      },
     })
 
     vim.lsp.enable 'pyright'
