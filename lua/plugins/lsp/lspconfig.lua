@@ -8,28 +8,39 @@ return {
 
   config = function()
     local capabilities = require('blink.cmp').get_lsp_capabilities() -- Import capabilities from blink.cmp
+    local map = vim.keymap.set
 
-    -- bullshit
-    -- local vue_language_server_path = vim.fn.expand '$MASON/packages' .. '/vue-language-server' .. '/node_modules/@vue/language-server'
-    -- local vtsls_config = {
-    --   settings = {
-    --     vtsls = {
-    --       tsserver = {
-    --         globalPlugins = {
-    --           {
-    --             name = '@vue/typescript-plugin',
-    --             location = vue_language_server_path,
-    --             languages = { 'vue' },
-    --             configNamespace = 'typescript',
-    --           },
-    --         },
-    --       },
-    --     },
-    --   },
-    --   filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
-    -- }
-    -- vim.lsp.config('vtsls', vtsls_config)
-    -- vim.lsp.enable 'vtsls'
+    map('n', '<leader>i', function()
+      vim.lsp.buf.code_action {
+        apply = true,
+        context = {
+          only = { 'source.fixAll' },
+          diagnostics = {},
+        },
+      }
+    end, { desc = 'Organize Imports (fix all)' })
+
+    -- not a bullshit anymore
+    local vue_language_server_path = vim.fn.expand '$MASON/packages' .. '/vue-language-server' .. '/node_modules/@vue/language-server'
+    local vtsls_config = {
+      filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
+      settings = {
+        vtsls = {
+          tsserver = {
+            globalPlugins = {
+              {
+                name = '@vue/typescript-plugin',
+                location = vue_language_server_path,
+                languages = { 'vue' },
+                configNamespace = 'typescript',
+              },
+            },
+          },
+        },
+      },
+    }
+    vim.lsp.config('vtsls', vtsls_config)
+    vim.lsp.enable 'vtsls'
 
     -- Configure lua_ls (Lua)
     local lua_ls_config = {
@@ -291,7 +302,6 @@ return {
         },
       },
     })
-
     vim.lsp.enable 'pyright'
 
     -- local eslint_config = {
