@@ -8,17 +8,6 @@ return {
 
   config = function()
     local capabilities = require('blink.cmp').get_lsp_capabilities() -- Import capabilities from blink.cmp
-    local map = vim.keymap.set
-
-    map('n', '<leader>i', function()
-      vim.lsp.buf.code_action {
-        apply = true,
-        context = {
-          only = { 'source.fixAll' },
-          diagnostics = {},
-        },
-      }
-    end, { desc = 'Organize Imports (fix all)' })
 
     -- not a bullshit anymore
     local vue_language_server_path = vim.fn.expand '$MASON/packages' .. '/vue-language-server' .. '/node_modules/@vue/language-server'
