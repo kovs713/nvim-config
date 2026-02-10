@@ -15,7 +15,7 @@ return {
         'graphql', -- grqphql
         'emmet_ls', -- emmet
         'prismals', -- prisma
-        'pyright', -- pytgon
+        'pyright', -- python
       },
     },
     dependencies = {
@@ -42,7 +42,7 @@ return {
         'eslint_d', -- js linter
         'stylua', -- lua formatter
         'isort', -- python formatter
-        'black', -- python formatter
+        'ruff', -- python formatter
         'pylint', -- python linter
         'gofumpt', -- golang formatter
         'golangci-lint', -- golang lint

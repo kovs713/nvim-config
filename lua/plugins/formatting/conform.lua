@@ -34,7 +34,7 @@ return {
         yaml = { 'prettier' },
         graphql = { 'prettier' },
         lua = { 'stylua' },
-        python = { 'black' },
+        python = { 'ruff' },
         go = { 'gofumpt' },
       },
     }
