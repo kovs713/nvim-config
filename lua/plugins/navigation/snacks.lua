@@ -1,68 +1,69 @@
 return {
-  {
-    'folke/snacks.nvim',
-    priority = 1000,
-    lazy = false,
-    opts = {
-      picker = {
-        matchers = {
-          frecency = true,
-          cwd_bonus = true,
-        },
-        formatters = {
-          file = {
-            filename_first = false,
-            filename_only = false,
-          },
-        },
+  'folke/snacks.nvim',
+  priority = 1000,
+  lazy = false,
+  opts = {
+    scroll = {
+      enabled = false,
+    },
+    picker = {
+      matchers = {
+        frecency = true,
+        cwd_bonus = true,
       },
-      image = {
-        enabled = true,
-        doc = {
-          float = true,
-          inline = false,
-          max_width = 50,
-          max_height = 30,
-          wo = {
-            wrap = false,
-          },
+      formatters = {
+        file = {
+          filename_first = false,
+          filename_only = false,
         },
-        convert = {
-          notify = true,
-          command = 'magick',
-        },
-        img_dirs = { 'img', 'images', 'assets', 'static', 'public', 'media', 'attachments', 'archives/all-vault-images/', '~/downloads' },
       },
     },
-    keys = {
-      {
-        '<leader>gl',
-        function()
-          require('snacks').lazygit()
-        end,
-        desc = '[F]loat [L]azygit',
+    image = {
+      enabled = true,
+      doc = {
+        float = true,
+        inline = false,
+        max_width = 50,
+        max_height = 30,
+        wo = {
+          wrap = false,
+        },
       },
-      {
-        '<leader>rN',
-        function()
-          require('snacks').rename.rename_file()
-        end,
-        desc = '[R]ename [F]ile',
+      convert = {
+        notify = true,
+        command = 'magick',
       },
-      {
-        '<leader>fp',
-        function()
-          require('snacks.picker').projects()
-        end,
-        desc = '[F]ind [P]rojects',
-      },
-      {
-        '<leader>fu',
-        function()
-          require('snacks.picker').undo()
-        end,
-        desc = '[F] [U]ndo tree',
-      },
+      img_dirs = { 'img', 'images', 'assets', 'static', 'public', 'media', 'attachments', 'archives/all-vault-images/', '~/downloads' },
+    },
+  },
+  keys = {
+    {
+      '<leader>gl',
+      function()
+        require('snacks').lazygit()
+      end,
+      desc = '[F]loat [L]azygit',
+    },
+    {
+      '<leader>rN',
+      function()
+        require('snacks').rename.rename_file()
+      end,
+      desc = '[R]ename [F]ile',
+    },
+    {
+      '<leader>fp',
+      function()
+        require('snacks.picker').projects()
+      end,
+      desc = '[F]ind [P]rojects',
+    },
+    {
+      '<leader>fu',
+      function()
+        require('snacks.picker').undo()
+      end,
+      desc = '[F] [U]ndo tree',
     },
   },
 }

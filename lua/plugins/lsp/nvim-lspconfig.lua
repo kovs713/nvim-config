@@ -1,8 +1,8 @@
 return {
   'neovim/nvim-lspconfig',
   dependencies = {
-    { 'antosha417/nvim-lsp-file-operations', config = true },
     { 'mason-org/mason.nvim', opts = {} },
+
     { 'j-hui/fidget.nvim', opts = {} },
     'saghen/blink.cmp',
   },
@@ -13,7 +13,7 @@ return {
       callback = function(event)
         local map = function(keys, func, desc, mode)
           mode = mode or 'n'
-          vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
+          vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = desc })
         end
 
         -- This function resolves a difference between neovim nightly (version 0.11) and stable (version 0.10)
@@ -69,11 +69,25 @@ return {
         end
       end,
     })
-    local capabilities = require('blink.cmp').get_lsp_capabilities() -- Import capabilities from blink.cmp
+    local capabilities = require('blink.cmp').get_lsp_capabilities()
+    local map = vim.keymap.set
 
-    -- not a bullshit anymore
     local vue_language_server_path = vim.fn.expand '$MASON/packages' .. '/vue-language-server' .. '/node_modules/@vue/language-server'
     local vtsls_config = {
+      on_attach = function(client, bufnr)
+        client.server_capabilities.documentFormattingProvider = false
+
+        map('n', '<leader>i', function()
+          vim.lsp.buf.code_action {
+            apply = true,
+            context = {
+              only = { 'source.organizeImports' },
+              diagnostics = {},
+            },
+          }
+        end, { desc = 'Organize Imports' })
+      end,
+
       filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
       settings = {
         vtsls = {
@@ -318,28 +332,5 @@ return {
       },
     })
     vim.lsp.enable 'pyright'
-
-    -- local eslint_config = {
-    --   capabilities = capabilities,
-    --   settings = {
-    --     useESLintClass = false,
-    --     validate = 'on',
-    --     problems = {
-    --       shortenToSingleLine = false,
-    --     },
-    --     workingDirectory = {
-    --       mode = 'auto',
-    --     },
-    --     codeAction = {
-    --       disableRuleComment = {
-    --         enable = true,
-    --         location = 'separateLine',
-    --       },
-    --       showDocumentation = {
-    --         enable = true,
-    --       },
-    --     },
-    --   },
-    -- }
   end,
 }

@@ -14,7 +14,6 @@ return {
         'lua_ls', -- lua
         'graphql', -- grqphql
         'emmet_ls', -- emmet
-        'prismals', -- prisma
         'ruff', -- python
       },
     },

@@ -10,22 +10,50 @@ vim.api.nvim_create_autocmd('LspAttach', {
   group = vim.api.nvim_create_augroup('UserLspConfig', {}),
   callback = function(ev)
     local opts = { buffer = ev.buf, silent = true }
+    local map = vim.keymap.set
+    local fzf = require 'fzf-lua'
 
     opts.desc = '[C]ode [A]ctions'
-    vim.keymap.set({ 'n', 'v' }, '<leader>ca', function()
-      require('fzf-lua').lsp_code_actions { silent = true }
+    map({ 'n', 'v' }, '<leader>ca', function()
+      fzf.lsp_code_actions { silent = true }
     end, opts)
 
     opts.desc = '[L][L]sp Restart'
-    vim.keymap.set({ 'n', 'v' }, '<leader>lL', '<cmd>LspRestart<CR>', opts)
+    map({ 'n', 'v' }, '<leader>lL', '<cmd>LspRestart<CR>', opts)
 
     opts.desc = '[L]sp [I]mplimentations'
-    vim.keymap.set('n', '<leader>li', function()
-      require('fzf-lua').lsp_implementations { silent = true }
+    map('n', '<leader>li', function()
+      fzf.lsp_implementations { silent = true }
     end, opts)
 
-    vim.keymap.set('i', '<C-h>', function()
-      vim.lsp.buf.signature_help()
+    opts.desc = '[L]sp Peek [D]efinition'
+    map('n', '<leader>ld', function()
+      fzf.lsp_definitions()
+    end, opts)
+
+    opts.desc = '[L]sp Peek [D]efinition'
+    map('n', 'gd', function()
+      fzf.lsp_definitions()
+    end, opts)
+
+    opts.desc = '[L]sp Peek [R]eferences'
+    map('n', '<leader>lR', function()
+      fzf.lsp_references { silent = true }
+    end, opts)
+
+    opts.desc = '[L]sp Diagnostic Float [E]'
+    map('n', '<leader>le', function()
+      vim.diagnostic.open_float()
+    end, opts)
+
+    opts.desc = '[L]sp [H]over Doc'
+    map('n', '<leader>lh', function()
+      vim.lsp.buf.hover()
+    end, opts)
+
+    opts.desc = '[L]sp [R]ename'
+    map('n', '<leader>lr', function()
+      vim.lsp.buf.rename()
     end, opts)
   end,
 })

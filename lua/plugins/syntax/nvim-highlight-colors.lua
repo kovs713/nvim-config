@@ -5,6 +5,7 @@ return {
     colorizer.setup {
       render = 'virtual',
       exclude_filetypes = { 'javascript', 'typescript' },
+      enable_named_colors = false,
       enable_tailwind = true,
     }
   end,

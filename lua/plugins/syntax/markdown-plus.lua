@@ -2,7 +2,7 @@ return {
   'yousefhadder/markdown-plus.nvim',
   ft = 'markdown', -- Load on markdown files by default
   config = function()
-    require('markdown-plus').setup {
+    require('plugins.syntax.markdown-plus').setup {
       -- Configuration options (all optional)
       enabled = true,
       features = {

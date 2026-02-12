@@ -3,6 +3,7 @@ return {
   event = { 'BufReadPre', 'BufNewFile' },
   config = function()
     local lint = require 'lint'
+    local map = vim.keymap.set
 
     lint.linters_by_ft = {
       java = { 'checkstyle' },
@@ -22,7 +23,7 @@ return {
       end,
     })
 
-    vim.keymap.set('n', '<leader>lt', function()
+    map('n', '<leader>lt', function()
       vim.diagnostic.enable(not vim.diagnostic.is_enabled())
     end, { desc = '[L]int [T]oggle' })
   end,

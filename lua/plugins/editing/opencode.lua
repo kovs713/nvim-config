@@ -17,27 +17,27 @@ return {
 
     -- Recommended/example keymaps.
     vim.keymap.set({ 'n', 'x' }, '<leader>oa', function()
-      require('opencode').ask('@this: ', { submit = true })
+      require('plugins.editing.opencode').ask('@this: ', { submit = true })
     end, { desc = '[O]pencode [A]sk' })
     vim.keymap.set({ 'n', 'x' }, '<leader>ox', function()
-      require('opencode').select()
+      require('plugins.editing.opencode').select()
     end, { desc = '[O]pencode e[X]ecute' })
     vim.keymap.set({ 'n', 't' }, '<leader>ot', function()
-      require('opencode').toggle()
+      require('plugins.editing.opencode').toggle()
     end, { desc = '[O]pencodee [T]oggle' })
 
     vim.keymap.set({ 'n', 'x' }, 'go', function()
-      return require('opencode').operator '@this '
+      return require('plugins.editing.opencode').operator '@this '
     end, { desc = '[G]oto [O]pencode', expr = true })
     vim.keymap.set('n', 'goo', function()
-      return require('opencode').operator '@this ' .. '_'
+      return require('plugins.editing.opencode').operator '@this ' .. '_'
     end, { desc = 'Line [G]oto [O]pencode', expr = true })
 
     vim.keymap.set('n', '<S-C-u>', function()
-      require('opencode').command 'session.half.page.up'
+      require('plugins.editing.opencode').command 'session.half.page.up'
     end, { desc = 'Scroll opencode up' })
     vim.keymap.set('n', '<S-C-d>', function()
-      require('opencode').command 'session.half.page.down'
+      require('plugins.editing.opencode').command 'session.half.page.down'
     end, { desc = 'Scroll opencode down' })
   end,
 }
