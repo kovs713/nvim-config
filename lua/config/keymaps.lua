@@ -1,34 +1,23 @@
 local map = vim.keymap.set
 local del_map = vim.keymap.de
 
-map('i', '<C-l>', '<C-^>', { noremap = true, desc = '' })
-
-local function organize_imports()
-  vim.lsp.buf.code_action {
-    context = { only = { 'source.organizeImports' } },
-    apply = true,
-  }
-end
-
-map('n', '<leader>gi', organize_imports, { desc = 'Fix Go Imports' })
+map('i', '<C-l>', '<C-^>', { noremap = true, desc = 'Switch language layout RU/EN' })
 
 map('n', '<leader>s', '<CMD>wall<CR><ESC>', { desc = 'Save all buffers' })
--- map('n', '<C-a>', 'ggVG', { desc = 'Select all' })
+
 pcall(del_map, 'n', 'C-i')
 map('n', '<C-i>', '<C-o>', { desc = 'Switch to previous buffer' })
 pcall(del_map, 'n', 'C-o')
 map('n', '<C-o>', '<C-i>', { desc = 'Switch to next buffer' })
 
-map('n', '<leader>gn', '<CMD>!go run .<CR>', { desc = '[G]o Ru[N] current project' })
-map('n', '<leader>ge', function()
-  local lines = {
-    'if err != nil {',
-    '    return err',
-    '}',
-  }
-  vim.api.nvim_put(lines, 'l', true, true)
-  vim.lsp.buf.format()
-end, { desc = '[G]o [E]rror handle pattern' })
+map('n', '<A-h>', '<C-w>h', { desc = 'Moving to the window left [h]' })
+map('n', '<A-j>', '<C-w>j', { desc = 'Moving to the window down [j]' })
+map('n', '<A-k>', '<C-w>k', { desc = 'Moving to the window up [k]' })
+map('n', '<A-l>', '<C-w>l', { desc = 'Moving to the window right [l]' })
+map('n', '<A-=>', '<C-w>+', { desc = 'Resize window + (increace horizontal)' })
+map('n', '<A-->', '<C-w>-', { desc = 'Resize window - (decreace horizontal)' })
+map('n', '<A-.>', '<C-w><', { desc = 'Resize window < (increace vertical)' })
+map('n', '<M-,>', '<C-w>>', { desc = 'Resize window > (decreace vertical)' })
 
 map('n', '<C-d>', '<C-d>zz', {})
 map('n', '<C-u>', '<C-u>zz', {})
@@ -61,71 +50,3 @@ map('i', '<A-j>', '<ESC><CMD>m .+1<cr>==gi', { desc = 'Move Down' })
 map('i', '<A-k>', '<ESC><CMD>m .-2<cr>==gi', { desc = 'Move Up' })
 map('v', '<A-j>', ":<C-u>execute \"'<,'>move '>+\" . v:count1<cr>gv=gv", { desc = 'Move Down' })
 map('v', '<A-k>', ":<C-u>execute \"'<,'>move '<-\" . (v:count1 + 1)<cr>gv=gv", { desc = 'Move Up' })
-
--- LazyVim shit keymaps
--- local keymaps_to_del = {
---   { 'n', '[b' },
---   { 'n', ']b' },
---   { 'n', '<leader>bb' },
---   { 'n', '<leader>`' },
---   { 'n', '<leader>bd' },
---   { 'n', '<leader>bo' },
---   { 'n', '<leader>bD' },
---   { 'n', '<leader>e' },
---   { 'n', '<leader>sa' },
---   { 'n', '<leader>sb' },
---   { 'n', '<leader>sc' },
---   { 'n', '<leader>sC' },
---   { 'n', '<leader>sd' },
---   { 'n', '<leader>sD' },
---   { 'n', '<leader>sg' },
---   { 'n', '<leader>sG' },
---   { 'n', '<leader>sh' },
---   { 'n', '<leader>sH' },
---   { 'n', '<leader>sj' },
---   { 'n', '<leader>sk' },
---   { 'n', '<leader>sl' },
---   { 'n', '<leader>sm' },
---   { 'n', '<leader>sM' },
---   { 'n', '<leader>ss' },
---   { 'n', '<leader>sS' },
---   { 'n', '<leader>st' },
---   { 'n', '<leader>sT' },
---   { 'n', '<leader>sw' },
---   { 'n', '<leader>sW' },
---   { 'n', '<leader>s"' },
---   { 'n', '<leader>sq' },
---   { 'n', '<leader>sR' },
---   { 'n', '<leader>s/' },
---   { 'n', '<leader>K' },
---   { 'n', '<leader>S' },
---   { 'n', '<leader>be' },
---   { 'n', '<leader>cl' },
---   { 'n', '<leader>cd' },
---   { 'n', '<leader>cf' },
---   { 'n', '<leader>cF' },
---   { 'n', '<leader>cs' },
---   { 'n', '<leader>fb' },
---   { 'n', '<leader>fc' },
---   { 'n', '<leader>fF' },
---   { 'n', '<leader>fg' },
---   { 'n', '<leader>fr' },
---   { 'n', '<leader>fR' },
---   { 'n', '<leader>fn' },
---   { 'n', '<leader>fe' },
---   { 'n', '<leader>fE' },
---   { 'n', '<leader>fT' },
---   { 'n', '<leader>gg' },
---   { 'n', '<leader>gY' },
---   { 'n', '<leader>gL' },
---   { 'n', '<leader><space>' },
---   { 'n', '<leader>.' },
---   { 'n', '<leader>/' },
---   { 'n', '<leader>:' },
---   { 'n', '<leader>,' },
---   { 'n', '<leader>?' },
--- }
---
--- for _, keymap in ipairs(keymaps_to_del) do
---   pcall(vim.keymap.del, keymap[1], keymap[2])
--- end

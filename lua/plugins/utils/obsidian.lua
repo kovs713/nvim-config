@@ -51,21 +51,23 @@ return {
 
     config = function()
       local obsidian = require 'obsidian'
+      local api = require 'obsidian.api'
+      local map = vim.keymap.set
 
-      vim.keymap.set('n', 'gf', function()
+      map('n', 'gf', function()
         return obsidian.util.gf_passthrough()
       end, { desc = '[G]oto markdown [F]ile', noremap = false, expr = true })
 
-      vim.keymap.set('n', '<CR>', function()
+      map('n', '<CR>', function()
         return obsidian.util.smart_action()
       end, { expr = true, desc = 'Obsidian smart action' })
 
-      vim.keymap.set('n', '<Tab>', function()
-        require('obsidian.api').nav_link 'next'
+      map('n', '<Tab>', function()
+        api.nav_link 'next'
       end, { desc = 'Go to next link' })
 
-      vim.keymap.set('n', '<S-Tab>', function()
-        require('obsidian.api').nav_link 'prev'
+      map('n', '<S-Tab>', function()
+        api.nav_link 'prev'
       end, { desc = 'Go to previous link' })
     end,
   },

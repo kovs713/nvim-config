@@ -9,8 +9,10 @@ return {
       'nvim-treesitter/nvim-treesitter-textobjects',
       branch = 'main',
       config = function()
-        vim.g.no_plugin_maps = true
-        require('nvim-treesitter-textobjects').setup {
+        local textobjects = require 'nvim-treesitter-textobjects'
+        local map = vim.keymap.set
+
+        textobjects.setup {
           select = {
             lookahead = true,
             include_surrounding_whitespace = false,
@@ -20,73 +22,77 @@ return {
           },
         }
 
+        vim.g.no_plugin_maps = true
+
         local function setup_selects()
           local ts_select = require 'nvim-treesitter-textobjects.select'
-
-          vim.keymap.set({ 'o', 'x' }, '=r', function()
+          map({ 'o', 'x' }, '=r', function()
             ts_select.select_textobject('@assignment.rhs', 'textobjects')
           end)
 
-          vim.keymap.set({ 'o', 'x' }, 'aa', function()
+          map({ 'o', 'x' }, 'aa', function()
             ts_select.select_textobject('@parameter.outer', 'textobjects')
           end)
-          vim.keymap.set({ 'o', 'x' }, 'ia', function()
+
+          map({ 'o', 'x' }, 'ia', function()
             ts_select.select_textobject('@parameter.inner', 'textobjects')
           end)
 
-          vim.keymap.set({ 'o', 'x' }, 'ai', function()
+          map({ 'o', 'x' }, 'ai', function()
             ts_select.select_textobject('@conditional.outer', 'textobjects')
           end)
-          vim.keymap.set({ 'o', 'x' }, 'ii', function()
+
+          map({ 'o', 'x' }, 'ii', function()
             ts_select.select_textobject('@conditional.inner', 'textobjects')
           end)
 
-          vim.keymap.set({ 'o', 'x' }, 'af', function()
+          map({ 'o', 'x' }, 'af', function()
             ts_select.select_textobject('@function.outer', 'textobjects')
           end)
-          vim.keymap.set({ 'o', 'x' }, 'if', function()
+          map({ 'o', 'x' }, 'if', function()
             ts_select.select_textobject('@function.inner', 'textobjects')
           end)
 
-          vim.keymap.set({ 'o', 'x' }, 'at', function()
+          map({ 'o', 'x' }, 'at', function()
             ts_select.select_textobject('@class.outer', 'textobjects')
           end)
-          vim.keymap.set({ 'o', 'x' }, 'it', function()
+
+          map({ 'o', 'x' }, 'it', function()
             ts_select.select_textobject('@class.inner', 'textobjects')
           end)
         end
 
         local function setup_moves()
           local ts_moves = require 'nvim-treesitter-textobjects.move'
-          vim.keymap.set({ 'n', 'o' }, ']f', function()
+          map({ 'n', 'o' }, ']f', function()
             ts_moves.goto_next_start('@function.outer', 'textobjects')
           end)
-          vim.keymap.set({ 'n', 'o' }, ']F', function()
+          map({ 'n', 'o' }, ']F', function()
             ts_moves.goto_next_end('@function.outer', 'textobjects')
           end)
 
-          vim.keymap.set({ 'n', 'o' }, '[f', function()
+          map({ 'n', 'o' }, '[f', function()
             ts_moves.goto_previous_start('@function.outer', 'textobjects')
           end)
-          vim.keymap.set({ 'n', 'o' }, '[F', function()
+          map({ 'n', 'o' }, '[F', function()
             ts_moves.goto_previous_end('@function.outer', 'textobjects')
           end)
         end
 
         local function setup_swaps()
           local ts_swaps = require 'nvim-treesitter-textobjects.swap'
-
-          vim.keymap.set('n', '<leader>man', function()
+          map('n', '<leader>man', function()
             ts_swaps.swap_next '@parameter.inner'
           end)
-          vim.keymap.set('n', '<leader>map', function()
+
+          map('n', '<leader>map', function()
             ts_swaps.swap_previous '@parameter.inner'
           end)
 
-          vim.keymap.set('n', '<leader>mfn', function()
+          map('n', '<leader>mfn', function()
             ts_swaps.swap_next '@function.inner'
           end)
-          vim.keymap.set('n', '<leader>mfp', function()
+          map('n', '<leader>mfp', function()
             ts_swaps.swap_previous '@function.inner'
           end)
         end

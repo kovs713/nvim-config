@@ -7,7 +7,7 @@ return {
     local notify = require 'notify'
     local function toggleScreenKey()
       vim.cmd 'Screenkey toggle'
-      -- change notification position
+
       notify.setup {
         top_down = screenkey.is_active(),
       }

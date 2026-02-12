@@ -76,16 +76,6 @@ return {
     local vtsls_config = {
       on_attach = function(client, bufnr)
         client.server_capabilities.documentFormattingProvider = false
-
-        map('n', '<leader>i', function()
-          vim.lsp.buf.code_action {
-            apply = true,
-            context = {
-              only = { 'source.organizeImports' },
-              diagnostics = {},
-            },
-          }
-        end, { desc = 'Organize Imports' })
       end,
 
       filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },

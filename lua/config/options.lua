@@ -1,5 +1,4 @@
 --- diagnostic disable: 113
-local severity = vim.diagnostic.severity
 vim.diagnostic.config {
   underline = true,
   update_in_insert = false,

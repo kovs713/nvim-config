@@ -27,27 +27,18 @@ return {
     --Harpoon marked files
     map('n', '<leader>hh', function()
       harpoon:list():select(1)
-    end, { desc = 'Harpoon select 1' })
+    end, { desc = 'Harpoon select 1 [h]' })
     map('n', '<leader>jj', function()
       harpoon:list():select(2)
-    end, { desc = 'Harpoon select 2' })
+    end, { desc = 'Harpoon select 2 [j]' })
     map('n', '<leader>kk', function()
       harpoon:list():select(3)
-    end, { desc = 'Harpoon select 3' })
+    end, { desc = 'Harpoon select 3 [k]' })
     map('n', '<leader>ll', function()
       harpoon:list():select(4)
-    end, { desc = 'Harpoon select 4' })
+    end, { desc = 'Harpoon select 4 [l]' })
     map('n', '<leader>;;', function()
       harpoon:list():select(5)
-    end, { desc = 'Harpoon select 5' })
-
-    -- Toggle previous & next buffers stored within Harpoon list
-    map('n', '<M-i>', function()
-      harpoon:list():prev()
-    end, { desc = 'Harpoon goto prev' })
-
-    map('n', '<M-o>', function()
-      harpoon:list():next()
-    end, { desc = 'Harpoon goto next' })
+    end, { desc = 'Harpoon select 5 [;]' })
   end,
 }

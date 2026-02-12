@@ -10,7 +10,6 @@ return {
         'html', -- html
         'cssls', -- css
         'tailwindcss', -- tailwind
-        'svelte', -- svelte
         'lua_ls', -- lua
         'graphql', -- grqphql
         'emmet_ls', -- emmet
