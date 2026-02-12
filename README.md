@@ -1,6 +1,6 @@
 <div align="center">
   <p>
-    <img alt="Linux" src="https://img.shields.io/badge/Linux-%23.svg?style=flat-square&#x26;logo=linux&#x26;color=FCC624&#x26;logoColor=black">
+    <img alt="Linux" src="https://img.shields.io/badge/Linux-%23.svg?style=flat-square&logo=linux&color=FCC624&logoColor=black">
     <a href="https://github.com/neovim/neovim/releases/tag/stable">
         <img src="https://img.shields.io/badge/Neovim-0.11.5-blueviolet.svg?style=flat-square&logo=Neovim&logoColor=green" alt="Neovim minimum version"/>
     </a>
@@ -11,31 +11,51 @@
     <a href="https://github.com/kovs713/nvim-config/blob/master/LICENSE.md">
         <img src="https://img.shields.io/github/repo-size/kovs713/nvim-config?style=flat-square">
     </a>
-    <img src="https://img.shields.io/github/license/kovs713/nvim-config?style=flat-square&#x26;logo=GNU&#x26;label=License" alt="License">
+    <img src="https://img.shields.io/github/license/kovs713/nvim-config?style=flat-square&logo=GNU&label=License" alt="License">
   </p>
 </div>
 
 # Neovim Config
 
-My personal Lua-based Neovim configuration. Focused on productivity, modern UI, and developer tools  (likely for TypeScript development).
+Personal Lua-based Neovim configuration for modern development with TypeScript, Go, Python, and more.
 
 ## Installation
 
-1. Backup your current Neovim config: `mv ~/.config/nvim ~/.config/nvim.bak`
+1. Backup your current config: `mv ~/.config/nvim ~/.config/nvim.bak`
 2. Clone this repo: `git clone https://github.com/kovs713/nvim-config.git ~/.config/nvim`
-3. Launch Neovim: `nvim` (plugins will auto-install via lazy.nvim)
+3. Launch Neovim: `nvim` (plugins auto-install via lazy.nvim)
 
 ## Overview
 
-This config uses [lazy.nvim](https://github.com/folke/lazy.nvim) for plugin management, with plugins organized into enabled/disabled folders and categorized for easy maintenance. It includes LSP support, Obsidian notes tooling, Treesitter syntax, Git integration, and more.
+This config is built around [lazy.nvim](https://github.com/folke/lazy.nvim) for plugin management.
+
+### What Config Provide
+
+**Navigation** — Fuzzy file finding, quick file switching, fast code jumping, file browser, undo tree
+
+**Code Intelligence** — LSP support with auto-installed language servers, autocompletion, go-to-definition, diagnostics, syntax highlighting with treesitter
+
+**Editing** — Auto-pairs, auto-tags, smart commenting, inline git diffs, refactoring tools, markdown bullet lists
+
+**Formatting & Linting** — Auto-format on save with prettier, stylua, gofumpt, ruff. Linting with eslint and golangci-lint
+
+**UI** — Clean starter dashboard, minimal statusline, notifications, transparent backgrounds, pretty markdown rendering
+
+**Extras** — Obsidian notes integration, AI coding assistance, WakaTime tracking, Discord Rich Presence, image previews
+
+### Language Support
+
+TypeScript, JavaScript, Vue, React, Svelte, Go, Python, Lua, HTML, CSS, Tailwind, GraphQL, JSON, YAML, Markdown
+
+All get LSP support, syntax highlighting, and auto-formatting out of the box.
 
 ### Requirements
-- Neovim v0.11.5
-- Git (for repo management).
-- Node.js (for some LSP servers like TypeScript).
-- Optional: ripgrep (for faster searching), fd (for file finding), ImageMagick (for image previews).
 
-### Screenshots
+Neovim 0.11.5+, Git, Node.js
+
+Optional: ripgrep (faster search), fd (better file finding), ImageMagick (image previews)
+
+## Screenshots
 
 <details>
 <summary>Mini-starter</summary>
@@ -101,4 +121,5 @@ This config uses [lazy.nvim](https://github.com/folke/lazy.nvim) for plugin mana
 </details>
 
 ## License
+
 MIT License - see [LICENSE](LICENSE.md) for details.
