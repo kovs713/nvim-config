@@ -45,6 +45,7 @@ return {
         'ruff', -- python formatter
         'gofumpt', -- golang formatter
         'golangci-lint', -- golang lint
+        'kulala-fmt', -- http
       },
     },
     dependencies = {

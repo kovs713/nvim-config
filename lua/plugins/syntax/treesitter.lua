@@ -158,6 +158,7 @@ return {
       'typescript',
       'css',
       'html',
+      'http',
       'markdown',
       'markdown_inline',
       'yaml',

@@ -7,6 +7,7 @@ require('lazy').setup {
     { import = 'plugins.navigation' },
     { import = 'plugins.syntax' },
     { import = 'plugins.utils' },
+    { import = 'plugins.utils.http' },
   },
   checker = {
     enabled = true,
