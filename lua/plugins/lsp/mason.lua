@@ -10,6 +10,8 @@ return {
         'html', -- html
         'cssls', -- css
         'tailwindcss', -- tailwind
+        'vue_ls', -- vue
+        'vtsls', -- vue ts
         'lua_ls', -- lua
         'graphql', -- grqphql
         'emmet_ls', -- emmet
