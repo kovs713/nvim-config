@@ -1,7 +1,7 @@
 local map = vim.keymap.set
 local del_map = vim.keymap.de
 
-map('i', '<C-l>', '<C-^>', { noremap = true, desc = 'Switch language layout RU/EN' })
+map('i', '<A-c>', '<C-^>', { noremap = true, desc = 'Switch language layout RU/EN' })
 
 map('n', '<leader>s', '<CMD>wall<CR><ESC>', { desc = 'Save all buffers' })
 

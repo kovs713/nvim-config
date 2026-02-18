@@ -22,9 +22,9 @@ return {
       enabled = true,
       doc = {
         float = true,
-        inline = false,
-        max_width = 50,
-        max_height = 30,
+        inline = true,
+        max_width = 40,
+        max_height = 20,
         wo = {
           wrap = false,
         },
