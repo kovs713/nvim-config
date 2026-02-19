@@ -94,13 +94,9 @@ return {
       },
 
       text = {
-        default = nil,
-        workspace = function(opts)
-          -- local workspace = opts.workspace and ('Working on ' .. opts.workspace) or
-          return 'Working on smth'
-        end,
-        viewing = function(opts)
-          return 'Looking for ' .. opts.filename
+        workspace = 'geek timё',
+        viewing = function(o)
+          return ('Viewing %s'):format(o.filename)
         end,
         editing = function(o)
           return ('Editing %s'):format(o.filename)
