@@ -96,7 +96,8 @@ return {
       text = {
         default = nil,
         workspace = function(opts)
-          return opts.workspace and ('Working on ' .. opts.workspace) or 'Working on smth'
+          -- local workspace = opts.workspace and ('Working on ' .. opts.workspace) or
+          return 'Working on smth'
         end,
         viewing = function(opts)
           return 'Looking for ' .. opts.filename
