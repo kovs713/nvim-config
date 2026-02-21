@@ -95,19 +95,9 @@ return {
 
       text = {
         workspace = 'geek timё',
-        viewing = function(o)
-          if o.filename:match '%.md$' then
-            return 'Markdown'
-          end
-          return ('Viewing %s'):format(o.filename)
-        end,
-        editing = function(o)
-          if o.filename:match '%.md$' then
-            return 'Markdown'
-          end
-          return ('Editing %s'):format(o.filename)
-        end,
-        dashboard = 'Home',
+        viewing = 'viewing',
+        editing = 'editing',
+        dashboard = 'home',
       },
 
       assets = vim.tbl_extend('force', (assets or {}), {
