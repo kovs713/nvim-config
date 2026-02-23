@@ -19,6 +19,6 @@ return {
       },
     }
 
-    map('n', '<leader>ef', '<cmd>Oil<CR>', { desc = 'Open [E]xplorer [O]il' })
+    map('n', '<leader>e', '<cmd>Oil<CR>', { desc = 'Open [E]xplorer [O]il' })
   end,
 }
