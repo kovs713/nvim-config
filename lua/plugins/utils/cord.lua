@@ -94,7 +94,7 @@ return {
       },
 
       text = {
-        workspace = 'geek timё',
+        workspace = '',
         viewing = 'viewing',
         editing = 'editing',
         dashboard = 'home',
