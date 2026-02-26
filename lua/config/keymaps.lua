@@ -3,6 +3,8 @@ local del_map = vim.keymap.de
 
 map('i', '<A-c>', '<C-^>', { noremap = true, desc = 'Switch language layout RU/EN' })
 
+map({ 'n', 'v', 'i', 'c' }, '<M-Space>', '<Nop>', { noremap = true, silent = true })
+
 map('n', '<leader>s', '<CMD>wall<CR><ESC>', { desc = 'Save all buffers' })
 
 pcall(del_map, 'n', 'C-i')
