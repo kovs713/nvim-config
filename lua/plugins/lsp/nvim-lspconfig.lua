@@ -70,7 +70,6 @@ return {
       end,
     })
     local capabilities = require('blink.cmp').get_lsp_capabilities()
-    local map = vim.keymap.set
 
     local vue_language_server_path = vim.fn.expand '$MASON/packages' .. '/vue-language-server' .. '/node_modules/@vue/language-server'
     local vtsls_config = {
@@ -78,7 +77,7 @@ return {
         client.server_capabilities.documentFormattingProvider = false
       end,
 
-      filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
+      filetypes = { 'vue' },
       settings = {
         vtsls = {
           tsserver = {
