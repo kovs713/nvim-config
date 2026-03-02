@@ -34,7 +34,7 @@ return {
     },
 
     picker = {
-      name = 'fzf-lua',
+      name = 'mini.pick',
       note_mappings = {
 
         new = '<C-n>',

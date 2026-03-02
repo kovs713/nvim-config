@@ -13,7 +13,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
   callback = function(ev)
     local opts = { buffer = ev.buf, silent = true }
     local map = vim.keymap.set
-    local fzf = require 'fzf-lua'
 
     opts.desc = 'Organize [I]mports'
     map('n', '<leader>i', function()
@@ -25,30 +24,30 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
     opts.desc = '[C]ode [A]ctions'
     map({ 'n', 'v' }, '<leader>ca', function()
-      fzf.lsp_code_actions { silent = true }
+      vim.lsp.buf.code_action()
     end, opts)
 
     opts.desc = '[L][L]sp Restart'
     map({ 'n', 'v' }, '<leader>lL', '<cmd>LspRestart<CR>', opts)
 
-    opts.desc = '[L]sp [I]mplimentations'
+    opts.desc = '[L]sp [I]mplementations'
     map('n', '<leader>li', function()
-      fzf.lsp_implementations { silent = true }
+      Snacks.picker.lsp_implementations()
     end, opts)
 
     opts.desc = '[L]sp Peek [D]efinition'
     map('n', '<leader>ld', function()
-      fzf.lsp_definitions()
+      Snacks.picker.lsp_definitions()
     end, opts)
 
     opts.desc = '[L]sp Peek [D]efinition'
     map('n', 'gd', function()
-      fzf.lsp_definitions()
+      Snacks.picker.lsp_definitions()
     end, opts)
 
     opts.desc = '[L]sp Peek [R]eferences'
     map('n', '<leader>lR', function()
-      fzf.lsp_references { silent = true }
+      Snacks.picker.lsp_references()
     end, opts)
 
     opts.desc = '[L]sp Diagnostic Float [E]'

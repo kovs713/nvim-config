@@ -32,20 +32,6 @@ return {
       },
       -- table: additional groups that should be cleared
       extra_groups = {
-        -- Neotree
-        'NeoTreeNormal',
-        'NeoTreeNormalNC',
-        'NeoTreeDirectoryName',
-        'NeoTreeDirectoryIcon',
-        'NeoTreeFileName',
-        'NeoTreeFileIcon',
-        'NeoTreeFloatBorder',
-        'NeoTreeGitModified',
-        'NeoTreeGitAdded',
-        'NeoTreeGitDeleted',
-        'NeoTreeVertSplit',
-        'NeoTreeWinSeparator',
-
         -- WhichKey
         'WhichKey',
         'NeoTreeEndOfBuffer',
