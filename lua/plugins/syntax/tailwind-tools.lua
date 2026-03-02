@@ -5,17 +5,17 @@ return {
     dependencies = { 'nvim-treesitter/nvim-treesitter' },
     opts = {},
     config = function()
-      local nvchadcolorizer = require 'colorizer'
-      local tailwindcolorizer = require 'tailwindcss-colorizer-cmp'
+      local colorizer = require 'colorizer'
+      local tailwind_cmp = require 'tailwindcss-colorizer-cmp'
 
-      nvchadcolorizer.setup {
-        user_default_options = {
+      colorizer.setup {
+        options = {
           tailwind = true,
         },
         filetypes = { 'html', 'css' },
       }
 
-      tailwindcolorizer.setup {
+      tailwind_cmp.setup {
         color_square_width = 2,
       }
     end,
