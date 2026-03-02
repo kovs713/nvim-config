@@ -24,7 +24,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
     opts.desc = '[C]ode [A]ctions'
     map({ 'n', 'v' }, '<leader>ca', function()
-      vim.lsp.buf.code_action()
+      require('tiny-code-action').code_action()
     end, opts)
 
     opts.desc = '[L][L]sp Restart'
