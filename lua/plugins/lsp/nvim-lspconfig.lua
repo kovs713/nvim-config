@@ -70,13 +70,19 @@ return {
       end,
     })
     local capabilities = require('blink.cmp').get_lsp_capabilities()
+    local map = vim.keymap.set
 
     local vue_language_server_path = vim.fn.expand '$MASON/packages' .. '/vue-language-server' .. '/node_modules/@vue/language-server'
     local vtsls_config = {
       on_attach = function(client, bufnr)
         client.server_capabilities.documentFormattingProvider = false
+        map('n', '<leader>i', function()
+          vim.lsp.buf.code_action {
+            context = { only = { 'source.organizeImports' } },
+            apply = true,
+          }
+        end, { silent = true, desc = 'Organize [I]mports' })
       end,
-
       filetypes = { 'vue' },
       settings = {
         vtsls = {
@@ -150,7 +156,6 @@ return {
         variables = {},
       },
     }
-
     vim.lsp.config('emmet_ls', emmet_language_server_config)
     vim.lsp.enable 'emmet_ls'
 

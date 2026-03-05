@@ -14,14 +14,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
     local opts = { buffer = ev.buf, silent = true }
     local map = vim.keymap.set
 
-    opts.desc = 'Organize [I]mports'
-    map('n', '<leader>i', function()
-      vim.lsp.buf.code_action {
-        context = { only = { 'source.organizeImports' } },
-        apply = true,
-      }
-    end, opts)
-
     opts.desc = '[C]ode [A]ctions'
     map({ 'n', 'v' }, '<leader>ca', function()
       require('tiny-code-action').code_action()
