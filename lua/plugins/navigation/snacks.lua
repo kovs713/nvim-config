@@ -64,20 +64,91 @@ return {
 
     image = {
       enabled = true,
-      doc = {
-        float = true,
-        inline = true,
-        max_width = 40,
-        max_height = 20,
-        wo = {
-          wrap = false,
-        },
+      formats = {
+        'png',
+        'jpg',
+        'jpeg',
+        'gif',
+        'bmp',
+        'webp',
+        'tiff',
+        'heic',
+        'avif',
+        'mp4',
+        'mov',
+        'avi',
+        'mkv',
+        'webm',
+        'pdf',
       },
+      force = false,
+      doc = {
+        enabled = true,
+        inline = false,
+        float = true,
+        max_width = 80,
+        max_height = 40,
+        conceal = false,
+      },
+      img_dirs = { 'img', 'images', 'assets', 'static', 'public', 'media', 'attachments' },
+      wo = {
+        wrap = false,
+        number = false,
+        relativenumber = false,
+        cursorcolumn = false,
+        signcolumn = 'no',
+        foldcolumn = '0',
+        list = false,
+        spell = false,
+        statuscolumn = '',
+      },
+      cache = vim.fn.stdpath 'cache' .. '/snacks/image',
+      debug = {
+        request = false,
+        convert = false,
+        placement = false,
+      },
+      env = {},
+      ---@class snacks.image.convert.Config
       convert = {
         notify = true,
-        command = 'magick',
+        ---@type snacks.image.args
+        mermaid = function()
+          local theme = vim.o.background == 'light' and 'neutral' or 'dark'
+          return { '-i', '{src}', '-o', '{file}', '-b', 'transparent', '-t', theme, '-s', '{scale}' }
+        end,
+        ---@type table<string,snacks.image.args>
+        magick = {
+          default = { '{src}[0]', '-scale', '1920x1080>' },
+          vector = { '-density', 192, '{src}[0]' },
+          math = { '-density', 192, '{src}[0]', '-trim' },
+          pdf = { '-density', 192, '{src}[0]', '-background', 'white', '-alpha', 'remove', '-trim' },
+        },
       },
-      img_dirs = { 'img', 'images', 'assets', 'static', 'public', 'media', 'attachments', 'archives/all-vault-images/', '~/downloads' },
+      math = {
+        enabled = true,
+        typst = {
+          tpl = [[
+        #set page(width: auto, height: auto, margin: (x: 2pt, y: 2pt))
+        #show math.equation.where(block: false): set text(top-edge: "bounds", bottom-edge: "bounds")
+        #set text(size: 12pt, fill: rgb("${color}"))
+        ${header}
+        ${content}]],
+        },
+        latex = {
+          font_size = 'Large',
+          packages = { 'amsmath', 'amssymb', 'amsfonts', 'amscd', 'mathtools' },
+          tpl = [[
+        \documentclass[preview,border=2pt,varwidth,12pt]{standalone}
+        \usepackage{${packages}}
+        \begin{document}
+        ${header}
+        { \${font_size} \selectfont
+          \color[HTML]{${color}}
+        ${content}}
+        \end{document}]],
+        },
+      },
     },
   },
 
