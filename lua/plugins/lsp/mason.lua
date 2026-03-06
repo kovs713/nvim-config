@@ -15,6 +15,7 @@ return {
         'lua_ls', -- lua
         'graphql', -- grqphql
         'emmet_ls', -- emmet
+        'pyright', -- python
         'ruff', -- python
       },
     },
