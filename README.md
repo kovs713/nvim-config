@@ -30,7 +30,6 @@ Personal Lua-based Neovim configuration for modern development with TypeScript, 
 This config is built around [lazy.nvim](https://github.com/folke/lazy.nvim) for plugin management.
 
 ### What Config Provide
-
 **Navigation** — Fuzzy file finding, quick file switching, fast code jumping, file browser, undo tree
 
 **Code Intelligence** — LSP support with auto-installed language servers, autocompletion, go-to-definition, diagnostics, syntax highlighting with treesitter
@@ -44,7 +43,6 @@ This config is built around [lazy.nvim](https://github.com/folke/lazy.nvim) for 
 **Extras** — Obsidian notes integration, AI coding assistance, WakaTime tracking, Discord Rich Presence, image previews
 
 ### Language Support
-
 TypeScript, JavaScript, Vue, React, Svelte, Go, Python, Lua, HTML, CSS, Tailwind, GraphQL, JSON, YAML, Markdown
 
 All get LSP support, syntax highlighting, and auto-formatting out of the box.
