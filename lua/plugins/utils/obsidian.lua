@@ -34,41 +34,11 @@ return {
     },
 
     picker = {
-      name = 'mini.pick',
+      name = 'snacks',
       note_mappings = {
-
         new = '<C-n>',
         insert_link = '<C-p>',
       },
     },
-    keys = {
-      { '<leader>od', '<cmd>Obsidian dailies<cr>', desc = '[O]bsidian [D]ailies' },
-      { '<leader>ont', '<cmd>Obsidian today<cr>', desc = '[O]bsidian [N]ew [T]oday' },
-      { '<leader>ony', '<cmd>Obsidian yesterday<cr>', desc = '[O]bsidian [N]ew [Y]esterday' },
-      { '<leader>ony', '<cmd>Obsidian yesterday<cr>', desc = '[O]bsidian [N]ew [Y]esterday' },
-      { '<leader>os', '<cmd>Obsidian search<cr>', desc = '[O]bsidian [S]earch' },
-    },
-
-    config = function()
-      local obsidian = require 'obsidian'
-      local api = require 'obsidian.api'
-      local map = vim.keymap.set
-
-      map('n', 'gf', function()
-        return obsidian.util.gf_passthrough()
-      end, { desc = '[G]oto markdown [F]ile', noremap = false, expr = true })
-
-      map('n', '<CR>', function()
-        return obsidian.util.smart_action()
-      end, { expr = true, desc = 'Obsidian smart action' })
-
-      map('n', '<Tab>', function()
-        api.nav_link 'next'
-      end, { desc = 'Go to next link' })
-
-      map('n', '<S-Tab>', function()
-        api.nav_link 'prev'
-      end, { desc = 'Go to previous link' })
-    end,
   },
 }
