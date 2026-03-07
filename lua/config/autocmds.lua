@@ -38,7 +38,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end, opts)
 
     opts.desc = '[L]sp Peek [R]eferences'
-    map('n', '<leader>lR', function()
+    map('n', '<leader>lr', function()
       Snacks.picker.lsp_references()
     end, opts)
 
@@ -52,8 +52,8 @@ vim.api.nvim_create_autocmd('LspAttach', {
       vim.lsp.buf.hover()
     end, opts)
 
-    opts.desc = '[L]sp [R]ename'
-    map('n', '<leader>lr', function()
+    opts.desc = '[L]sp Re[N]ame'
+    map('n', '<leader>ln', function()
       vim.lsp.buf.rename()
     end, opts)
 
