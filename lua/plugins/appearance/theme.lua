@@ -30,6 +30,9 @@ return {
     opts = {},
     config = function()
       local ashen = require 'ashen'
+      ashen.setup {
+        transparent = true,
+      }
 
       ashen.load()
     end,
