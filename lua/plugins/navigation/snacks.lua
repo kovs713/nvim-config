@@ -196,13 +196,6 @@ return {
       desc = '[F]ind by Grep [D]',
     },
     {
-      '<leader>fo',
-      function()
-        Snacks.picker.buffers()
-      end,
-      desc = '[F]ind Buffers [O]',
-    },
-    {
       '<leader>fr',
       function()
         Snacks.picker.recent()
@@ -238,6 +231,54 @@ return {
         Snacks.picker.git_stash()
       end,
       desc = '[F]ind Git S[t]ash',
+    },
+    {
+      '<leader>fo',
+      function()
+        local cwd = vim.fn.getcwd()
+        local dirs = {}
+        local handle = io.popen(
+          'find '
+            .. cwd
+            .. ' -type d ! -path "*/node_modules/*" ! -path "*/.git/*"'
+            .. ' ! -path "*/dist/*" ! -path "*/build/*" ! -path "*/.next/*"'
+            .. ' ! -path "*/vendor/*" ! -name "node_modules" ! -name ".git"'
+            .. ' ! -name "dist" ! -name "build" ! -name ".next" ! -name "vendor" 2>/dev/null'
+        )
+        for line in handle:lines() do
+          if line ~= cwd and line ~= '' then
+            local relpath = vim.fn.fnamemodify(line, ':.')
+            table.insert(dirs, {
+              text = relpath,
+              file = line,
+            })
+          end
+        end
+        handle:close()
+
+        Snacks.picker {
+          prompt = 'Directories> ',
+          items = dirs,
+          format = function(item)
+            return { { item.text, 'SnacksPickerIcon' } }
+          end,
+          preview = false,
+          keys = {
+            {
+              '<cr>',
+              function(picker)
+                local item = picker:selected()[1]
+                if item and item.file then
+                  require('oil').open(item.file)
+                end
+              end,
+              desc = 'Open in oil',
+              mode = 'n',
+            },
+          },
+        }
+      end,
+      desc = '[F]ind Directories [O]il',
     },
   },
 }
