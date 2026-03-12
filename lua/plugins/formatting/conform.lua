@@ -36,6 +36,7 @@ return {
         lua = { 'stylua' },
         python = { 'ruff_format', 'ruff_organize_imports' },
         go = { 'gofumpt' },
+        rust = { 'rustfmt' },
       },
     }
 

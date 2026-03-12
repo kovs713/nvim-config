@@ -154,6 +154,7 @@ return {
       'lua',
       'luadoc',
       'python',
+      'rust',
       'tsx',
       'latex',
       'scss',
