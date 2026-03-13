@@ -9,6 +9,8 @@ return {
     picker = {
       enabled = true,
       ui_select = true,
+      hidden = true,
+      ignored = true,
       matcher = {
         fuzzy = true,
         smartcase = true,
