@@ -73,12 +73,26 @@ return {
     local map = vim.keymap.set
 
     local function is_vue_project()
-      local root = vim.fs.root(0, 'package.json')
-      if not root then
+      local root = vim.fn.getcwd()
+      if not root or root == '' then
         return false
       end
-      local vue_files = vim.fn.glob(root .. '/**/*.vue', true, true)
-      return #vue_files > 0
+
+      local package_json = root .. '/package.json'
+      if vim.fn.filereadable(package_json) == 1 then
+        local content = vim.fn.readfile(package_json)
+        local content_str = table.concat(content, '\n')
+        if content_str:match '"vue"' or content_str:match '"nuxt"' or content_str:match '"@vue/"' then
+          return true
+        end
+      end
+
+      local vue_files = vim.fn.glob(root .. '/**/*.vue', 1)
+      if vue_files and vue_files ~= '' then
+        return true
+      end
+
+      return false
     end
 
     local vue_language_server_path = vim.fn.expand '$MASON/packages' .. '/vue-language-server' .. '/node_modules/@vue/language-server'
@@ -93,11 +107,11 @@ return {
         end, { silent = true, desc = 'Organize [I]mports' })
       end,
       filetypes = { 'vue', 'typescript', 'javascript', 'typescriptreact', 'javascriptreact' },
-      root_dir = function(fname)
+      root_dir = function(bufnr, on_dir)
         if not is_vue_project() then
           return nil
         end
-        return vim.fs.root(0, { 'vite.config.ts', 'vite.config.js', 'nuxt.config.ts', 'nuxt.config.js', 'vue.config.js', 'quasar.config.js', 'package.json' })
+        on_dir(vim.fn.getcwd())
       end,
       settings = {
         vtsls = {

@@ -3,18 +3,32 @@ return {
   dependencies = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
   ft = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact' },
   config = function()
+    local function is_vue_project()
+      local root = vim.fn.getcwd()
+
+      if not root or root == '' then
+        return false
+      end
+
+      local package_json = root .. '/package.json'
+      if vim.fn.filereadable(package_json) == 1 then
+        local content = vim.fn.readfile(package_json)
+        local content_str = table.concat(content, '\n')
+        if content_str:match '"vue"' or content_str:match '"nuxt"' or content_str:match '"@vue/"' then
+          return true
+        end
+      end
+
+      return false
+    end
+
+    if is_vue_project() then
+      return
+    end
+
     local map = vim.keymap.set
     map('n', '<leader>rf', '<cmd>TSToolsRenameFile<CR>', { desc = 'TS [R]ename [F]ile + Fix Imports' })
     map('n', '<leader>i', '<cmd>TSToolsOrganizeImports<CR>', { desc = 'TS Tools Organize [I]mports' })
-
-    local function is_vue_project()
-      local root = vim.fs.root(0, 'package.json')
-      if not root then
-        return false
-      end
-      local vue_files = vim.fn.glob(root .. '/**/*.vue', true, true)
-      return #vue_files > 0
-    end
 
     require('typescript-tools').setup {
       settings = {
@@ -32,13 +46,6 @@ return {
 
       on_attach = function(client)
         client.server_capabilities.documentFormattingProvider = false
-      end,
-
-      root_dir = function(fname)
-        if is_vue_project() then
-          return nil
-        end
-        return vim.fs.root(0, { 'package.json', 'tsconfig.json' })
       end,
     }
   end,
