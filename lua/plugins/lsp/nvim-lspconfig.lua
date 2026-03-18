@@ -132,6 +132,19 @@ return {
     vim.lsp.config('vtsls', vtsls_config)
     vim.lsp.enable 'vtsls'
 
+    vim.lsp.config('vue_ls', {
+      on_init = function(client)
+        client.server_capabilities.hoverProvider = false
+      end,
+      settings = {
+        vue = {
+          inlayHints = {
+            enabled = false,
+          },
+        },
+      },
+    })
+
     -- Configure lua_ls (Lua)
     local lua_ls_config = {
       capabilities = capabilities,
