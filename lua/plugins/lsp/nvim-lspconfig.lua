@@ -72,6 +72,15 @@ return {
     local capabilities = require('blink.cmp').get_lsp_capabilities()
     local map = vim.keymap.set
 
+    local function is_vue_project()
+      local root = vim.fs.root(0, 'package.json')
+      if not root then
+        return false
+      end
+      local vue_files = vim.fn.glob(root .. '/**/*.vue', true, true)
+      return #vue_files > 0
+    end
+
     local vue_language_server_path = vim.fn.expand '$MASON/packages' .. '/vue-language-server' .. '/node_modules/@vue/language-server'
     local vtsls_config = {
       on_attach = function(client, bufnr)
@@ -83,7 +92,13 @@ return {
           }
         end, { silent = true, desc = 'Organize [I]mports' })
       end,
-      filetypes = { 'vue' },
+      filetypes = { 'vue', 'typescript', 'javascript', 'typescriptreact', 'javascriptreact' },
+      root_dir = function(fname)
+        if not is_vue_project() then
+          return nil
+        end
+        return vim.fs.root(0, { 'vite.config.ts', 'vite.config.js', 'nuxt.config.ts', 'nuxt.config.js', 'vue.config.js', 'quasar.config.js', 'package.json' })
+      end,
       settings = {
         vtsls = {
           tsserver = {
