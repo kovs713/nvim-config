@@ -22,19 +22,29 @@
 --   end,
 -- }
 
-return {
-  {
-    'ficcdaf/ashen.nvim',
-    lazy = false,
-    priority = 1000,
-    opts = {},
-    config = function()
-      local ashen = require 'ashen'
-      ashen.setup {
-        transparent = true,
-      }
+-- return {
+--   {
+--     'ficcdaf/ashen.nvim',
+--     lazy = false,
+--     priority = 1000,
+--     opts = {},
+--     config = function()
+--       local ashen = require 'ashen'
+--       ashen.setup {
+--         transparent = true,
+--       }
+--
+--       ashen.load()
+--     end,
+--   },
+-- }
 
-      ashen.load()
-    end,
-  },
+return {
+  name = 'milkmatcha',
+  dir = vim.fn.stdpath 'config',
+  lazy = false,
+  priority = 1000,
+  config = function()
+    vim.cmd.colorscheme 'milkmatcha'
+  end,
 }
