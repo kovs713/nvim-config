@@ -1,28 +1,4 @@
 -- return {
---   'neanias/everforest-nvim',
---   version = false,
---   lazy = false,
---   priority = 1000,
---   config = function()
---     local everforest = require 'everforest'
---
---     everforest.setup {
---       background = 'hard',
---       transparent_background_level = 0,
---       italics = true,
---       disable_italic_comments = false,
---       inlay_hints_background = 'dimmed',
---       on_highlights = function(hl, palette)
---         hl['@string.special.symbol.ruby'] = { link = '@field' }
---         hl['DiagnosticUnderlineWarn'] = { undercurl = true, sp = palette.yellow }
---       end,
---     }
---
---     everforest.load()
---   end,
--- }
-
--- return {
 --   {
 --     'ficcdaf/ashen.nvim',
 --     lazy = false,
@@ -39,12 +15,46 @@
 --   },
 -- }
 
+-- return {
+--   name = 'milkmatcha',
+--   dir = vim.fn.stdpath 'config',
+--   lazy = false,
+--   priority = 1000,
+--   config = function()
+--     vim.cmd.colorscheme 'milkmatcha'
+--   end,
+-- }
+
+-- return {
+--   'kepano/flexoki-neovim',
+--   name = 'flexoki',
+--   lazy = false,
+--   priority = 1000,
+--   config = function()
+--     vim.cmd 'colorscheme flexoki-light'
+--   end,
+-- }
+
 return {
-  name = 'milkmatcha',
-  dir = vim.fn.stdpath 'config',
+  'neanias/everforest-nvim',
+  version = false,
   lazy = false,
   priority = 1000,
   config = function()
-    vim.cmd.colorscheme 'milkmatcha'
+    local everforest = require 'everforest'
+
+    everforest.setup {
+      background = 'light',
+      transparent_background_level = 0,
+      italics = true,
+      disable_italic_comments = false,
+      inlay_hints_background = 'dimmed',
+      on_highlights = function(hl, palette)
+        hl['@string.special.symbol.ruby'] = { link = '@field' }
+        hl['DiagnosticUnderlineWarn'] = { undercurl = true, sp = palette.yellow }
+      end,
+    }
+
+    everforest.load()
   end,
 }
