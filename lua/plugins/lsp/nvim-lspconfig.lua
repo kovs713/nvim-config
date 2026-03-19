@@ -82,14 +82,9 @@ return {
       if vim.fn.filereadable(package_json) == 1 then
         local content = vim.fn.readfile(package_json)
         local content_str = table.concat(content, '\n')
-        if content_str:match '"vue"' or content_str:match '"nuxt"' or content_str:match '"@vue/"' then
+        if content_str:match '"vue"' or content_str:match '"@vue/"' then
           return true
         end
-      end
-
-      local vue_files = vim.fn.glob(root .. '/**/*.vue', 1)
-      if vue_files and vue_files ~= '' then
-        return true
       end
 
       return false
@@ -131,19 +126,6 @@ return {
     vtsls_config.capabilities = vim.tbl_deep_extend('force', {}, capabilities, vtsls_config.capabilities or {})
     vim.lsp.config('vtsls', vtsls_config)
     vim.lsp.enable 'vtsls'
-
-    vim.lsp.config('vue_ls', {
-      on_init = function(client)
-        client.server_capabilities.hoverProvider = false
-      end,
-      settings = {
-        vue = {
-          inlayHints = {
-            enabled = false,
-          },
-        },
-      },
-    })
 
     -- Configure lua_ls (Lua)
     local lua_ls_config = {

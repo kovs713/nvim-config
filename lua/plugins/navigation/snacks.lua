@@ -41,26 +41,11 @@ return {
         },
       },
 
-      sources = {
-        files = {
-          filter = {
-            paths = {
-              ['^%.node_modules/'] = false,
-              ['^dist/'] = false,
-              ['^build/'] = false,
-            },
-          },
-        },
-        grep = {
-          filter = {
-            paths = {
-              ['^%.node_modules/'] = false,
-              ['^dist/'] = false,
-              ['^build/'] = false,
-            },
-            binary = false,
-          },
-        },
+      exclude = {
+        '**/node_modules',
+        '**/dist',
+        '**/.git',
+        '**/.DS_Store',
       },
     },
 
