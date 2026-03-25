@@ -1,4 +1,4 @@
-# nvim ☕️
+# nvim config ✍️ 
 
 My editor, my rules.  
 Lua-based config built for TypeScript, Vue, Go, Python, and whatever else needs taming.
@@ -22,9 +22,6 @@ Lua-based config built for TypeScript, Vue, Go, Python, and whatever else needs 
 | Notes | obsidian.nvim |
 | Theme | Rosé Pine Dawn |
 
----
-
-![LSP screenshot](screenshots/lsp-support.png)
 
 ---
 
@@ -58,19 +55,24 @@ optional: `ripgrep` (faster search), `fd` (better file finding), `imagemagick` (
 
 **ui** — clean dashboard, minimal statusline, notifications, transparent bg, pretty markdown
 
-**extras** — obsidian notes, AI assistance, WakaTime, Discord RPC, image previews
+**extras** — obsidian notes, WakaTime, Discord RPC, image previews
 
 ---
 
 ## languages
 
-TypeScript · JavaScript · Vue · React · Svelte · Go · Python · Lua · HTML · CSS · Tailwind · GraphQL · JSON · YAML · Markdown
+TypeScript · JavaScript · Vue · React · Go · Python · Lua · HTML · CSS · Tailwind · GraphQL · Markdown
 
 all get LSP, treesitter, and auto-formatting out of the box.
 
 ---
 
 ## screenshots
+
+<details>
+<summary>lsp support</summary>
+<p align="center"><img src="/screenshots/lsp-support.png"/></p>
+</details>
 
 <details>
 <summary>snacks projects</summary>
