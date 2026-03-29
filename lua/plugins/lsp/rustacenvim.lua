@@ -1,6 +1,7 @@
-return {
-  'mrcjkb/rustaceanvim',
-  ft = { 'rust' },
-  version = '^8',
-  lazy = false,
-}
+local M = {}
+
+function M.setup()
+  vim.cmd.packadd 'rustaceanvim'
+end
+
+return M

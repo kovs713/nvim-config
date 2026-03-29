@@ -1,29 +1,34 @@
-return {
-  'ThePrimeagen/refactoring.nvim',
-  dependencies = { 'nvim-lua/plenary.nvim', 'nvim-treesitter/nvim-treesitter' },
-  config = function()
-    local refactoring = require 'refactoring'
-    local map = vim.keymap.set
-    refactoring.setup {}
+local M = {}
 
-    map({ 'n', 'x' }, '<leader>rr', function()
-      require('refactoring').select_refactor { prefer_ex_cmd = true }
-    end, { desc = '[R]efactor context menu' })
+function M.setup()
+  vim.cmd.packadd 'plenary.nvim'
+  vim.cmd.packadd 'nvim-treesitter'
+  vim.cmd.packadd 'refactoring.nvim'
 
-    map({ 'n', 'x' }, '<leader>rf', function()
-      return require('refactoring').refactor 'Extract Function'
-    end, { expr = true, desc = '[R]efactor Extract [F]unction' })
+  local refactoring = require 'refactoring'
+  local map = vim.keymap.set
 
-    map({ 'n', 'x' }, '<leader>rv', function()
-      return require('refactoring').refactor 'Extract Variable'
-    end, { expr = true, desc = '[R]efactor Extract [V]ariable' })
+  refactoring.setup {}
 
-    map({ 'n', 'x' }, '<leader>rI', function()
-      return require('refactoring').refactor 'Inline Function'
-    end, { expr = true, desc = '[R]efactor [I]nline Function' })
+  map({ 'n', 'x' }, '<leader>rr', function()
+    refactoring.select_refactor { prefer_ex_cmd = true }
+  end, { desc = '[R]efactor context menu' })
 
-    map({ 'n', 'x' }, '<leader>ri', function()
-      return require('refactoring').refactor 'Inline Variable'
-    end, { expr = true, desc = '[R]efactor [I]nline Variable' })
-  end,
-}
+  map({ 'n', 'x' }, '<leader>rf', function()
+    refactoring.refactor 'Extract Function'
+  end, { expr = true, desc = '[R]efactor Extract [F]unction' })
+
+  map({ 'n', 'x' }, '<leader>rv', function()
+    refactoring.refactor 'Extract Variable'
+  end, { expr = true, desc = '[R]efactor Extract [V]ariable' })
+
+  map({ 'n', 'x' }, '<leader>rI', function()
+    refactoring.refactor 'Inline Function'
+  end, { expr = true, desc = '[R]efactor [I]nline Function' })
+
+  map({ 'n', 'x' }, '<leader>ri', function()
+    refactoring.refactor 'Inline Variable'
+  end, { expr = true, desc = '[R]efactor [I]nline Variable' })
+end
+
+return M

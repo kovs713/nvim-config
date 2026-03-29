@@ -13,7 +13,7 @@ Lua-based config built for TypeScript, Vue, Go, Python, and whatever else needs 
 
 | | |
 |---|---|
-| Plugin manager | lazy.nvim |
+| Plugin manager | vim.pack |
 | Completion | blink-cmp |
 | LSP | mason.nvim + nvim-lspconfig |
 | Fuzzy finder | snacks.picker |
@@ -32,11 +32,11 @@ git clone https://github.com/kovs713/nvim-config.git ~/.config/nvim
 nvim
 ```
 
-plugins auto-install via lazy.nvim on first launch.
+plugins auto-install via vim.pack on first launch.
 
 ### requirements
 ```
-neovim 0.11.5+, git, node.js
+neovim 0.12.0+, git, node.js
 ```
 
 optional: `ripgrep` (faster search), `fd` (better file finding), `imagemagick` (image previews)
@@ -98,7 +98,7 @@ all get LSP, treesitter, and auto-formatting out of the box.
 
 <div align="center">
   <a href="https://github.com/neovim/neovim/releases/tag/stable">
-    <img src="https://img.shields.io/badge/Neovim-0.11.5-blueviolet.svg?style=flat-square&logo=Neovim&logoColor=green"/>
+    <img src="https://img.shields.io/badge/Neovim-0.12.0-blueviolet.svg?style=flat-square&logo=Neovim&logoColor=green"/>
   </a>
   <img alt="Linux" src="https://img.shields.io/badge/Linux-%23.svg?style=flat-square&logo=linux&color=FCC624&logoColor=black">
   <img src="https://img.shields.io/github/commit-activity/m/kovs713/nvim-config?style=flat-square">

@@ -1,3 +1,6 @@
+local M = {}
+
+-- -- ashen
 -- return {
 --   {
 --     'ficcdaf/ashen.nvim',
@@ -15,6 +18,7 @@
 --   },
 -- }
 
+-- -- milkmatcha
 -- return {
 --   name = 'milkmatcha',
 --   dir = vim.fn.stdpath 'config',
@@ -25,6 +29,7 @@
 --   end,
 -- }
 
+-- -- flexoki light
 -- return {
 --   'kepano/flexoki-neovim',
 --   name = 'flexoki',
@@ -35,6 +40,7 @@
 --   end,
 -- }
 
+-- -- everforest light
 -- return {
 --   'neanias/everforest-nvim',
 --   version = false,
@@ -59,12 +65,10 @@
 -- -- --   end,
 -- -- -- }
 
--- lua/plugins/rose-pine.lua
+function M.setup()
+  vim.cmd.packadd 'rose-pine'
 
-return {
-  'rose-pine/neovim',
-  name = 'rose-pine',
-  config = function()
-    vim.cmd 'colorscheme rose-pine-dawn'
-  end,
-}
+  vim.cmd 'colorscheme rose-pine-dawn'
+end
+
+return M

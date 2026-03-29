@@ -1,10 +1,12 @@
-return {
-  'HakonHarnes/img-clip.nvim',
-  event = 'VeryLazy',
-  keys = {
-    { '<leader>pi', '<cmd>PasteImage<cr>', desc = 'Paste image from system clipboard' },
-  },
-  opts = {
+local M = {}
+
+function M.setup()
+  vim.cmd.packadd 'img-clip.nvim'
+
+  local img_clip = require 'img-clip'
+  local map = vim.keymap.set
+
+  img_clip.setup {
     default = {
       insert_mode_after_paste = true,
       url_encode_path = true,
@@ -22,8 +24,8 @@ return {
 
       dir_path = function()
         local cwd = vim.fn.getcwd()
-        local vault_name = 'kamusariVault'
-        local vault_images_path = 'archives/all-vault-images/'
+        local vault_name = 'obsidian-vault'
+        local vault_images_path = 'static/images/'
 
         if cwd:match(vault_name) then
           return vault_images_path
@@ -39,5 +41,8 @@ return {
         download_images = true,
       },
     },
-  },
-}
+  }
+  map('n', '<leader>pi', '<cmd>PasteImage<cr>', { desc = 'Paste image from system clipboard' })
+end
+
+return M

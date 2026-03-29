@@ -1,14 +1,13 @@
-return {
-  'lewis6991/gitsigns.nvim',
-  opts = {
-    on_attach = function(bufnr)
-      local gitsigns = require 'gitsigns'
+local M = {}
 
-      local function map(mode, l, r, opts)
-        opts = opts or {}
-        opts.buffer = bufnr
-        vim.keymap.set(mode, l, r, opts)
-      end
+function M.setup()
+  vim.cmd.packadd 'gitsigns.nvim'
+
+  local gitsigns = require 'gitsigns'
+
+  gitsigns.setup {
+    on_attach = function(bufnr)
+      local map = vim.keymap.set
 
       -- Navigation
       map('n', ']h', function()
@@ -51,5 +50,7 @@ return {
       map('n', '<leader>tb', gitsigns.toggle_current_line_blame, { desc = '[T]oggle git show [b]lame line' })
       map('n', '<leader>tD', gitsigns.preview_hunk_inline, { desc = '[T]oggle git show [D]eleted' })
     end,
-  },
-}
+  }
+end
+
+return M

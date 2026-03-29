@@ -1,8 +1,12 @@
-return {
-  'folke/snacks.nvim',
-  priority = 1000,
-  lazy = false,
-  opts = {
+local M = {}
+
+function M.setup()
+  vim.cmd.packadd 'snacks.nvim'
+
+  local snacks = require 'snacks'
+  local map = vim.keymap.set
+
+  snacks.setup {
     scroll = {
       enabled = false,
     },
@@ -42,10 +46,10 @@ return {
       },
 
       exclude = {
-        '**/node_modules',
-        '**/dist',
-        '**/.git',
-        '**/.DS_Store',
+        '*/node_modules/*',
+        '*/dist/*',
+        '*/.git/*',
+        '*/.DS_Store/*',
       },
     },
 
@@ -114,158 +118,87 @@ return {
       },
       math = {
         enabled = true,
-        typst = {
-          tpl = [[
-        #set page(width: auto, height: auto, margin: (x: 2pt, y: 2pt))
-        #show math.equation.where(block: false): set text(top-edge: "bounds", bottom-edge: "bounds")
-        #set text(size: 12pt, fill: rgb("${color}"))
-        ${header}
-        ${content}]],
-        },
-        latex = {
-          font_size = 'Large',
-          packages = { 'amsmath', 'amssymb', 'amsfonts', 'amscd', 'mathtools' },
-          tpl = [[
-        \documentclass[preview,border=2pt,varwidth,12pt]{standalone}
-        \usepackage{${packages}}
-        \begin{document}
-        ${header}
-        { \${font_size} \selectfont
-          \color[HTML]{${color}}
-        ${content}}
-        \end{document}]],
-        },
       },
     },
-  },
+  }
 
-  keys = {
-    {
-      '<leader>gl',
-      function()
-        Snacks.lazygit()
-      end,
-      desc = '[F]loat [L]azygit',
-    },
-    {
-      '<leader>rN',
-      function()
-        Snacks.rename.rename_file()
-      end,
-      desc = '[R]ename [F]ile',
-    },
-    {
-      '<leader>fp',
-      function()
-        Snacks.picker.projects()
-      end,
-      desc = '[F]ind [P]rojects',
-    },
-    {
-      '<leader>fu',
-      function()
-        Snacks.picker.undo()
-      end,
-      desc = '[F] [U]ndo tree',
-    },
-    {
-      '<leader>ff',
-      function()
-        Snacks.picker.files()
-      end,
-      desc = '[F]ind [F]iles',
-    },
-    {
-      '<leader>fd',
-      function()
-        Snacks.picker.grep()
-      end,
-      desc = '[F]ind by Grep [D]',
-    },
-    {
-      '<leader>fr',
-      function()
-        Snacks.picker.recent()
-      end,
-      desc = '[F]ind [R]ecent File',
-    },
+  map('n', '<leader>gl', function()
+    Snacks.lazygit()
+  end, { desc = '[F]loat [L]azygit' })
+  map('n', '<leader>rN', function()
+    Snacks.rename.rename_file()
+  end, { desc = '[R]ename [F]ile' })
+  map('n', '<leader>fp', function()
+    Snacks.picker.projects()
+  end, { desc = '[F]ind [P]rojects' })
+  map('n', '<leader>fu', function()
+    Snacks.picker.undo()
+  end, { desc = '[F] [U]ndo tree' })
+  map('n', '<leader>ff', function()
+    Snacks.picker.files()
+  end, { desc = '[F]ind [F]iles' })
+  map('n', '<leader>fd', function()
+    Snacks.picker.grep()
+  end, { desc = '[F]ind by Grep [D]' })
+  map('n', '<leader>fr', function()
+    Snacks.picker.recent()
+  end, { desc = '[F]ind [R]ecent File' })
+  map('n', '<leader>fc', function()
+    Snacks.picker.git_log()
+  end, { desc = '[F]ind Git [C]ommits' })
+  map('n', '<leader>fb', function()
+    Snacks.picker.git_branches()
+  end, { desc = '[F]ind Git [B]ranches' })
+  map('n', '<leader>fs', function()
+    Snacks.picker.git_status()
+  end, { desc = '[F]ind Git [S]tatus' })
+  map('n', '<leader>ft', function()
+    Snacks.picker.git_stash()
+  end, { desc = '[F]ind Git S[t]ash' })
+  map('n', '<leader>fo', function()
+    local cwd = vim.fn.getcwd()
+    local dirs = {}
+    local handle = io.popen(
+      'find '
+        .. cwd
+        .. ' -type d ! -path "*/node_modules/*" ! -path "*/.git/*"'
+        .. ' ! -path "*/dist/*" ! -path "*/build/*" ! -path "*/.next/*"'
+        .. ' ! -path "*/vendor/*" ! -name "node_modules" ! -name ".git"'
+        .. ' ! -name "dist" ! -name "build" ! -name ".next" ! -name "vendor" 2>/dev/null'
+    )
+    for line in handle:lines() do
+      if line ~= cwd and line ~= '' then
+        local relpath = vim.fn.fnamemodify(line, ':.')
+        table.insert(dirs, {
+          text = relpath,
+          file = line,
+        })
+      end
+    end
+    handle:close()
 
-    -- 🗂 Git
-    {
-      '<leader>fc',
-      function()
-        Snacks.picker.git_log()
+    Snacks.picker {
+      prompt = 'Directories> ',
+      items = dirs,
+      format = function(item)
+        return { { item.text, 'SnacksPickerIcon' } }
       end,
-      desc = '[F]ind Git [C]ommits',
-    },
-    {
-      '<leader>fb',
-      function()
-        Snacks.picker.git_branches()
-      end,
-      desc = '[F]ind Git [B]ranches',
-    },
-    {
-      '<leader>fs',
-      function()
-        Snacks.picker.git_status()
-      end,
-      desc = '[F]ind Git [S]tatus',
-    },
-    {
-      '<leader>ft',
-      function()
-        Snacks.picker.git_stash()
-      end,
-      desc = '[F]ind Git S[t]ash',
-    },
-    {
-      '<leader>fo',
-      function()
-        local cwd = vim.fn.getcwd()
-        local dirs = {}
-        local handle = io.popen(
-          'find '
-            .. cwd
-            .. ' -type d ! -path "*/node_modules/*" ! -path "*/.git/*"'
-            .. ' ! -path "*/dist/*" ! -path "*/build/*" ! -path "*/.next/*"'
-            .. ' ! -path "*/vendor/*" ! -name "node_modules" ! -name ".git"'
-            .. ' ! -name "dist" ! -name "build" ! -name ".next" ! -name "vendor" 2>/dev/null'
-        )
-        for line in handle:lines() do
-          if line ~= cwd and line ~= '' then
-            local relpath = vim.fn.fnamemodify(line, ':.')
-            table.insert(dirs, {
-              text = relpath,
-              file = line,
-            })
-          end
-        end
-        handle:close()
-
-        Snacks.picker {
-          prompt = 'Directories> ',
-          items = dirs,
-          format = function(item)
-            return { { item.text, 'SnacksPickerIcon' } }
+      preview = false,
+      keys = {
+        {
+          '<cr>',
+          function(picker)
+            local item = picker:selected()[1]
+            if item and item.file then
+              require('oil').open(item.file)
+            end
           end,
-          preview = false,
-          keys = {
-            {
-              '<cr>',
-              function(picker)
-                local item = picker:selected()[1]
-                if item and item.file then
-                  require('oil').open(item.file)
-                end
-              end,
-              desc = 'Open in oil',
-              mode = 'n',
-            },
-          },
-        }
-      end,
-      desc = '[F]ind Directories [O]il',
-    },
-  },
-}
+          desc = 'Open in oil',
+          mode = 'n',
+        },
+      },
+    }
+  end, { desc = '[F]ind Directories [O]il' })
+end
+
+return M

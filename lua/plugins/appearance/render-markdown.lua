@@ -1,12 +1,13 @@
-return {
-  'MeanderingProgrammer/render-markdown.nvim',
-  enabled = true,
-  dependencies = {
-    'nvim-treesitter/nvim-treesitter',
-    'nvim-mini/mini.icons',
-  },
-  ---@module 'render-markdown'
-  opts = {
+local M = {}
+
+function M.setup()
+  vim.cmd.packadd 'nvim-treesitter'
+  vim.cmd.packadd 'mini.icons'
+  vim.cmd.packadd 'render-markdown.nvim'
+
+  local render_markdown = require 'render-markdown'
+
+  render_markdown.setup {
     heading = {
       sign = false,
       icons = { '󰎤 ', '󰎧 ', '󰎪 ', '󰎭 ', '󰎱 ', '󰎳 ' },
@@ -33,5 +34,7 @@ return {
         scope_highlight = nil,
       },
     },
-  },
-}
+  }
+end
+
+return M

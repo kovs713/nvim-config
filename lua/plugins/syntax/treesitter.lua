@@ -1,3 +1,6 @@
+local M = {}
+
+local plugin = (function()
 return {
   'nvim-treesitter/nvim-treesitter',
   lazy = false,
@@ -184,3 +187,16 @@ return {
     vim.treesitter.language.register('typescript.tsc', 'tsx')
   end,
 }
+end)()
+
+function M.setup()
+  vim.cmd.packadd 'nvim-treesitter'
+  vim.cmd.packadd 'nvim-treesitter-textobjects'
+  vim.cmd.packadd 'nvim-treesitter-context'
+
+  plugin.dependencies[1].config()
+  plugin.dependencies[2].config()
+  plugin.config()
+end
+
+return M
