@@ -2,6 +2,7 @@ local map = vim.keymap.set
 local del_map = vim.keymap.de
 
 map('i', '<A-c>', '<C-^>', { noremap = true, desc = 'Switch language layout RU/EN' })
+map('n', '<leader>nr', '<CMD>restart<CR>', { desc = '[N]eovim [R]estart' })
 
 map({ 'n', 'v', 'i', 'c' }, '<M-Space>', '<Nop>', { noremap = true, silent = true })
 

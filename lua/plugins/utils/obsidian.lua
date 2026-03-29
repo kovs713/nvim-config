@@ -1,12 +1,12 @@
-return {
-  'obsidian-nvim/obsidian.nvim',
-  version = '*',
-  lazy = true,
-  ft = 'markdown',
-  dependencies = {
-    'nvim-mini/mini.icons',
-  },
-  opts = {
+local M = {}
+
+function M.setup()
+  vim.cmd.packadd 'mini.icons'
+  vim.cmd.packadd 'obsidian.nvim'
+
+  local obsidian = require 'obsidian'
+
+  obsidian.setup {
     legacy_commands = false,
     workspaces = {
       {
@@ -40,5 +40,7 @@ return {
         insert_link = '<C-p>',
       },
     },
-  },
-}
+  }
+end
+
+return M

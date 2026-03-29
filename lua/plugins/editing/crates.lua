@@ -1,7 +1,11 @@
-return {
-  'saecki/crates.nvim',
-  tag = 'stable',
-  config = function()
-    require('crates').setup()
-  end,
-}
+local M = {}
+
+function M.setup()
+  vim.cmd.packadd 'crates.nvim'
+
+  local crates = require 'crates'
+
+  crates.setup()
+end
+
+return M

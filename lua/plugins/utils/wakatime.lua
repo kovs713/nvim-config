@@ -1,4 +1,7 @@
-return {
-  'wakatime/vim-wakatime',
-  lazy = false,
-}
+local M = {}
+
+function M.setup()
+  vim.cmd.packadd 'vim-wakatime'
+end
+
+return M

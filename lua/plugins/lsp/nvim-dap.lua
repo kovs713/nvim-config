@@ -1,133 +1,65 @@
-return {
-  'mfussenegger/nvim-dap',
-  dependencies = {
-    'rcarriga/nvim-dap-ui',
+local M = {}
 
-    'nvim-neotest/nvim-nio',
+function M.setup()
+  vim.cmd.packadd 'nvim-dap-ui'
+  vim.cmd.packadd 'nvim-nio'
+  vim.cmd.packadd 'mason.nvim'
+  vim.cmd.packadd 'mason-nvim-dap.nvim'
+  vim.cmd.packadd 'nvim-dap-go'
+  vim.cmd.packadd 'nvim-dap'
 
-    'mason-org/mason.nvim',
-    'jay-babu/mason-nvim-dap.nvim',
+  local dap = require 'dap'
+  local dapui = require 'dapui'
+  vim.keymap.set('n', '<leader>ds', function()
+    dap.continue()
+  end, { desc = '[D]ebug: [S]tart/Continue' })
+  vim.keymap.set('n', '<leader>do', function()
+    dap.step_into()
+  end, { desc = '[D]ebug: Step [o] (forward)' })
+  vim.keymap.set('n', '<leader>doo', function()
+    dap.step_over()
+  end, { desc = '[D]ebug: Step [ii] (double forward)' })
+  vim.keymap.set('n', '<leader>di', function()
+    dap.step_out()
+  end, { desc = '[D]ebug: Step [i] (backward)' })
+  vim.keymap.set('n', '<leader>dbx', function()
+    dap.toggle_breakpoint()
+  end, { desc = '[D]ebug: [B]reakpoint Toggle [x]' })
+  vim.keymap.set('n', '<leader>dbs', function()
+    dap.set_breakpoint(vim.fn.input 'Breakpoint condition: ')
+  end, { desc = '[D]ebug: [B]reakpoint [S]et' })
+  vim.keymap.set('n', '<leader>du', function()
+    dapui.toggle()
+  end, { desc = '[D]ebug: See last session result. [U]i' })
 
-    'leoluz/nvim-dap-go',
-  },
-  keys = {
-    {
-      '<leader>ds',
-      function()
-        require('dap').continue()
-      end,
-      desc = '[D]ebug: [S]tart/Continue',
-    },
-    {
-      '<leader>do',
-      function()
-        require('dap').step_into()
-      end,
-      desc = '[D]ebug: Step [o] (forward)',
-    },
-    {
-      '<leader>doo',
-      function()
-        require('dap').step_over()
-      end,
-      desc = '[D]ebug: Step [ii] (double forward)',
-    },
-    {
-      '<leader>di',
-      function()
-        require('dap').step_out()
-      end,
-      desc = '[D]ebug: Step [i] (backward)',
-    },
-    {
-      '<leader>dbx',
-      function()
-        require('dap').toggle_breakpoint()
-      end,
-      desc = '[D]ebug: [B]reakpoint Toggle [x]',
-    },
-    {
-      '<leader>dbs',
-      function()
-        require('dap').set_breakpoint(vim.fn.input 'Breakpoint condition: ')
-      end,
-      desc = '[D]ebug: [B]reakpoint [S]et',
-    },
-    -- Toggle to see last session result. Without this, you can't see session output in case of unhandled exception.
-    {
-      '<leader>du',
-      function()
-        require('dapui').toggle()
-      end,
-      desc = '[D]ebug: See last session result. [U]i',
-    },
-  },
-  config = function()
-    local dap = require 'dap'
-    local dapui = require 'dapui'
+  require('mason-nvim-dap').setup {
+    automatic_installation = true,
 
-    require('mason-nvim-dap').setup {
-      -- Makes a best effort to setup the various debuggers with
-      -- reasonable debug configurations
-      automatic_installation = true,
+    handlers = {},
 
-      -- You can provide additional configuration to the handlers,
-      -- see mason-nvim-dap README for more information
-      handlers = {},
+    ensure_installed = {},
+  }
 
-      -- You'll need to check that you have the required things installed
-      -- online, please don't ask me how to install them :)
-      ensure_installed = {
-        -- Update this to ensure that you have the debuggers for the langs you want
-        'delve',
+  dapui.setup {
+    icons = { expanded = '▾', collapsed = '▸', current_frame = '*' },
+    controls = {
+      icons = {
+        pause = '⏸',
+        play = '▶',
+        step_into = '⏎',
+        step_over = '⏭',
+        step_out = '⏮',
+        step_back = 'b',
+        run_last = '▶▶',
+        terminate = '⏹',
+        disconnect = '⏏',
       },
-    }
+    },
+  }
 
-    -- Dap UI setup
-    -- For more information, see |:help nvim-dap-ui|
-    dapui.setup {
-      -- Set icons to characters that are more likely to work in every terminal.
-      --    Feel free to remove or use ones that you like more! :)
-      --    Don't feel like these are good choices.
-      icons = { expanded = '▾', collapsed = '▸', current_frame = '*' },
-      controls = {
-        icons = {
-          pause = '⏸',
-          play = '▶',
-          step_into = '⏎',
-          step_over = '⏭',
-          step_out = '⏮',
-          step_back = 'b',
-          run_last = '▶▶',
-          terminate = '⏹',
-          disconnect = '⏏',
-        },
-      },
-    }
+  dap.listeners.after.event_initialized['dapui_config'] = dapui.open
+  dap.listeners.before.event_terminated['dapui_config'] = dapui.close
+  dap.listeners.before.event_exited['dapui_config'] = dapui.close
+end
 
-    -- Change breakpoint icons
-    -- vim.api.nvim_set_hl(0, 'DapBreak', { fg = '#e51400' })
-    -- vim.api.nvim_set_hl(0, 'DapStop', { fg = '#ffcc00' })
-    -- local breakpoint_icons = vim.g.have_nerd_font
-    --     and { Breakpoint = '', BreakpointCondition = '', BreakpointRejected = '', LogPoint = '', Stopped = '' }
-    --   or { Breakpoint = '●', BreakpointCondition = '⊜', BreakpointRejected = '⊘', LogPoint = '◆', Stopped = '⭔' }
-    -- for type, icon in pairs(breakpoint_icons) do
-    --   local tp = 'Dap' .. type
-    --   local hl = (type == 'Stopped') and 'DapStop' or 'DapBreak'
-    --   vim.fn.sign_define(tp, { text = icon, texthl = hl, numhl = hl })
-    -- end
-
-    dap.listeners.after.event_initialized['dapui_config'] = dapui.open
-    dap.listeners.before.event_terminated['dapui_config'] = dapui.close
-    dap.listeners.before.event_exited['dapui_config'] = dapui.close
-
-    -- Install golang specific config
-    require('dap-go').setup {
-      delve = {
-        -- On Windows delve must be run attached or it crashes.
-        -- See https://github.com/leoluz/nvim-dap-go/blob/main/README.md#configuring
-        detached = vim.fn.has 'win32' == 0,
-      },
-    }
-  end,
-}
+return M

@@ -1,36 +1,51 @@
-return {
-  'nvim-mini/mini.nvim',
-  config = function()
-    require('mini.ai').setup { n_lines = 500 }
-    require('mini.icons').setup {
-      icons = {
-        File = '󰈙',
-        Folder = '󰉋',
-        Module = '󰌗',
-        Namespace = '󰌗',
-        Package = '󰏖',
-        Class = '󰌗',
-        Method = '󰆧',
-        Property = '󰜢',
-        Field = '󰜢',
-        Constructor = '󰆧',
-        Enum = '󰕘',
-        Interface = '󰕘',
-        Function = '󰊕',
-        Variable = '󰀫',
-        Constant = '󰏿',
-        String = '󰀬',
-        Number = '󰎠',
-        Boolean = '󰔨',
-        Array = '󰅪',
-        Object = '󰅩',
-        Key = '󰌋',
-        Null = '󰟢',
-      },
-    }
-    require('mini.surround').setup()
-    require('mini.pairs').setup()
-    require('mini.indentscope').setup()
-    require('mini.cursorword').setup()
-  end,
-}
+local M = {}
+
+function M.setup()
+  vim.cmd.packadd 'mini.nvim'
+
+  local mini_ai = require 'mini.ai'
+  local mini_icons = require 'mini.icons'
+  local mini_surround = require 'mini.surround'
+  local mini_pairs = require 'mini.pairs'
+  local mini_indentscope = require 'mini.indentscope'
+  local mini_cursorword = require 'mini.cursorword'
+
+  mini_ai.setup { n_lines = 500 }
+
+  mini_icons.setup {
+    icons = {
+      File = '󰈙',
+      Folder = '󰉋',
+      Module = '󰌗',
+      Namespace = '󰌗',
+      Package = '󰏖',
+      Class = '󰌗',
+      Method = '󰆧',
+      Property = '󰜢',
+      Field = '󰜢',
+      Constructor = '󰆧',
+      Enum = '󰕘',
+      Interface = '󰕘',
+      Function = '󰊕',
+      Variable = '󰀫',
+      Constant = '󰏿',
+      String = '󰀬',
+      Number = '󰎠',
+      Boolean = '󰔨',
+      Array = '󰅪',
+      Object = '󰅩',
+      Key = '󰌋',
+      Null = '󰟢',
+    },
+  }
+
+  mini_surround.setup()
+
+  mini_pairs.setup()
+
+  mini_indentscope.setup()
+
+  mini_cursorword.setup()
+end
+
+return M

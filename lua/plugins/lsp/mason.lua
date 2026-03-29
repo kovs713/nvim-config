@@ -1,7 +1,27 @@
+local M = {}
+
+local plugin = (function()
 return {
   {
-    'williamboman/mason-lspconfig.nvim',
+    'williamboman/mason.nvim',
     opts = {
+      ui = {
+        icons = {
+          package_installed = '✓',
+          package_pending = '➜',
+          package_uninstalled = '✗',
+        },
+      },
+    },
+  },
+  {
+    'williamboman/mason-lspconfig.nvim',
+    dependencies = {
+      'williamboman/mason.nvim',
+      'neovim/nvim-lspconfig',
+    },
+    opts = {
+      automatic_enable = false,
       ensure_installed = {
         'gopls', -- golang
         'marksman', -- markdown
@@ -19,24 +39,12 @@ return {
         'ruff', -- python
       },
     },
-    dependencies = {
-      {
-        'williamboman/mason.nvim',
-        opts = {
-          ui = {
-            icons = {
-              package_installed = '✓',
-              package_pending = '➜',
-              package_uninstalled = '✗',
-            },
-          },
-        },
-      },
-      'neovim/nvim-lspconfig',
-    },
   },
   {
     'WhoIsSethDaniel/mason-tool-installer.nvim',
+    dependencies = {
+      'williamboman/mason.nvim',
+    },
     opts = {
       ensure_installed = {
         'prettier', -- prettier formatter
@@ -49,8 +57,20 @@ return {
         'kulala-fmt', -- http
       },
     },
-    dependencies = {
-      'williamboman/mason.nvim',
-    },
   },
 }
+end)()
+
+function M.setup()
+  vim.cmd.packadd 'mason.nvim'
+  require('mason').setup(plugin[1].opts)
+
+  vim.cmd.packadd 'nvim-lspconfig'
+  vim.cmd.packadd 'mason-lspconfig.nvim'
+  require('mason-lspconfig').setup(plugin[2].opts)
+
+  vim.cmd.packadd 'mason-tool-installer.nvim'
+  require('mason-tool-installer').setup(plugin[3].opts)
+end
+
+return M

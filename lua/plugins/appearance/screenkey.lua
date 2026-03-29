@@ -1,12 +1,11 @@
-return {
-  'NStefan002/screenkey.nvim',
-  lazy = false,
-  version = '*',
-  config = function()
-    local function toggleScreenKey()
-      vim.cmd 'Screenkey toggle'
-    end
+local M = {}
 
-    vim.keymap.set('n', '<leader>ts', toggleScreenKey, { desc = '[T]oggle [S]creen[K]ey' })
-  end,
-}
+function M.setup()
+  vim.cmd.packadd 'screenkey.nvim'
+
+  local map = vim.keymap.set
+
+  map('n', '<leader>ts', '<CMD>Screenkey toggle<CR>', { desc = '[T]oggle [S]creen[K]ey' })
+end
+
+return M
