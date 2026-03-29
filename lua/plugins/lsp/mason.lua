@@ -1,64 +1,64 @@
 local M = {}
 
 local plugin = (function()
-return {
-  {
-    'williamboman/mason.nvim',
-    opts = {
-      ui = {
-        icons = {
-          package_installed = '✓',
-          package_pending = '➜',
-          package_uninstalled = '✗',
+  return {
+    {
+      'williamboman/mason.nvim',
+      opts = {
+        ui = {
+          icons = {
+            package_installed = '✓',
+            package_pending = '➜',
+            package_uninstalled = '✗',
+          },
         },
       },
     },
-  },
-  {
-    'williamboman/mason-lspconfig.nvim',
-    dependencies = {
-      'williamboman/mason.nvim',
-      'neovim/nvim-lspconfig',
-    },
-    opts = {
-      automatic_enable = false,
-      ensure_installed = {
-        'gopls', -- golang
-        'marksman', -- markdown
-        'jsonls', -- json
-        'yamlls', -- yaml
-        'html', -- html
-        'cssls', -- css
-        'tailwindcss', -- tailwind
-        'vue_ls', -- vue
-        'vtsls', -- vue ts
-        'lua_ls', -- lua
-        'graphql', -- grqphql
-        'emmet_ls', -- emmet
-        'pyright', -- python
-        'ruff', -- python
+    {
+      'williamboman/mason-lspconfig.nvim',
+      dependencies = {
+        'williamboman/mason.nvim',
+        'neovim/nvim-lspconfig',
+      },
+      opts = {
+        automatic_enable = false,
+        ensure_installed = {
+          'gopls', -- golang
+          'marksman', -- markdown
+          'jsonls', -- json
+          'yamlls', -- yaml
+          'html', -- html
+          'cssls', -- css
+          'tailwindcss', -- tailwind
+          'vue_ls', -- vue
+          'vtsls', -- vue ts
+          'lua_ls', -- lua
+          'graphql', -- grqphql
+          'emmet_ls', -- emmet
+          'pyright', -- python
+          'ruff', -- python
+        },
       },
     },
-  },
-  {
-    'WhoIsSethDaniel/mason-tool-installer.nvim',
-    dependencies = {
-      'williamboman/mason.nvim',
-    },
-    opts = {
-      ensure_installed = {
-        'prettier', -- prettier formatter
-        'eslint_d', -- js linter
-        'stylua', -- lua formatter
-        'isort', -- python formatter
-        'ruff', -- python formatter
-        'gofumpt', -- golang formatter
-        'golangci-lint', -- golang lint
-        'kulala-fmt', -- http
+    {
+      'WhoIsSethDaniel/mason-tool-installer.nvim',
+      dependencies = {
+        'williamboman/mason.nvim',
+      },
+      opts = {
+        ensure_installed = {
+          'prettier', -- prettier formatter
+          'eslint_d', -- js linter
+          'biome', -- js
+          'stylua', -- lua formatter
+          'ruff', -- python formatter
+          'gofumpt', -- golang formatter
+          'golangci-lint', -- golang lint
+          'kulala-fmt', -- http
+        },
       },
     },
-  },
-}
+  }
 end)()
 
 function M.setup()

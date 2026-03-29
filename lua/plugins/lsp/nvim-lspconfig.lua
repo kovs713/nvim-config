@@ -71,6 +71,7 @@ function M.setup()
       end
     end,
   })
+
   local capabilities = require('blink.cmp').get_lsp_capabilities()
   local map = vim.keymap.set
 
@@ -143,6 +144,7 @@ function M.setup()
     return has_vue_deps(pkg)
   end
 
+  -- vue language server
   local vue_language_server_path = vim.fn.expand '$MASON/packages' .. '/vue-language-server' .. '/node_modules/@vue/language-server'
   local vtsls_config = {
     on_attach = function(client, bufnr)
@@ -181,7 +183,7 @@ function M.setup()
   vim.lsp.config('vtsls', vtsls_config)
   vim.lsp.enable 'vtsls'
 
-  -- Configure lua_ls (Lua)
+  -- lua language server
   local lua_ls_config = {
     capabilities = capabilities,
     settings = {
@@ -237,6 +239,7 @@ function M.setup()
   vim.lsp.config('emmet_ls', emmet_language_server_config)
   vim.lsp.enable 'emmet_ls'
 
+  -- golang language server
   local hints = vim.empty_dict()
   hints.assignVariableTypes = true
   hints.compositeLiteralFields = true
@@ -284,8 +287,10 @@ function M.setup()
   })
   vim.lsp.enable 'gopls'
 
+  -- html language server
   vim.lsp.enable 'html'
 
+  -- tailwind language server
   local tw_capabilities = require('blink.cmp').get_lsp_capabilities()
   tw_capabilities.textDocument.completion.completionItem.snippetSupport = false
   tw_capabilities.textDocument.colorProvider = { dynamicRegistration = false }
@@ -327,6 +332,7 @@ function M.setup()
   vim.lsp.config('tailwindcss', tailwindcss_config)
   vim.lsp.enable 'tailwindcss'
 
+  -- css language server
   local cssls_config = {
     capabilities = capabilities,
     on_attach = function(client)
@@ -349,6 +355,29 @@ function M.setup()
   vim.lsp.config('cssls', cssls_config)
   vim.lsp.enable 'cssls'
 
+  -- biome language server
+  local biome_config = {
+    capabilities = capabilities,
+    filetypes = {
+      'astro',
+      'css',
+      'graphql',
+      'html',
+      'javascript',
+      'javascriptreact',
+      'json',
+      'jsonc',
+      'svelte',
+      'typescript',
+      'typescriptreact',
+      'vue',
+    },
+    workspace_required = true,
+  }
+  vim.lsp.config('biome', biome_config)
+  vim.lsp.enable 'biome'
+
+  -- json language server
   local jsonls_config = {
     capabilities = capabilities,
     settings = {
@@ -393,6 +422,7 @@ function M.setup()
   vim.lsp.config('jsonls', jsonls_config)
   vim.lsp.enable 'jsonls'
 
+  -- python language server
   vim.lsp.config('pyright', {
     settings = {
       python = {
