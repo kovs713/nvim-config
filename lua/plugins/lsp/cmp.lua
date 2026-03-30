@@ -137,6 +137,7 @@ local plugin = (function()
 end)()
 
 function M.setup()
+  vim.pack.add {'https://github.com/L3MON4D3/LuaSnip'}
   vim.cmd.packadd 'LuaSnip'
   vim.cmd.packadd 'friendly-snippets'
   vim.cmd.packadd 'lazydev.nvim'

@@ -1,6 +1,7 @@
 local M = {}
 
 function M.setup()
+  vim.pack.add {'https://github.com/nvim-mini/mini.starter'}
   vim.cmd.packadd 'mini.starter'
 
   local mini_starter = require 'mini.starter'

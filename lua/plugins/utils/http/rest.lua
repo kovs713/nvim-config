@@ -1,6 +1,7 @@
 local M = {}
 
 function M.setup()
+  vim.pack.add {'https://github.com/rest-nvim/rest.nvim'}
   pcall(vim.cmd.packadd, 'nvim-treesitter')
 
   local map = vim.keymap.set

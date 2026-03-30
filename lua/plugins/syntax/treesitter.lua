@@ -190,6 +190,7 @@ return {
 end)()
 
 function M.setup()
+  vim.pack.add {'https://github.com/nvim-treesitter/nvim-treesitter'}
   vim.cmd.packadd 'nvim-treesitter'
   vim.cmd.packadd 'nvim-treesitter-textobjects'
   vim.cmd.packadd 'nvim-treesitter-context'

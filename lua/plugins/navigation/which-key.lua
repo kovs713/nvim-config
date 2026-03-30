@@ -1,6 +1,7 @@
 local M = {}
 
 function M.setup()
+  vim.pack.add {'https://github.com/folke/which-key.nvim'}
   vim.cmd.packadd 'which-key.nvim'
 
   local whick_key = require 'which-key'

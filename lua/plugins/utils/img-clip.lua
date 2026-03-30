@@ -1,6 +1,7 @@
 local M = {}
 
 function M.setup()
+  vim.pack.add {'https://github.com/HakonHarnes/img-clip.nvim'}
   vim.cmd.packadd 'img-clip.nvim'
 
   local img_clip = require 'img-clip'

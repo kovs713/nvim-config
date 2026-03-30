@@ -66,6 +66,7 @@ local M = {}
 -- -- -- }
 
 function M.setup()
+  vim.pack.add {'https://github.com/rose-pine/neovim'}
   vim.cmd.packadd 'rose-pine'
 
   vim.cmd 'colorscheme rose-pine-dawn'

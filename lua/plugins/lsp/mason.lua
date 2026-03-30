@@ -62,6 +62,7 @@ local plugin = (function()
 end)()
 
 function M.setup()
+  vim.pack.add {'https://github.com/williamboman/mason.nvim'}
   vim.cmd.packadd 'mason.nvim'
   require('mason').setup(plugin[1].opts)
 

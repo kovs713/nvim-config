@@ -6,8 +6,7 @@
     },
     "LuaSnip": {
       "rev": "5a1e39223db9a0498024a77b8441169d260c8c25",
-      "src": "https://github.com/L3MON4D3/LuaSnip",
-      "version": "2.0.0 - 3.0.0"
+      "src": "https://github.com/L3MON4D3/LuaSnip"
     },
     "blink-emoji.nvim": {
       "rev": "066013e4c98a9318408ee3f1ca2dbcb6fa3e4c06",
@@ -32,8 +31,7 @@
     },
     "crates.nvim": {
       "rev": "afcd1cc3eeceb5783676fc8464389b9216a29d05",
-      "src": "https://github.com/saecki/crates.nvim",
-      "version": "'stable'"
+      "src": "https://github.com/saecki/crates.nvim"
     },
     "curl.nvim": {
       "rev": "f3c258e57d56a6158733a9e3bb5eeb931f204d19",
@@ -116,6 +114,10 @@
       "rev": "8c3829d4ef02b693f68e43fc131b433f11049b2b",
       "src": "https://github.com/nvim-mini/mini.statusline"
     },
+    "neovim": {
+      "rev": "cf2a288696b03d0934da713d66c6d71557b5c997",
+      "src": "https://github.com/rose-pine/neovim"
+    },
     "nvim-colorizer.lua": {
       "rev": "c8c2c19436d33165ec34fa90c975bc0a739fe3fb",
       "src": "https://github.com/NvChad/nvim-colorizer.lua"
@@ -150,8 +152,7 @@
     },
     "nvim-treesitter": {
       "rev": "7caec274fd19c12b55902a5b795100d21531391f",
-      "src": "https://github.com/nvim-treesitter/nvim-treesitter",
-      "version": "'main'"
+      "src": "https://github.com/nvim-treesitter/nvim-treesitter"
     },
     "nvim-treesitter-context": {
       "rev": "adf4b6b0420b7be6c717ef0ac7993183d6c201b1",
@@ -200,8 +201,7 @@
     },
     "rustaceanvim": {
       "rev": "f2f0c1231a5b019dbc1fd6dafac1751c878925a3",
-      "src": "https://github.com/mrcjkb/rustaceanvim",
-      "version": "8.0.0 - 9.0.0"
+      "src": "https://github.com/mrcjkb/rustaceanvim"
     },
     "screenkey.nvim": {
       "rev": "fd321966b41d111eed0488b5a3c2d2f8159e1158",

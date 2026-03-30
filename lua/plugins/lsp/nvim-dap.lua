@@ -1,6 +1,7 @@
 local M = {}
 
 function M.setup()
+  vim.pack.add {'https://github.com/rcarriga/nvim-dap-ui'}
   vim.cmd.packadd 'nvim-dap-ui'
   vim.cmd.packadd 'nvim-nio'
   vim.cmd.packadd 'mason.nvim'

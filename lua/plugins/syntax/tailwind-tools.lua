@@ -1,6 +1,7 @@
 local M = {}
 
 function M.setup()
+  vim.pack.add {'https://github.com/roobert/tailwindcss-colorizer-cmp.nvim'}
   vim.cmd.packadd 'tailwindcss-colorizer-cmp.nvim'
   vim.cmd.packadd 'nvim-treesitter'
   vim.cmd.packadd 'nvim-colorizer.lua'

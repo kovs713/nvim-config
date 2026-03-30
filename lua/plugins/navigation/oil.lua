@@ -1,6 +1,7 @@
 local M = {}
 
 function M.setup()
+  vim.pack.add {'https://github.com/nvim-mini/mini.icons'}
   vim.cmd.packadd 'mini.icons'
   vim.cmd.packadd 'oil.nvim'
 
