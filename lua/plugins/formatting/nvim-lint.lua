@@ -1,7 +1,7 @@
 local M = {}
 
 function M.setup()
-  vim.pack.add {'https://github.com/mfussenegger/nvim-lint'}
+  vim.pack.add { 'https://github.com/mfussenegger/nvim-lint' }
   vim.cmd.packadd 'nvim-lint'
 
   local lint = require 'lint'

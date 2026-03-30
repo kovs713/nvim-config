@@ -1,7 +1,7 @@
 local M = {}
 
 function M.setup()
-  vim.pack.add {'https://github.com/folke/flash.nvim'}
+  vim.pack.add { 'https://github.com/folke/flash.nvim' }
   vim.cmd.packadd 'flash.nvim'
 
   local flash = require 'flash'

@@ -1,7 +1,7 @@
 local M = {}
 
 function M.setup()
-  vim.pack.add {'https://github.com/rcarriga/nvim-dap-ui'}
+  vim.pack.add { 'https://github.com/rcarriga/nvim-dap-ui' }
   vim.cmd.packadd 'nvim-dap-ui'
   vim.cmd.packadd 'nvim-nio'
   vim.cmd.packadd 'mason.nvim'
@@ -11,35 +11,11 @@ function M.setup()
 
   local dap = require 'dap'
   local dapui = require 'dapui'
-  vim.keymap.set('n', '<leader>ds', function()
-    dap.continue()
-  end, { desc = '[D]ebug: [S]tart/Continue' })
-  vim.keymap.set('n', '<leader>do', function()
-    dap.step_into()
-  end, { desc = '[D]ebug: Step [o] (forward)' })
-  vim.keymap.set('n', '<leader>doo', function()
-    dap.step_over()
-  end, { desc = '[D]ebug: Step [ii] (double forward)' })
-  vim.keymap.set('n', '<leader>di', function()
-    dap.step_out()
-  end, { desc = '[D]ebug: Step [i] (backward)' })
-  vim.keymap.set('n', '<leader>dbx', function()
-    dap.toggle_breakpoint()
-  end, { desc = '[D]ebug: [B]reakpoint Toggle [x]' })
-  vim.keymap.set('n', '<leader>dbs', function()
-    dap.set_breakpoint(vim.fn.input 'Breakpoint condition: ')
-  end, { desc = '[D]ebug: [B]reakpoint [S]et' })
-  vim.keymap.set('n', '<leader>du', function()
-    dapui.toggle()
-  end, { desc = '[D]ebug: See last session result. [U]i' })
+  local map = vim.keymap.set
 
-  require('mason-nvim-dap').setup {
-    automatic_installation = true,
-
-    handlers = {},
-
-    ensure_installed = {},
-  }
+  dap.listeners.after.event_initialized['dapui_config'] = dapui.open
+  dap.listeners.before.event_terminated['dapui_config'] = dapui.close
+  dap.listeners.before.event_exited['dapui_config'] = dapui.close
 
   dapui.setup {
     icons = { expanded = '▾', collapsed = '▸', current_frame = '*' },
@@ -58,9 +34,37 @@ function M.setup()
     },
   }
 
-  dap.listeners.after.event_initialized['dapui_config'] = dapui.open
-  dap.listeners.before.event_terminated['dapui_config'] = dapui.close
-  dap.listeners.before.event_exited['dapui_config'] = dapui.close
+  local mason_nvim_dap = require 'mason-nvim-dap'
+
+  mason_nvim_dap.setup {
+    automatic_installation = true,
+
+    handlers = {},
+
+    ensure_installed = {},
+  }
+
+  map('n', '<leader>ds', function()
+    dap.continue()
+  end, { desc = '[D]ebug: [S]tart/Continue' })
+  map('n', '<leader>do', function()
+    dap.step_into()
+  end, { desc = '[D]ebug: Step [o] (forward)' })
+  map('n', '<leader>doo', function()
+    dap.step_over()
+  end, { desc = '[D]ebug: Step [ii] (double forward)' })
+  map('n', '<leader>di', function()
+    dap.step_out()
+  end, { desc = '[D]ebug: Step [i] (backward)' })
+  map('n', '<leader>dbx', function()
+    dap.toggle_breakpoint()
+  end, { desc = '[D]ebug: [B]reakpoint Toggle [x]' })
+  map('n', '<leader>dbs', function()
+    dap.set_breakpoint(vim.fn.input 'Breakpoint condition: ')
+  end, { desc = '[D]ebug: [B]reakpoint [S]et' })
+  map('n', '<leader>du', function()
+    dapui.toggle()
+  end, { desc = '[D]ebug: See last session result. [U]i' })
 end
 
 return M

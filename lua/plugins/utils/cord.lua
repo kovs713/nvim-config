@@ -1,7 +1,7 @@
 local M = {}
 
 function M.setup()
-  vim.pack.add {'https://github.com/vyfor/cord.nvim'}
+  vim.pack.add { 'https://github.com/vyfor/cord.nvim' }
   vim.cmd.packadd 'cord.nvim'
 
   local cord = require 'cord'

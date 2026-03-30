@@ -1,7 +1,7 @@
 local M = {}
 
 function M.setup()
-  vim.pack.add {'https://github.com/yousefhadder/markdown-plus.nvim'}
+  vim.pack.add { 'https://github.com/yousefhadder/markdown-plus.nvim' }
   vim.cmd.packadd 'markdown-plus.nvim'
 
   local markdown_plus = require 'markdown-plus'

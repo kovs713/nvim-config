@@ -1,7 +1,7 @@
 local M = {}
 
 function M.setup()
-  vim.pack.add {'https://github.com/williamboman/mason.nvim'}
+  vim.pack.add { 'https://github.com/williamboman/mason.nvim' }
   vim.cmd.packadd 'mason.nvim'
   require('mason').setup {}
 

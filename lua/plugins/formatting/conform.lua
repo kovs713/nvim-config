@@ -1,7 +1,7 @@
 local M = {}
 
 function M.setup()
-  vim.pack.add {'https://github.com/stevearc/conform.nvim'}
+  vim.pack.add { 'https://github.com/stevearc/conform.nvim' }
   vim.cmd.packadd 'conform.nvim'
 
   local conform = require 'conform'
