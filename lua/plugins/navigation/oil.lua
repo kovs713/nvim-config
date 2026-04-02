@@ -1,14 +1,21 @@
 local M = {}
 
 function M.setup()
-  vim.pack.add { 'https://github.com/nvim-mini/mini.icons' }
+  vim.pack.add {
+    'https://github.com/refractalize/oil-git-status.nvim',
+    'https://github.com/nvim-mini/mini.icons',
+  }
   vim.cmd.packadd 'mini.icons'
   vim.cmd.packadd 'oil.nvim'
 
   local oil = require 'oil'
+  local oil_git_status = require 'oil-git-status'
   local map = vim.keymap.set
 
   oil.setup {
+    win_options = {
+      signcolumn = 'yes:2',
+    },
     default_file_explorer = true,
     watch_for_changes = true,
     buf_options = {
@@ -17,6 +24,36 @@ function M.setup()
     },
     view_options = {
       show_hidden = true,
+    },
+  }
+
+  oil_git_status.setup {
+    show_ignored = true,
+    symbols = {
+      index = {
+        ['!'] = '!',
+        ['?'] = '?',
+        ['A'] = 'A',
+        ['C'] = 'C',
+        ['D'] = 'D',
+        ['M'] = 'M',
+        ['R'] = 'R',
+        ['T'] = 'T',
+        ['U'] = 'U',
+        [' '] = ' ',
+      },
+      working_tree = {
+        ['!'] = '!',
+        ['?'] = '?',
+        ['A'] = 'A',
+        ['C'] = 'C',
+        ['D'] = 'D',
+        ['M'] = 'M',
+        ['R'] = 'R',
+        ['T'] = 'T',
+        ['U'] = 'U',
+        [' '] = ' ',
+      },
     },
   }
 
