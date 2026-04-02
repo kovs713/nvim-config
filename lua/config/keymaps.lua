@@ -42,3 +42,22 @@ map({ 'n', 'x', 'o' }, 'H', '^', { desc = 'Go to start of line' })
 map({ 'n', 'x', 'o' }, 'L', 'g_', { desc = 'Go to end of line' })
 
 map('n', '<ESC>', '<CMD>noh<CR>', { silent = true, desc = 'Clear search' })
+
+map('n', '[d', function()
+  vim.diagnostic.goto_next { float = false }
+end, { desc = 'Next diagnostic' })
+map('n', ']d', function()
+  vim.diagnostic.goto_prev { float = false }
+end, { desc = 'Prev diagnostic' })
+
+map('n', '[q', '<CMD>cnext<CR>', { desc = 'Quickfix next' })
+map('n', ']q', '<CMD>cprev<CR>', { desc = 'Quickfix prev' })
+map('n', '[l', '<CMD>lnext<CR>', { desc = 'Location list next' })
+map('n', ']l', '<CMD>lprev<CR>', { desc = 'Location list prev' })
+
+map('n', '[c', function()
+  vim.cmd.normal { ']c', bang = true }
+end, { desc = 'Diff next change' })
+map('n', ']c', function()
+  vim.cmd.normal { '[c', bang = true }
+end, { desc = 'Diff prev change' })

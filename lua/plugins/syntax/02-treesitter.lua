@@ -61,17 +61,17 @@ function M.setup()
 
   local function setup_moves()
     local ts_moves = require 'nvim-treesitter-textobjects.move'
-    map({ 'n', 'o' }, ']f', function()
+    map({ 'n', 'o' }, '[f', function()
       ts_moves.goto_next_start('@function.outer', 'textobjects')
     end)
-    map({ 'n', 'o' }, ']F', function()
+    map({ 'n', 'o' }, '[F', function()
       ts_moves.goto_next_end('@function.outer', 'textobjects')
     end)
 
-    map({ 'n', 'o' }, '[f', function()
+    map({ 'n', 'o' }, ']f', function()
       ts_moves.goto_previous_start('@function.outer', 'textobjects')
     end)
-    map({ 'n', 'o' }, '[F', function()
+    map({ 'n', 'o' }, ']F', function()
       ts_moves.goto_previous_end('@function.outer', 'textobjects')
     end)
   end

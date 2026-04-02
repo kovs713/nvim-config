@@ -11,17 +11,17 @@ function M.setup()
       local map = vim.keymap.set
 
       -- Navigation
-      map('n', ']h', function()
+      map('n', '[h', function()
         if vim.wo.diff then
-          vim.cmd.normal { ']h', bang = true }
+          vim.cmd.normal { '[h', bang = true }
         else
           gitsigns.nav_hunk 'next'
         end
       end, { desc = 'Jump to next git [c]hange' })
 
-      map('n', '[h', function()
+      map('n', ']h', function()
         if vim.wo.diff then
-          vim.cmd.normal { '[h', bang = true }
+          vim.cmd.normal { ']h', bang = true }
         else
           gitsigns.nav_hunk 'prev'
         end
