@@ -47,10 +47,11 @@ function M.setup()
       },
 
       exclude = {
-        '*/node_modules/*',
-        '*/dist/*',
-        '*/.git/*',
-        '*/.DS_Store/*',
+        '/node_modules/*',
+        '/dist/*',
+        '/.git/*',
+        '/.DS_Store/*',
+        '/coverage/*',
       },
     },
 
