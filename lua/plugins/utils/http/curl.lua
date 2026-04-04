@@ -1,9 +1,9 @@
 local M = {}
 
 function M.setup()
-  vim.pack.add { 'https://github.com/nvim-lua/plenary.nvim' }
-  vim.cmd.packadd 'plenary.nvim'
-  vim.cmd.packadd 'curl.nvim'
+  vim.pack.add({
+    { src = 'https://github.com/oysandvik94/curl.nvim' },
+  }, { confirm = false })
 
   local curl = require 'curl'
   local map = vim.keymap.set

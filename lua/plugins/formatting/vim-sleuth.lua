@@ -1,8 +1,9 @@
 local M = {}
 
 function M.setup()
-  vim.pack.add { 'https://github.com/tpope/vim-sleuth' }
-  vim.cmd.packadd 'vim-sleuth'
+  vim.pack.add({
+    { src = 'https://github.com/tpope/vim-sleuth' },
+  }, { confirm = false })
 end
 
 return M

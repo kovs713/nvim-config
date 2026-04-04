@@ -1,8 +1,9 @@
 local M = {}
 
 function M.setup()
-  vim.pack.add { 'https://github.com/nvim-mini/mini.nvim' }
-  vim.cmd.packadd 'mini.nvim'
+  vim.pack.add({
+    { src = 'https://github.com/nvim-mini/mini.nvim' },
+  }, { confirm = false })
 
   local mini_ai = require 'mini.ai'
   local mini_icons = require 'mini.icons'

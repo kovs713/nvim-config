@@ -1,14 +1,15 @@
 local M = {}
 
 function M.setup()
-  vim.pack.add { 'https://github.com/L3MON4D3/LuaSnip' }
-  vim.cmd.packadd 'LuaSnip'
-  vim.cmd.packadd 'friendly-snippets'
-  vim.cmd.packadd 'lazydev.nvim'
-  vim.cmd.packadd 'blink-emoji.nvim'
-  vim.pack.add { 'https://github.com/brenoprata10/nvim-highlight-colors' }
-  vim.cmd.packadd 'blink.cmp'
-  vim.cmd.packadd 'nvim-highlight-colors'
+  vim.pack.add({
+    { src = 'https://github.com/L3MON4D3/LuaSnip' },
+    { src = 'https://github.com/rafamadriz/friendly-snippets' },
+    { src = 'https://github.com/moyiz/blink-emoji.nvim' },
+    { src = 'https://github.com/brenoprata10/nvim-highlight-colors' },
+    { src = 'https://github.com/saghen/blink.cmp' },
+    { src = 'https://github.com/brenoprata10/nvim-highlight-colors' },
+    { src = 'https://github.com/folke/lazydev.nvim' },
+  }, { confirm = false })
 
   local luasnip = require 'luasnip'
 

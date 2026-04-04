@@ -1,8 +1,9 @@
 local M = {}
 
 function M.setup()
-  vim.pack.add { 'https://github.com/folke/snacks.nvim' }
-  vim.cmd.packadd 'snacks.nvim'
+  vim.pack.add({
+    { src = 'https://github.com/folke/snacks.nvim' },
+  }, { confirm = false })
 
   local snacks = require 'snacks'
   local map = vim.keymap.set

@@ -1,9 +1,9 @@
 local M = {}
 
 function M.setup()
-  vim.pack.add { 'https://github.com/nvim-mini/mini.icons' }
-  vim.cmd.packadd 'mini.icons'
-  vim.cmd.packadd 'obsidian.nvim'
+  vim.pack.add({
+    { src = 'https://github.com/obsidian-nvim/obsidian.nvim' },
+  }, { confirm = false })
 
   local obsidian = require 'obsidian'
 

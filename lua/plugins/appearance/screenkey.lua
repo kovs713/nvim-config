@@ -1,8 +1,9 @@
 local M = {}
 
 function M.setup()
-  vim.pack.add { 'https://github.com/NStefan002/screenkey.nvim' }
-  vim.cmd.packadd 'screenkey.nvim'
+  vim.pack.add({
+    { src = 'https://github.com/NStefan002/screenkey.nvim' },
+  }, { confirm = false })
 
   local map = vim.keymap.set
 

@@ -1,8 +1,9 @@
 local M = {}
 
 function M.setup()
-  vim.pack.add { 'https://github.com/lewis6991/gitsigns.nvim' }
-  vim.cmd.packadd 'gitsigns.nvim'
+  vim.pack.add({
+    { src = 'https://github.com/lewis6991/gitsigns.nvim' },
+  }, { confirm = false })
 
   local gitsigns = require 'gitsigns'
 

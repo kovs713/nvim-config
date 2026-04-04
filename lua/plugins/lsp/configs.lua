@@ -1,153 +1,39 @@
 local M = {}
 
 function M.setup()
-  vim.pack.add { 'https://github.com/williamboman/mason.nvim' }
-  vim.cmd.packadd 'mason.nvim'
-  require('mason').setup {}
-
-  vim.cmd.packadd 'fidget.nvim'
-  require('fidget').setup {}
-
-  vim.cmd.packadd 'blink.cmp'
-  vim.cmd.packadd 'nvim-lspconfig'
-
-  vim.api.nvim_create_autocmd('LspAttach', {
-    group = vim.api.nvim_create_augroup('kickstart-lsp-attach', { clear = true }),
-    callback = function(event)
-      local map = function(keys, func, desc, mode)
-        mode = mode or 'n'
-        vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = desc })
-      end
-
-      -- This function resolves a difference between neovim nightly (version 0.11) and stable (version 0.10)
-      ---@param client vim.lsp.Client
-      ---@param method vim.lsp.protocol.Method
-      ---@param bufnr? integer some lsp support methods only in specific files
-      ---@return boolean
-      local function client_supports_method(client, method, bufnr)
-        if vim.fn.has 'nvim-0.11' == 1 then
-          return client:supports_method(method, bufnr)
-        else
-          return client.supports_method(method, { bufnr = bufnr })
-        end
-      end
-
-      -- The following two autocommands are used to highlight references of the
-      -- word under your cursor when your cursor rests there for a little while.
-      --    See `:help CursorHold` for information about when this is executed
-      --
-      -- When you move your cursor, the highlights will be cleared (the second autocommand).
-      local client = vim.lsp.get_client_by_id(event.data.client_id)
-      if client and client_supports_method(client, vim.lsp.protocol.Methods.textDocument_documentHighlight, event.buf) then
-        local highlight_augroup = vim.api.nvim_create_augroup('kickstart-lsp-highlight', { clear = false })
-        vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
-          buffer = event.buf,
-          group = highlight_augroup,
-          callback = vim.lsp.buf.document_highlight,
-        })
-
-        vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
-          buffer = event.buf,
-          group = highlight_augroup,
-          callback = vim.lsp.buf.clear_references,
-        })
-
-        vim.api.nvim_create_autocmd('LspDetach', {
-          group = vim.api.nvim_create_augroup('kickstart-lsp-detach', { clear = true }),
-          callback = function(event2)
-            vim.lsp.buf.clear_references()
-            vim.api.nvim_clear_autocmds { group = 'kickstart-lsp-highlight', buffer = event2.buf }
-          end,
-        })
-      end
-
-      -- The following code creates a keymap to toggle inlay hints in your
-      -- code, if the language server you are using supports them
-      --
-      -- This may be unwanted, since they displace some of your code
-      if client and client_supports_method(client, vim.lsp.protocol.Methods.textDocument_inlayHint, event.buf) then
-        map('<leader>th', function()
-          vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })
-        end, '[T]oggle Inlay [H]ints')
-      end
-    end,
-  })
+  vim.pack.add({
+    { src = 'https://github.com/j-hui/fidget.nvim' },
+    { src = 'https://github.com/nvim-lua/plenary.nvim' },
+    { src = 'https://github.com/pmizio/typescript-tools.nvim' },
+    { src = 'https://github.com/neovim/nvim-lspconfig' },
+  }, { confirm = false })
 
   local capabilities = require('blink.cmp').get_lsp_capabilities()
+  local detect = require 'utils.detect'
   local map = vim.keymap.set
 
-  local function has_vue_deps(pkg)
-    if type(pkg) ~= 'table' then
-      return false
-    end
+  local fidget = require 'fidget'
 
-    local sections = {
-      pkg.dependencies,
-      pkg.devDependencies,
-      pkg.peerDependencies,
-      pkg.optionalDependencies,
-    }
-
-    for _, deps in ipairs(sections) do
-      if type(deps) == 'table' then
-        if deps.vue or deps.nuxt then
-          return true
-        end
-        for dep_name, _ in pairs(deps) do
-          if type(dep_name) == 'string' and dep_name:match '^@vue/' then
-            return true
-          end
-        end
-      end
-    end
-
-    return false
-  end
-
-  local function nearest_package_root(bufnr)
-    local path = vim.api.nvim_buf_get_name(bufnr)
-    if path == '' then
-      return nil
-    end
-
-    local package_json = vim.fs.find('package.json', {
-      upward = true,
-      path = vim.fs.dirname(path),
-    })[1]
-
-    if not package_json then
-      return nil
-    end
-
-    return vim.fs.dirname(package_json)
-  end
-
-  local function is_vue_project_root(root)
-    if root == nil or root == '' then
-      return false
-    end
-
-    local package_json = root .. '/package.json'
-    if vim.fn.filereadable(package_json) == 0 then
-      return false
-    end
-
-    local ok_read, lines = pcall(vim.fn.readfile, package_json)
-    if not ok_read then
-      return false
-    end
-
-    local ok_decode, pkg = pcall(vim.json.decode, table.concat(lines, '\n'))
-    if not ok_decode then
-      return false
-    end
-
-    return has_vue_deps(pkg)
-  end
+  fidget.setup {}
 
   -- vue language server
-  local vue_language_server_path = vim.fn.expand '$MASON/packages' .. '/vue-language-server' .. '/node_modules/@vue/language-server'
+  local vue_language_server_path = vim.fn.stdpath 'data' .. '/mason/packages/vue-language-server/node_modules/@vue/language-server'
   local vtsls_config = {
+    capabilities = capabilities,
+    filetypes = {
+      'vue',
+      'typescript',
+      'javascript',
+      'typescriptreact',
+      'javascriptreact',
+    },
+    root_dir = function(bufnr, on_dir)
+      local root = detect.nearest_package_root(bufnr)
+      if not detect.is_vue_project(root) then
+        return
+      end
+      on_dir(root)
+    end,
     on_attach = function(client, bufnr)
       client.server_capabilities.documentFormattingProvider = false
       map('n', '<leader>i', function()
@@ -156,14 +42,6 @@ function M.setup()
           apply = true,
         }
       end, { silent = true, desc = 'Organize [I]mports' })
-    end,
-    filetypes = { 'vue', 'typescript', 'javascript', 'typescriptreact', 'javascriptreact' },
-    root_dir = function(bufnr, on_dir)
-      local root = nearest_package_root(bufnr)
-      if not is_vue_project_root(root) then
-        return nil
-      end
-      on_dir(root)
     end,
     settings = {
       vtsls = {
@@ -183,6 +61,37 @@ function M.setup()
   vtsls_config.capabilities = vim.tbl_deep_extend('force', {}, capabilities, vtsls_config.capabilities or {})
   vim.lsp.config('vtsls', vtsls_config)
   vim.lsp.enable 'vtsls'
+
+  -- typescript language server
+  local typescript_tools_utils = require 'typescript-tools.utils'
+  local typescript_tools = require 'typescript-tools'
+
+  typescript_tools.setup {
+    root_dir = function(bufnr, on_dir)
+      local root = detect.nearest_package_root(bufnr)
+      if detect.is_vue_project(root) then
+        return
+      end
+      map('n', '<leader>rf', '<cmd>TSToolsRenameFile<CR>', { desc = 'TS [R]ename [F]ile + Fix Imports' })
+      map('n', '<leader>i', '<cmd>TSToolsOrganizeImports<CR>', { desc = 'TS Tools Organize [I]mports' })
+      on_dir(typescript_tools_utils.get_root_dir(bufnr))
+    end,
+    settings = {
+      tsserver_file_preferences = {
+        includeInlayParameterNameHints = 'all',
+        includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+        includeInlayFunctionParameterTypeHints = true,
+        includeInlayVariableTypeHints = true,
+        includeInlayVariableTypeHintsWhenTypeMatchesName = true,
+        includeInlayPropertyDeclarationTypeHints = true,
+        includeInlayFunctionLikeReturnTypeHints = true,
+        includeInlayEnumMemberValueHints = true,
+      },
+    },
+    on_attach = function(client)
+      client.server_capabilities.documentFormattingProvider = false
+    end,
+  }
 
   -- lua language server
   local lua_ls_config = {

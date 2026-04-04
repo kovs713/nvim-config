@@ -1,8 +1,9 @@
 local M = {}
 
 function M.setup()
-  vim.pack.add { 'https://github.com/folke/flash.nvim' }
-  vim.cmd.packadd 'flash.nvim'
+  vim.pack.add({
+    { src = 'https://github.com/folke/flash.nvim' },
+  }, { confirm = false })
 
   local flash = require 'flash'
   local map = vim.keymap.set

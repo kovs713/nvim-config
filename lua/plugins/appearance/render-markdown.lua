@@ -1,10 +1,9 @@
 local M = {}
 
 function M.setup()
-  vim.pack.add { 'https://github.com/nvim-treesitter/nvim-treesitter' }
-  vim.cmd.packadd 'nvim-treesitter'
-  vim.cmd.packadd 'mini.icons'
-  vim.cmd.packadd 'render-markdown.nvim'
+  vim.pack.add({
+    { src = 'https://github.com/MeanderingProgrammer/render-markdown.nvim' },
+  }, { confirm = false })
 
   local render_markdown = require 'render-markdown'
 

@@ -1,8 +1,9 @@
 local M = {}
 
 function M.setup()
-  vim.pack.add { 'https://github.com/vyfor/cord.nvim' }
-  vim.cmd.packadd 'cord.nvim'
+  vim.pack.add({
+    { src = 'https://github.com/vyfor/cord.nvim' },
+  }, { confirm = false })
 
   local cord = require 'cord'
   local cord_api_icon = require 'cord.api.icon'

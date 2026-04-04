@@ -1,8 +1,9 @@
 local M = {}
 
 function M.setup()
-  vim.pack.add { 'https://github.com/windwp/nvim-ts-autotag' }
-  vim.cmd.packadd 'nvim-ts-autotag'
+  vim.pack.add({
+    { src = 'https://github.com/windwp/nvim-ts-autotag' },
+  }, { confim = false })
 
   vim.api.nvim_create_autocmd('FileType', {
     pattern = {

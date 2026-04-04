@@ -1,10 +1,10 @@
 local M = {}
 
 function M.setup()
-  vim.pack.add { 'https://github.com/nvim-lua/plenary.nvim' }
-  vim.cmd.packadd 'plenary.nvim'
-  vim.cmd.packadd 'nvim-treesitter'
-  vim.cmd.packadd 'refactoring.nvim'
+  vim.pack.add({
+    { src = 'https://github.com/nvim-lua/plenary.nvim' },
+    { src = 'https://github.com/ThePrimeagen/refactoring.nvim' },
+  }, { confirm = false })
 
   local refactoring = require 'refactoring'
   local map = vim.keymap.set

@@ -1,8 +1,9 @@
 local M = {}
 
 function M.setup()
-  vim.pack.add { 'https://github.com/numToStr/Comment.nvim' }
-  vim.cmd.packadd 'Comment.nvim'
+  vim.pack.add({
+    { src = 'https://github.com/numToStr/Comment.nvim' },
+  }, { confirm = false })
 
   local comment = require 'Comment'
 

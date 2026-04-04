@@ -1,12 +1,10 @@
 local M = {}
 
 function M.setup()
-  vim.pack.add {
-    'https://github.com/refractalize/oil-git-status.nvim',
-    'https://github.com/nvim-mini/mini.icons',
-  }
-  vim.cmd.packadd 'mini.icons'
-  vim.cmd.packadd 'oil.nvim'
+  vim.pack.add({
+    { src = 'https://github.com/stevearc/oil.nvim' },
+    { src = 'https://github.com/refractalize/oil-git-status.nvim' },
+  }, { confirm = false })
 
   local oil = require 'oil'
   local oil_git_status = require 'oil-git-status'

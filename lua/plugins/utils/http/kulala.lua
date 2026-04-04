@@ -1,8 +1,9 @@
 local M = {}
 
 function M.setup()
-  vim.pack.add { 'https://github.com/mistweaverco/kulala.nvim' }
-  vim.cmd.packadd 'kulala.nvim'
+  vim.pack.add({
+    { src = 'https://github.com/mistweaverco/kulala.nvim' },
+  }, { confirm = false })
 
   vim.api.nvim_create_autocmd('FileType', {
     pattern = {

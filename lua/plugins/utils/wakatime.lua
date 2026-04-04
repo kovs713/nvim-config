@@ -1,8 +1,9 @@
 local M = {}
 
 function M.setup()
-  vim.pack.add { 'https://github.com/wakatime/vim-wakatime' }
-  vim.cmd.packadd 'vim-wakatime'
+  vim.pack.add({
+    { src = 'https://github.com/wakatime/vim-wakatime' },
+  }, { confirm = false })
 end
 
 return M

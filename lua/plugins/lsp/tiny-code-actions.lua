@@ -1,10 +1,9 @@
 local M = {}
 
 function M.setup()
-  vim.pack.add { 'https://github.com/nvim-lua/plenary.nvim' }
-  vim.cmd.packadd 'plenary.nvim'
-  vim.cmd.packadd 'snacks.nvim'
-  vim.cmd.packadd 'tiny-code-action.nvim'
+  vim.pack.add({
+    { src = 'https://github.com/rachartier/tiny-code-action.nvim' },
+  }, { confirm = false })
 
   local tiny_code_action = require 'tiny-code-action'
 

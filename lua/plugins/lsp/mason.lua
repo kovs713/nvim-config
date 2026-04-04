@@ -1,8 +1,11 @@
 local M = {}
 
 function M.setup()
-  vim.pack.add { 'https://github.com/williamboman/mason.nvim' }
-  vim.cmd.packadd 'mason.nvim'
+  vim.pack.add({
+    { src = 'https://github.com/williamboman/mason.nvim' },
+    { src = 'https://github.com/mason-org/mason-lspconfig.nvim' },
+    { src = 'https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim' },
+  }, { confirm = false })
 
   local mason = require 'mason'
 
@@ -15,9 +18,6 @@ function M.setup()
       },
     },
   }
-
-  vim.cmd.packadd 'nvim-lspconfig'
-  vim.cmd.packadd 'mason-lspconfig.nvim'
 
   local mason_lspconfig = require 'mason-lspconfig'
 
@@ -40,8 +40,6 @@ function M.setup()
       'ruff', -- python
     },
   }
-
-  vim.cmd.packadd 'mason-tool-installer.nvim'
 
   local mason_tool_installer = require 'mason-tool-installer'
 

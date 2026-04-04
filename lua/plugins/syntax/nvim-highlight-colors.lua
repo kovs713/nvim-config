@@ -1,8 +1,9 @@
 local M = {}
 
 function M.setup()
-  vim.pack.add { 'https://github.com/brenoprata10/nvim-highlight-colors' }
-  vim.cmd.packadd 'nvim-highlight-colors'
+  vim.pack.add({
+    { src = 'https://github.com/brenoprata10/nvim-highlight-colors' },
+  }, { confirm = false })
 
   local nvim_highlight_colors = require 'nvim-highlight-colors'
 

@@ -1,10 +1,10 @@
 local M = {}
 
 function M.setup()
-  vim.pack.add { 'https://github.com/roobert/tailwindcss-colorizer-cmp.nvim' }
-  vim.cmd.packadd 'tailwindcss-colorizer-cmp.nvim'
-  vim.cmd.packadd 'nvim-treesitter'
-  vim.cmd.packadd 'nvim-colorizer.lua'
+  vim.pack.add({
+    { src = 'https://github.com/roobert/tailwindcss-colorizer-cmp.nvim' },
+    { src = 'https://github.com/norcalli/nvim-colorizer.lua' },
+  }, { confirm = false })
 
   local colorizer = require 'colorizer'
   local tailwind_cmp = require 'tailwindcss-colorizer-cmp'

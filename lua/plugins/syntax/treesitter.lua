@@ -1,10 +1,11 @@
 local M = {}
 
 function M.setup()
-  vim.pack.add { 'https://github.com/nvim-treesitter/nvim-treesitter' }
-  vim.cmd.packadd 'nvim-treesitter'
-  vim.cmd.packadd 'nvim-treesitter-textobjects'
-  vim.cmd.packadd 'nvim-treesitter-context'
+  vim.pack.add({
+    { src = 'https://github.com/nvim-treesitter/nvim-treesitter' },
+    { src = 'https://github.com/nvim-treesitter/nvim-treesitter-textobjects' },
+    { src = 'https://github.com/nvim-treesitter/nvim-treesitter-context' },
+  }, { confirm = false })
 
   local textobjects = require 'nvim-treesitter-textobjects'
   local map = vim.keymap.set

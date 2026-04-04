@@ -1,8 +1,9 @@
 local M = {}
 
 function M.setup()
-  vim.pack.add { 'https://github.com/HakonHarnes/img-clip.nvim' }
-  vim.cmd.packadd 'img-clip.nvim'
+  vim.pack.add({
+    { src = 'https://github.com/HakonHarnes/img-clip.nvim' },
+  }, { confirm = false })
 
   local img_clip = require 'img-clip'
   local map = vim.keymap.set
