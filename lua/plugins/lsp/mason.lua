@@ -37,6 +37,7 @@ function M.setup()
       'graphql', -- grqphql
       'emmet_ls', -- emmet
       'pyright', -- python
+      'astro', -- astro
       'ruff', -- python
     },
   }

@@ -152,6 +152,7 @@ function M.setup()
     'typst',
     'typescript',
     'jsx',
+    'astro',
     'javascript',
     'vue',
     'svelte',

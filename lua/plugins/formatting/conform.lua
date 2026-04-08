@@ -20,6 +20,7 @@ function M.setup()
       typescriptreact = { 'prettier', 'oxlint' },
       vue = { 'prettier', 'oxlint' },
       svelte = { 'prettier' },
+      astro = { 'prettier', 'oxlint' },
       css = { 'prettier' },
       html = { 'prettier' },
       json = { 'prettier' },
