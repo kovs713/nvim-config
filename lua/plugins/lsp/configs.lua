@@ -96,7 +96,6 @@ function M.setup()
   -- astro language server
   local astro_ls_config = {
     capabilities = capabilities,
-    filetypes = { 'astro' },
     settings = {
       astro = {
         diagnostic = {
@@ -120,9 +119,40 @@ function M.setup()
         },
       },
     },
+    filetypes = { 'astro' },
   }
   vim.lsp.config('astro', astro_ls_config)
   vim.lsp.enable 'astro'
+
+  local svelte_ls_config = {
+    capabilities = capabilities,
+    settings = {
+      astro = {
+        diagnostic = {
+          ignoreRefs = false,
+          allowInvalidPeers = true,
+        },
+        completions = {
+          autoImport = true,
+          guide = true,
+          icons = true,
+        },
+      },
+      typescript = {
+        inlayHints = {
+          includeInlayParameterNameHints = 'all',
+          includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+          includeInlayFunctionParameterTypeHints = true,
+          includeInlayVariableTypeHints = true,
+          includeInlayPropertyDeclarationTypeHints = true,
+          includeInlayFunctionLikeReturnTypeHints = true,
+        },
+      },
+    },
+    filetypes = { 'svelte' },
+  }
+  vim.lsp.config('svelte', svelte_ls_config)
+  vim.lsp.enable 'svelte'
 
   -- lua language server
   local lua_ls_config = {

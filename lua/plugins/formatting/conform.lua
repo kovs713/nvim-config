@@ -19,7 +19,7 @@ function M.setup()
       javascriptreact = { 'prettier', 'oxlint' },
       typescriptreact = { 'prettier', 'oxlint' },
       vue = { 'prettier', 'oxlint' },
-      svelte = { 'prettier' },
+      svelte = { 'prettier', 'oxlint' },
       astro = { 'prettier', 'oxlint' },
       css = { 'prettier' },
       html = { 'prettier' },

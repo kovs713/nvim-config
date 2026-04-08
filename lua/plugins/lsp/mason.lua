@@ -38,6 +38,7 @@ function M.setup()
       'emmet_ls', -- emmet
       'pyright', -- python
       'astro', -- astro
+      'svelte', -- svelte
       'ruff', -- python
     },
   }
