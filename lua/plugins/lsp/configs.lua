@@ -154,6 +154,13 @@ function M.setup()
   vim.lsp.config('svelte', svelte_ls_config)
   vim.lsp.enable 'svelte'
 
+  local solidity_ls_config = {
+    capabilities = capabilities,
+    filetypes = { 'solidity' },
+  }
+  vim.lsp.config('solidity', solidity_ls_config)
+  vim.lsp.enable 'solidity'
+
   -- lua language server
   local lua_ls_config = {
     capabilities = capabilities,

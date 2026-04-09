@@ -39,6 +39,7 @@ function M.setup()
       'pyright', -- python
       'astro', -- astro
       'svelte', -- svelte
+      'solidity', -- solidity
       'ruff', -- python
     },
   }
@@ -49,6 +50,7 @@ function M.setup()
     ensure_installed = {
       'prettier', -- prettier formatter
       'eslint_d', -- js linter
+      'solhint', -- solidity
       'biome', -- js
       'stylua', -- lua formatter
       'ruff', -- python formatter

@@ -156,6 +156,7 @@ function M.setup()
     'javascript',
     'vue',
     'svelte',
+    'solidity',
     'css',
     'html',
     'http',
