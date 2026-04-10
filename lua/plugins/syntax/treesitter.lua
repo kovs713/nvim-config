@@ -139,6 +139,7 @@ function M.setup()
   local treesitter = require 'nvim-treesitter'
   treesitter.install {
     'bash',
+    'php',
     'go',
     'gomod',
     'gosum',

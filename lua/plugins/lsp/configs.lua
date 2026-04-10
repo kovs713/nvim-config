@@ -6,6 +6,7 @@ function M.setup()
     { src = 'https://github.com/nvim-lua/plenary.nvim' },
     { src = 'https://github.com/pmizio/typescript-tools.nvim' },
     { src = 'https://github.com/neovim/nvim-lspconfig' },
+    { src = 'https://github.com/adibhanna/laravel.nvim' },
   }, { confirm = false })
 
   local capabilities = require('blink.cmp').get_lsp_capabilities()
@@ -160,6 +161,30 @@ function M.setup()
   }
   vim.lsp.config('solidity', solidity_ls_config)
   vim.lsp.enable 'solidity'
+
+  local laravel = require 'laravel'
+
+  laravel.setup {
+    notifications = true,
+    debug = false,
+    keymaps = true,
+    sail = {
+      enabled = true,
+      auto_detect = true,
+    },
+  }
+
+  map('n', '<leader>pa', '', { desc = '[P]hp laravel [A]rtisan' })
+  map('n', '<leader>pc', '', { desc = '[P]hp laravel [C]omposer' })
+  map('n', '<leader>pr', '', { desc = '[P]hp laravel [R]oute' })
+  map('n', '<leader>pm', '', { desc = '[P]hp laravel [M]ake' })
+
+  local php_ls_config = {
+    capabilities = capabilities,
+    filetypes = { 'php' },
+  }
+  vim.lsp.config('php', php_ls_config)
+  vim.lsp.enable 'php'
 
   -- lua language server
   local lua_ls_config = {

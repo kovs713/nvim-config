@@ -28,6 +28,7 @@ function M.setup()
       'marksman', -- markdown
       'jsonls', -- json
       'yamlls', -- yaml
+      'intelephense', -- php
       'html', -- html
       'cssls', -- css
       'tailwindcss', -- tailwind
@@ -52,6 +53,8 @@ function M.setup()
       'eslint_d', -- js linter
       'solhint', -- solidity
       'biome', -- js
+      'phpcs', -- php code style
+      'phpstan', -- php static analysis
       'stylua', -- lua formatter
       'ruff', -- python formatter
       'gofumpt', -- golang formatter
