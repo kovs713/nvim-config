@@ -224,6 +224,10 @@
       "rev": "fd321966b41d111eed0488b5a3c2d2f8159e1158",
       "src": "https://github.com/NStefan002/screenkey.nvim"
     },
+    "smear-cursor.nvim": {
+      "rev": "c85bdbb25db096fbcf616bc4e1357bd61fe2c199",
+      "src": "https://github.com/sphamba/smear-cursor.nvim"
+    },
     "snacks.nvim": {
       "rev": "ad9ede6a9cddf16cedbd31b8932d6dcdee9b716e",
       "src": "https://github.com/folke/snacks.nvim"
