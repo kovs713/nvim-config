@@ -6,6 +6,7 @@ function M.setup()
     { src = 'https://github.com/nvim-lua/plenary.nvim' },
     { src = 'https://github.com/pmizio/typescript-tools.nvim' },
     { src = 'https://github.com/neovim/nvim-lspconfig' },
+    { src = 'https://github.com/mrcjkb/rustaceanvim' },
     { src = 'https://github.com/adibhanna/laravel.nvim' },
   }, { confirm = false })
 
@@ -164,20 +165,26 @@ function M.setup()
 
   local laravel = require 'laravel'
 
-  laravel.setup {
-    notifications = true,
-    debug = false,
-    keymaps = true,
-    sail = {
-      enabled = true,
-      auto_detect = true,
-    },
-  }
-
-  map('n', '<leader>pa', '', { desc = '[P]hp laravel [A]rtisan' })
-  map('n', '<leader>pc', '', { desc = '[P]hp laravel [C]omposer' })
-  map('n', '<leader>pr', '', { desc = '[P]hp laravel [R]oute' })
-  map('n', '<leader>pm', '', { desc = '[P]hp laravel [M]ake' })
+  vim.api.nvim_create_autocmd({ 'BufReadPost', 'BufNewFile', 'FileType' }, {
+    pattern = { '<filetype>' },
+    callback = function(filetype)
+      if filetype == 'php' then
+        laravel.setup {
+          notifications = true,
+          debug = false,
+          keymaps = true,
+          sail = {
+            enabled = true,
+            auto_detect = true,
+          },
+        }
+        map('n', '<leader>pa', '', { desc = '[P]hp laravel [A]rtisan' })
+        map('n', '<leader>pc', '', { desc = '[P]hp laravel [C]omposer' })
+        map('n', '<leader>pr', '', { desc = '[P]hp laravel [R]oute' })
+        map('n', '<leader>pm', '', { desc = '[P]hp laravel [M]ake' })
+      end
+    end,
+  })
 
   local php_ls_config = {
     capabilities = capabilities,
