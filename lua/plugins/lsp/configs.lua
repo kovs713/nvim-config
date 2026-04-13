@@ -8,6 +8,7 @@ function M.setup()
     { src = 'https://github.com/neovim/nvim-lspconfig' },
     { src = 'https://github.com/mrcjkb/rustaceanvim' },
     { src = 'https://github.com/adibhanna/laravel.nvim' },
+    { src = 'https://github.com/ricardoramirezr/blade-nav.nvim' },
   }, { confirm = false })
 
   local capabilities = require('blink.cmp').get_lsp_capabilities()
@@ -190,8 +191,8 @@ function M.setup()
     capabilities = capabilities,
     filetypes = { 'php' },
   }
-  vim.lsp.config('php', php_ls_config)
-  vim.lsp.enable 'php'
+  vim.lsp.config('intelephense', php_ls_config)
+  vim.lsp.enable 'intelephense'
 
   -- lua language server
   local lua_ls_config = {

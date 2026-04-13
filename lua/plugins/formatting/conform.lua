@@ -31,6 +31,7 @@ function M.setup()
       python = { 'ruff_format', 'ruff_organize_imports' },
       go = { 'gofumpt' },
       rust = { 'rustfmt' },
+      php = { { 'pint', 'php_cs_fixer' } },
     },
   }
 

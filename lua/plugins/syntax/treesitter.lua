@@ -140,6 +140,7 @@ function M.setup()
   treesitter.install {
     'bash',
     'php',
+    'blade',
     'go',
     'gomod',
     'gosum',
