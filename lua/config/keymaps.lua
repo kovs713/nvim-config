@@ -44,10 +44,10 @@ map({ 'n', 'x', 'o' }, 'L', 'g_', { desc = 'Go to end of line' })
 map('n', '<ESC>', '<CMD>noh<CR>', { silent = true, desc = 'Clear search' })
 
 map('n', '[d', function()
-  vim.diagnostic.goto_next { float = false }
+  vim.diagnostic.jump { count = 1, float = true }
 end, { desc = 'Next diagnostic' })
 map('n', ']d', function()
-  vim.diagnostic.goto_prev { float = false }
+  vim.diagnostic.jump { count = -1, float = true }
 end, { desc = 'Prev diagnostic' })
 
 map('n', '[q', '<CMD>cnext<CR>', { desc = 'Quickfix next' })
