@@ -27,7 +27,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
     -- Keymaps
     opts.desc = '[C]ode [A]ctions'
     map({ 'n', 'v' }, '<leader>ca', function()
-      require('tiny-code-action').code_action()
+      vim.lsp.buf.code_action()
     end, opts)
 
     opts.desc = '[L][L]sp Restart'
