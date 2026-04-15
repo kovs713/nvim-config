@@ -9,6 +9,8 @@ function M.setup()
     { src = 'https://github.com/mrcjkb/rustaceanvim' },
     { src = 'https://github.com/adibhanna/laravel.nvim' },
     { src = 'https://github.com/ricardoramirezr/blade-nav.nvim' },
+    { src = 'https://github.com/linux-cultist/venv-selector.nvim' },
+    { src = 'https://github.com/karloskar/poetry-nvim' },
   }, { confirm = false })
 
   local capabilities = require('blink.cmp').get_lsp_capabilities()
@@ -434,7 +436,10 @@ function M.setup()
   vim.lsp.enable 'jsonls'
 
   -- python language server
-  vim.lsp.config('pyright', {
+  local venv_selector = require 'venv-selector'
+  local poetry_nvim = require 'poetry-nvim'
+
+  local pyright_config = {
     settings = {
       python = {
         analysis = {
@@ -443,8 +448,12 @@ function M.setup()
         },
       },
     },
-  })
+  }
+  vim.lsp.config('pyright', pyright_config)
   vim.lsp.enable 'pyright'
+
+  venv_selector.setup {}
+  poetry_nvim.setup {}
 end
 
 return M
