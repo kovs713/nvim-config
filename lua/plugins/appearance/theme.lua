@@ -8,7 +8,11 @@ function M.setup()
     { src = 'https://github.com/kepano/flexoki-neovim' },
   }, { confirm = false })
 
+  -- light theme
   vim.cmd.colorscheme 'rose-pine-dawn'
+
+  -- dark theme
+  -- vim.cmd.colorscheme 'rose-pine'
 
   -- -- ashen
   -- local ashen = require 'ashen'
