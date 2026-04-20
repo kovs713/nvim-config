@@ -13,6 +13,12 @@ map('n', '<C-i>', '<C-o>', { desc = 'Switch to previous buffer' })
 pcall(del_map, 'n', 'C-o')
 map('n', '<C-o>', '<C-i>', { desc = 'Switch to next buffer' })
 
+map('n', '<A-h>', '<C-w>h', { desc = 'Move between windows (left)' })
+map('n', '<A-j>', '<C-w>j', { desc = 'Move between windows (down)' })
+map('n', '<A-k>', '<C-w>k', { desc = 'Move between windows (up)' })
+map('n', '<A-l>', '<C-w>l', { desc = 'Move between windows (right)' })
+map('n', '<A-q>', '<C-w>q', { desc = 'Close window' })
+
 map('n', '<A-=>', '<C-w>+', { desc = 'Resize window + (increace horizontal)' })
 map('n', '<A-->', '<C-w>-', { desc = 'Resize window - (decreace horizontal)' })
 map('n', '<A-.>', '<C-w><', { desc = 'Resize window < (increace vertical)' })
