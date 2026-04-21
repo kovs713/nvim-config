@@ -56,10 +56,40 @@ map('n', ']d', function()
   vim.diagnostic.jump { count = -1, float = true }
 end, { desc = 'Prev diagnostic' })
 
-map('n', '[q', '<CMD>cnext<CR>', { desc = 'Quickfix next' })
-map('n', ']q', '<CMD>cprev<CR>', { desc = 'Quickfix prev' })
-map('n', '[l', '<CMD>lnext<CR>', { desc = 'Location list next' })
-map('n', ']l', '<CMD>lprev<CR>', { desc = 'Location list prev' })
+local function cycle_quickfix(dir)
+  local ok, err = pcall(dir == 1 and vim.cmd.cnext or vim.cmd.cprev)
+  if not ok and err:match 'E553' then
+    if dir == 1 then
+      vim.cmd.cfirst()
+    else
+      vim.cmd.clast()
+    end
+  end
+end
+
+local function cycle_loclist(dir)
+  local ok, err = pcall(dir == 1 and vim.cmd.lnext or vim.cmd.lprev)
+  if not ok and err:match 'E553' then
+    if dir == 1 then
+      vim.cmd.lfirst()
+    else
+      vim.cmd.llast()
+    end
+  end
+end
+
+map('n', '[q', function()
+  cycle_quickfix(1)
+end, { desc = 'Quickfix next' })
+map('n', ']q', function()
+  cycle_quickfix(-1)
+end, { desc = 'Quickfix prev' })
+map('n', '[l', function()
+  cycle_loclist(1)
+end, { desc = 'Location list next' })
+map('n', ']l', function()
+  cycle_loclist(-1)
+end, { desc = 'Location list prev' })
 
 map('n', '[c', function()
   vim.cmd.normal { ']c', bang = true }
