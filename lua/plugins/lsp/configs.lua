@@ -196,6 +196,12 @@ function M.setup()
   vim.lsp.config('intelephense', php_ls_config)
   vim.lsp.enable 'intelephense'
 
+  vim.lsp.config('twiggy_language_server', {
+    capabilities = capabilities,
+    filetypes = { 'twig' },
+  })
+  vim.lsp.enable 'twiggy_language_server'
+
   -- lua language server
   local lua_ls_config = {
     capabilities = capabilities,
