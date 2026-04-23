@@ -1,8 +1,46 @@
 local map = vim.keymap.set
 local del_map = vim.keymap.de
 
+local function copy_to_clipboard(value, label)
+  if value == '' then
+    vim.notify(label .. ' not found', vim.log.levels.WARN)
+    return
+  end
+
+  vim.fn.setreg('+', value)
+  vim.fn.setreg('"', value)
+  vim.notify(label .. ' copied: ' .. value)
+end
+
+local function current_project_root()
+  local path = vim.api.nvim_buf_get_name(0)
+  if path == '' then
+    return vim.fn.getcwd()
+  end
+
+  return vim.fs.root(path, { '.git' }) or vim.fn.getcwd()
+end
+
+local function copy_filename()
+  copy_to_clipboard(vim.fn.expand '%:t', 'Filename')
+end
+
+local function copy_project_relative_path()
+  local path = vim.api.nvim_buf_get_name(0)
+  if path == '' then
+    copy_to_clipboard('', 'Project path')
+    return
+  end
+
+  local root = current_project_root()
+  local relative = vim.fs.relpath(root, path) or vim.fn.fnamemodify(path, ':.')
+  copy_to_clipboard(relative, 'Project path')
+end
+
 map('i', '<A-c>', '<C-^>', { noremap = true, desc = 'Switch language layout RU/EN' })
 map('n', '<leader>nr', '<CMD>restart<CR>', { desc = '[N]eovim [R]estart' })
+map('n', '<leader>yf', copy_filename, { desc = '[Y]ank [F]ilename' })
+map('n', '<leader>yp', copy_project_relative_path, { desc = '[Y]ank project [P]ath' })
 
 map({ 'n', 'v', 'i', 'c' }, '<M-Space>', '<Nop>', { noremap = true, silent = true })
 
