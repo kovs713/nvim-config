@@ -28,7 +28,8 @@ local palette = {
   noise = '#191919',
 
   search = '#00afff',
-  visual = '#ffaf00',
+  -- visual = '#ffaf00',
+  visual = '#d85f44',
   add = '#416241',
   remove = '#722529',
   change = '#1d2b3a',
