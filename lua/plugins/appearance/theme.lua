@@ -8,17 +8,16 @@ function M.setup()
     { src = 'https://github.com/kepano/flexoki-neovim' },
   }, { confirm = false })
 
-  local rose_pine = require 'rose-pine'
+  -- rose-pine
+  -- local rose_pine = require 'rose-pine'
 
-  rose_pine.setup {}
-  vim.cmd.colorscheme 'rose-pine'
+  -- rose_pine.setup {}
+  -- vim.cmd.colorscheme 'rose-pine'
 
-  -- -- ashen
-  -- local ashen = require 'ashen'
-  -- ashen.setup {
-  --   transparent = true,
-  -- }
-  -- ashen.load()
+  -- ashen
+  local ashen = require 'ashen'
+  ashen.setup {}
+  ashen.load()
 
   -- -- milkmatcha
   -- vim.cmd.colorscheme 'milkmatcha'
