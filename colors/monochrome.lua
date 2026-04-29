@@ -375,3 +375,10 @@ hi('FzfLuaFzfCursorLine', { guifg = palette.fg, guibg = palette.subtle })
 hi('FzfLuaFzfMatch', { guifg = palette.search, gui = 'bold' })
 hi('FzfLuaFzfBorder', { guifg = palette.muted, guibg = palette.bg })
 hi('FzfLuaFzfScrollbar', { guifg = palette.muted, guibg = palette.bg })
+
+-- =============================================================================
+-- SNACKS PICKER
+-- =============================================================================
+hi('SnacksPickerFile', { guifg = palette.fg })
+hi('SnacksPickerDir', { guifg = palette.muted })
+hi('SnacksPickerDirectory', { guifg = palette.fg, gui = 'bold' })
