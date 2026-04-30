@@ -14,16 +14,16 @@ function M.setup()
   -- rose_pine.setup {}
   -- vim.cmd.colorscheme 'rose-pine'
 
-  -- -- ashen
-  -- local ashen = require 'ashen'
-  -- ashen.setup {}
-  -- ashen.load()
+  -- ashen
+  local ashen = require 'ashen'
+  ashen.setup {}
+  ashen.load()
 
   -- -- milkmatcha
   -- vim.cmd.colorscheme 'milkmatcha'
 
-  -- monochrome
-  vim.cmd.colorscheme 'monochrome'
+  -- -- monochrome
+  -- vim.cmd.colorscheme 'monochrome'
 
   -- -- flexoki light
   -- vim.cmd.colorscheme 'flexoki-light'
