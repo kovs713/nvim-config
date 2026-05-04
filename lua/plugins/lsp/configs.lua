@@ -445,12 +445,48 @@ function M.setup()
   local venv_selector = require 'venv-selector'
   local poetry_nvim = require 'poetry-nvim'
 
+  vim.api.nvim_create_autocmd('LspAttach', {
+    group = vim.api.nvim_create_augroup('lsp_attach_disable_ruff_hover', { clear = true }),
+    callback = function(args)
+      local client = vim.lsp.get_client_by_id(args.data.client_id)
+      if client == nil then
+        return
+      end
+      if client.name == 'ruff' then
+        -- Disable hover in favor of Pyright
+        client.server_capabilities.hoverProvider = false
+      end
+    end,
+    desc = 'LSP: Disable hover capability from Ruff',
+  })
+
+  local ruff_config = {
+    capabilities = capabilities,
+    init_options = {
+      settings = {
+        python = {
+          analysis = {
+            typeCheckingMode = 'basic',
+            diagnosticMode = 'openFilesOnly',
+          },
+        },
+      },
+    },
+  }
+  vim.lsp.config('ruff', ruff_config)
+  vim.lsp.enable 'ruff'
+
   local pyright_config = {
+    capabilities = capabilities,
     settings = {
+      pyright = {
+        -- Using Ruff's import organizer
+        disableOrganizeImports = true,
+      },
       python = {
         analysis = {
-          typeCheckingMode = 'basic',
-          diagnosticMode = 'openFilesOnly',
+          -- Ignore all files for analysis to exclusively use Ruff for linting
+          ignore = { '*' },
         },
       },
     },

@@ -28,7 +28,11 @@ function M.setup()
       yaml = { 'prettier' },
       graphql = { 'prettier' },
       lua = { 'stylua' },
-      python = { 'ruff_format', 'ruff_organize_imports' },
+      python = {
+        'ruff_fix',
+        'ruff_format',
+        'ruff_organize_imports',
+      },
       go = { 'gofumpt' },
       rust = { 'rustfmt' },
       php = { { 'pint', 'php_cs_fixer' } },
