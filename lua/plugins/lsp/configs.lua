@@ -453,6 +453,12 @@ function M.setup()
         return
       end
       if client.name == 'ruff' then
+        map('n', '<leader>i', function()
+          vim.lsp.buf.code_action {
+            context = { only = { 'source.organizeImports' } },
+            apply = true,
+          }
+        end, { silent = true, desc = 'Organize [I]mports' })
         -- Disable hover in favor of Pyright
         client.server_capabilities.hoverProvider = false
       end
