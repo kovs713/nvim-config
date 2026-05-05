@@ -307,6 +307,10 @@ function M.setup()
   vim.lsp.enable 'gopls'
 
   -- html language server
+  local html_config = {
+    capabilities = capabilities,
+  }
+  vim.lsp.config('html', html_config)
   vim.lsp.enable 'html'
 
   -- tailwind language server
@@ -346,7 +350,19 @@ function M.setup()
         validate = true,
       },
     },
-    filetypes = { 'html', 'mdx', 'javascript', 'typescript', 'javascriptreact', 'typescriptreact', 'vue', 'svelte' },
+    filetypes = {
+      'html',
+      'mdx',
+      'javascript',
+      'typescript',
+      'javascriptreact',
+      'typescriptreact',
+      'vue',
+      'svelte',
+      'css',
+      'scss',
+      'less',
+    },
   }
   vim.lsp.config('tailwindcss', tailwindcss_config)
   vim.lsp.enable 'tailwindcss'
