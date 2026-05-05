@@ -12,6 +12,14 @@ function M.setup()
     scroll = {
       enabled = false,
     },
+    lazygit = {
+      theme = {
+        selectedLineBgColor = { bg = 'SnacksLazygitSelected' },
+        defaultFgColor = { fg = 'Normal' },
+        activeBorderColor = { fg = 'MatchParen', bold = true },
+        searchingActiveBorderColor = { fg = 'MatchParen', bold = true },
+      },
+    },
     picker = {
       enabled = true,
       ui_select = true,
