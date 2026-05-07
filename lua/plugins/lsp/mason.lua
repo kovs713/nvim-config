@@ -28,6 +28,7 @@ function M.setup()
       'marksman', -- markdown
       'jsonls', -- json
       'yamlls', -- yaml
+      'bashls', -- bash
       'intelephense', -- php
       'html', -- html
       'cssls', -- css
