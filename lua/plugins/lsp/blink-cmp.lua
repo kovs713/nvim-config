@@ -4,9 +4,8 @@ function M.setup()
   vim.pack.add({
     { src = 'https://github.com/L3MON4D3/LuaSnip' },
     { src = 'https://github.com/rafamadriz/friendly-snippets' },
-    { src = 'https://github.com/moyiz/blink-emoji.nvim' },
     { src = 'https://github.com/brenoprata10/nvim-highlight-colors' },
-    { src = 'https://github.com/saghen/blink.cmp' },
+    { src = 'https://github.com/saghen/blink.cmp', version = '1.*' },
     { src = 'https://github.com/brenoprata10/nvim-highlight-colors' },
     { src = 'https://github.com/folke/lazydev.nvim' },
   }, { confirm = false })
@@ -104,18 +103,9 @@ function M.setup()
     },
 
     sources = {
-      default = { 'lsp', 'path', 'snippets', 'lazydev', 'buffer', 'emoji' },
+      default = { 'lsp', 'path', 'snippets', 'lazydev', 'buffer' },
       providers = {
         lazydev = { module = 'lazydev.integrations.blink', score_offset = 100 },
-        emoji = {
-          module = 'blink-emoji',
-          name = 'Emoji',
-          score_offset = 15,
-          opts = { insert = true },
-          should_show_items = function()
-            return vim.tbl_contains({ 'gitcommit', 'markdown' }, vim.o.filetype)
-          end,
-        },
       },
     },
 

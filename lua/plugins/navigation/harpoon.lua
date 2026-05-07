@@ -3,7 +3,7 @@ local M = {}
 function M.setup()
   vim.pack.add({
     { src = 'https://github.com/nvim-lua/plenary.nvim' },
-    { src = 'https://github.com/theprimeagen/harpoon' },
+    { src = 'https://github.com/ThePrimeagen/harpoon', version = 'harpoon2' },
   }, { confirm = false })
 
   local harpoon = require 'harpoon'
