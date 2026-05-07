@@ -32,15 +32,50 @@ function M.setup()
     return vim.fn.fnamemodify(filepath, ':~:.')
   end
 
+  local mode_hl = {
+    n = 'MiniStatuslineModeNormal',
+    no = 'MiniStatuslineModeNormal',
+    ni = 'MiniStatuslineModeNormal',
+    niI = 'MiniStatuslineModeNormal',
+    niR = 'MiniStatuslineModeNormal',
+    niV = 'MiniStatuslineModeNormal',
+    i = 'MiniStatuslineModeInsert',
+    ic = 'MiniStatuslineModeInsert',
+    ix = 'MiniStatuslineModeInsert',
+    v = 'MiniStatuslineModeVisual',
+    V = 'MiniStatuslineModeVisual',
+    ['v^V'] = 'MiniStatuslineModeVisual',
+    s = 'MiniStatuslineModeVisual',
+    S = 'MiniStatuslineModeVisual',
+    ['s^S'] = 'MiniStatuslineModeVisual',
+    R = 'MiniStatuslineModeReplace',
+    Rc = 'MiniStatuslineModeReplace',
+    Rv = 'MiniStatuslineModeReplace',
+    Rx = 'MiniStatuslineModeReplace',
+    c = 'MiniStatuslineModeCommand',
+    cv = 'MiniStatuslineModeCommand',
+    ce = 'MiniStatuslineModeCommand',
+    r = 'MiniStatuslineModeInsert',
+    rm = 'MiniStatuslineModeInsert',
+    ['r?'] = 'MiniStatuslineModeInsert',
+    ['!'] = 'MiniStatuslineModeCommand',
+    t = 'MiniStatuslineModeCommand',
+  }
+
+  local function get_mode_hl(mode)
+    return mode_hl[mode] or 'MiniStatuslineModeNormal'
+  end
+
   statusline.setup {
     content = {
       active = function()
-        local mode, mode_hl = MiniStatusline.section_mode { trunc_width = 100 }
+        local mode, _ = MiniStatusline.section_mode { trunc_width = 100 }
+        local mode_name = get_mode_hl(mode)
         local path = get_relative_path()
         local git = MiniStatusline.section_git { trunc_width = 40 }
 
         return MiniStatusline.combine_groups {
-          { hl = mode_hl, strings = { mode } },
+          { hl = mode_name, strings = { mode } },
           { hl = 'MiniStatuslineFilename', strings = { path } },
           { hl = 'MiniStatuslineDevinfo', strings = { git } },
         }
