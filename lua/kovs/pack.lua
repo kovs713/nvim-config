@@ -16,6 +16,7 @@ local M = {
     { src = gh 'MeanderingProgrammer/render-markdown.nvim' },
     { src = gh 'nvim-mini/mini.starter' },
     { src = gh 'stevearc/dressing.nvim' },
+    { src = gh 'nvim-mini/mini.icons' },
 
     -- editing
     { src = gh 'JoosepAlviste/nvim-ts-context-commentstring' },
