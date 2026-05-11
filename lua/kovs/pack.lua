@@ -6,6 +6,7 @@ local M = {
   specs = {
     -- appearance
     { src = gh 'rose-pine/neovim' },
+    { src = gh 'wnkz/monoglow.nvim' },
     { src = gh 'neanias/everforest-nvim' },
     { src = gh 'ficcdaf/ashen.nvim' },
     { src = gh 'kepano/flexoki-neovim' },

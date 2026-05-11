@@ -132,6 +132,10 @@
       "rev": "b456bfe845e475e9cec065b7a9a1ef657ad2f41b",
       "src": "https://github.com/nvim-mini/mini.statusline"
     },
+    "monoglow.nvim": {
+      "rev": "a249b1f55bfe9171e2f8aff7acf140f78ca4b2bb",
+      "src": "https://github.com/wnkz/monoglow.nvim"
+    },
     "neovim": {
       "rev": "6a961effd67f6130d36df6d1c05c48c739796dd2",
       "src": "https://github.com/rose-pine/neovim"
