@@ -482,3 +482,10 @@ vim.lsp.enable 'pyright'
 
 venv_selector.setup {}
 poetry_nvim.setup {}
+
+local postgres_language_server_config = {
+  capabilities = capabilities,
+  filetypes = { 'sql' },
+}
+vim.lsp.config('postgres-language-server', postgres_language_server_config)
+vim.lsp.enable 'postgres-language-server'

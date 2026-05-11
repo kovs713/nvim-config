@@ -30,6 +30,7 @@ conform.setup {
     rust = { 'rustfmt' },
     php = { { 'pint', 'php_cs_fixer' } },
     bash = { 'shfmt' },
+    sql = { 'pg_format' },
   },
 }
 

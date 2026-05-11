@@ -7,6 +7,7 @@ lint.linters_by_ft = {
   typescriptreact = { 'eslint_d' },
   lua = { 'luacheck' },
   python = { 'ruff' },
+  sql = { 'postgres-language-server' },
 }
 
 local lint_augroup = vim.api.nvim_create_augroup('lint', { clear = true })
