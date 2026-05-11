@@ -121,31 +121,76 @@ snacks.setup {
 
 vim.keymap.set('n', '<leader>gl', function()
   Snacks.lazygit()
-end, { desc = 'Lazygit' })
+end, { desc = '[G]it [L]azygit' })
 vim.keymap.set('n', '<leader>rN', function()
   Snacks.rename.rename_file()
-end, { desc = 'Rename File' })
+end, { desc = '[R]e[N]ame File' })
 vim.keymap.set('n', '<leader>fp', function()
   Snacks.picker.projects()
-end, { desc = 'Find Projects' })
+end, { desc = '[F]ind [P]rojects' })
 vim.keymap.set('n', '<leader>ff', function()
   Snacks.picker.files()
-end, { desc = 'Find Files' })
+end, { desc = '[F]ind [F]iles' })
 vim.keymap.set('n', '<leader>fd', function()
   Snacks.picker.grep()
-end, { desc = 'Find by Grep' })
+end, { desc = '[F]ind by Grep [D]?' })
 vim.keymap.set('n', '<leader>fr', function()
   Snacks.picker.recent()
-end, { desc = 'Find Recent' })
+end, { desc = '[F]ind [R]ecent' })
 vim.keymap.set('n', '<leader>fc', function()
   Snacks.picker.git_log()
-end, { desc = 'Find Git Commits' })
+end, { desc = '[F]ind Git [C]ommits' })
 vim.keymap.set('n', '<leader>fb', function()
   Snacks.picker.git_branches()
-end, { desc = 'Find Git Branches' })
+end, { desc = '[F]ind Git [B]ranches' })
 vim.keymap.set('n', '<leader>fs', function()
   Snacks.picker.git_status()
-end, { desc = 'Find Git Status' })
+end, { desc = '[F]ind Git [S]tatus' })
 vim.keymap.set('n', '<leader>ft', function()
   Snacks.picker.git_stash()
-end, { desc = 'Find Git Stash' })
+end, { desc = '[F]ind Git S[T]ash' })
+
+vim.keymap.set('n', '<leader>fo', function()
+  local cwd = vim.fn.getcwd()
+  local dirs = {}
+  local handle = io.popen(
+    'find '
+      .. cwd
+      .. ' -type d ! -path "*/node_modules/*" ! -path "*/.git/*"'
+      .. ' ! -path "*/dist/*" ! -path "*/build/*" ! -path "*/.next/*"'
+      .. ' ! -path "*/vendor/*" ! -name "node_modules" ! -name ".git"'
+      .. ' ! -name "dist" ! -name "build" ! -name ".next" ! -name "vendor" 2>/dev/null'
+  )
+  for line in handle:lines() do
+    if line ~= cwd and line ~= '' then
+      local relpath = vim.fn.fnamemodify(line, ':.')
+      table.insert(dirs, {
+        text = relpath,
+        file = line,
+      })
+    end
+  end
+  handle:close()
+
+  Snacks.picker {
+    prompt = 'Directories> ',
+    items = dirs,
+    format = function(item)
+      return { { item.text, 'SnacksPickerIcon' } }
+    end,
+    preview = false,
+    keys = {
+      {
+        '<cr>',
+        function(picker)
+          local item = picker:selected()[1]
+          if item and item.file then
+            require('oil').open(item.file)
+          end
+        end,
+        desc = 'Open in oil',
+        mode = 'n',
+      },
+    },
+  }
+end, { desc = '[F]ind Directories [O]il' })
