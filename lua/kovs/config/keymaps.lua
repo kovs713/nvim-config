@@ -1,5 +1,5 @@
 local map = vim.keymap.set
-local del_map = vim.keymap.de
+local del_map = vim.keymap.del
 
 local function copy_to_clipboard(value, label)
   if value == '' then
