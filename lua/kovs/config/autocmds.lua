@@ -12,7 +12,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
   group = vim.api.nvim_create_augroup('UserLspConfig', { clear = true }),
   callback = function(event)
     local opts = { buffer = event.buf, silent = true }
-    local map = vim.keymap.set
 
     local function client_supports_method(client, method, bufnr)
       if vim.fn.has 'nvim-0.11' == 1 then
@@ -26,44 +25,44 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
     -- Keymaps
     opts.desc = '[C]ode [A]ctions'
-    map({ 'n', 'v' }, '<leader>ca', function()
+    vim.keymap.set({ 'n', 'v' }, '<leader>ca', function()
       vim.lsp.buf.code_action()
     end, opts)
 
     opts.desc = '[L][L]sp Restart'
-    map({ 'n', 'v' }, '<leader>lL', '<cmd>lsp restart<CR>', opts)
+    vim.keymap.set({ 'n', 'v' }, '<leader>lL', '<cmd>lsp restart<CR>', opts)
 
     opts.desc = '[L]sp [I]mplementations'
-    map('n', '<leader>li', function()
+    vim.keymap.set('n', '<leader>li', function()
       Snacks.picker.lsp_implementations()
     end, opts)
 
     opts.desc = '[L]sp [D]efinitions'
-    map('n', '<leader>ld', function()
+    vim.keymap.set('n', '<leader>ld', function()
       Snacks.picker.lsp_definitions()
     end, opts)
 
-    map('n', 'gd', function()
+    vim.keymap.set('n', 'gd', function()
       Snacks.picker.lsp_definitions()
     end, { buffer = event.buf, desc = 'Go to [D]efinition' })
 
     opts.desc = '[L]sp [R]eferences'
-    map('n', '<leader>lr', function()
+    vim.keymap.set('n', '<leader>lr', function()
       Snacks.picker.lsp_references()
     end, opts)
 
     opts.desc = '[L]sp Diagnostic Float [E]'
-    map('n', '<leader>le', function()
+    vim.keymap.set('n', '<leader>le', function()
       vim.diagnostic.open_float()
     end, opts)
 
     opts.desc = '[L]sp [H]over Doc'
-    map('n', '<leader>lh', function()
+    vim.keymap.set('n', '<leader>lh', function()
       vim.lsp.buf.hover()
     end, opts)
 
     opts.desc = '[L]sp Re[N]ame'
-    map('n', '<leader>ln', function()
+    vim.keymap.set('n', '<leader>ln', function()
       vim.lsp.buf.rename()
     end, opts)
 
@@ -95,16 +94,16 @@ vim.api.nvim_create_autocmd('LspAttach', {
     if client and client_supports_method(client, vim.lsp.protocol.Methods.textDocument_inlayHint, event.buf) then
       opts.desc = '[T]oggle Inlay [H]ints'
       opts.buffer = event.buf
-      map('n', '<leader>th', function()
+      vim.keymap.set('n', '<leader>th', function()
         vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })
       end, opts)
     end
 
     -- Golang
     opts.desc = '[G]o Ru[N] current project'
-    map('n', '<leader>gn', '<CMD>!go run .<CR>', opts)
+    vim.keymap.set('n', '<leader>gn', '<CMD>!go run .<CR>', opts)
     opts.desc = '[G]o [E]rror handle pattern'
-    map('n', '<leader>ge', function()
+    vim.keymap.set('n', '<leader>ge', function()
       local lines = {
         'if err != nil {',
         '    return',
