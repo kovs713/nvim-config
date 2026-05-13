@@ -1,11 +1,11 @@
 # nvim config ✍️ 
 
-My editor, my rules.  
-Lua-based config built for TypeScript, Vue, Go, Python, and whatever else needs taming.
+Ma editor, ma rules.  
+Lua-based config built for TypeScript, Vue, Go, Python, and whatever else needs.
 
 ---
 
-![Starter screenshot](screenshots/starter.png)
+![Starter screenshot](preview.png)
 
 ---
 
@@ -20,7 +20,7 @@ Lua-based config built for TypeScript, Vue, Go, Python, and whatever else needs 
 | Syntax | treesitter |
 | Git | lazygit + gitsigns |
 | Notes | obsidian.nvim |
-| Theme | Rosé Pine Dawn |
+| Theme | IlyasYOY's monochrome |
 
 
 ---
@@ -65,42 +65,3 @@ TypeScript · JavaScript · Vue · React · Go · Python · Lua · HTML · CSS �
 
 all get LSP, treesitter, and auto-formatting out of the box.
 
----
-
-## screenshots
-
-<details>
-<summary>lsp support</summary>
-<p align="center"><img src="/screenshots/lsp-support.png"/></p>
-</details>
-
-<details>
-<summary>snacks projects</summary>
-<p align="center"><img src="/screenshots/snacks-projects.png"/></p>
-</details>
-
-<details>
-<summary>lazygit integration</summary>
-<p align="center"><img src="/screenshots/lazygit-integration.png"/></p>
-</details>
-
-<details>
-<summary>markdown render</summary>
-<p align="center"><img src="/screenshots/render-markdown.png"/></p>
-</details>
-
-<details>
-<summary>discord rpc</summary>
-<p align="center"><img src="/screenshots/discord-rpc.png"/></p>
-</details>
-
----
-
-<div align="center">
-  <a href="https://github.com/neovim/neovim/releases/tag/stable">
-    <img src="https://img.shields.io/badge/Neovim-0.12.0-blueviolet.svg?style=flat-square&logo=Neovim&logoColor=green"/>
-  </a>
-  <img alt="Linux" src="https://img.shields.io/badge/Linux-%23.svg?style=flat-square&logo=linux&color=FCC624&logoColor=black">
-  <img src="https://img.shields.io/github/commit-activity/m/kovs713/nvim-config?style=flat-square">
-  <img src="https://img.shields.io/github/license/kovs713/nvim-config?style=flat-square&logo=GNU&label=License">
-</div>
