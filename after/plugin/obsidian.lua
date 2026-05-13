@@ -44,10 +44,6 @@ vim.keymap.set('n', 'gf', function()
   return obsidian.util.gf_passthrough()
 end, { buffer = bufnr, desc = '[G]oto markdown [F]ile', noremap = false, expr = true })
 
-vim.keymap.set('n', '<CR>', function()
-  return obsidian.util.smart_action()
-end, { buffer = bufnr, expr = true, desc = 'Obsidian smart action' })
-
 vim.keymap.set('n', '<Tab>', function()
   require('obsidian.api').nav_link 'next'
 end, { buffer = bufnr, desc = 'Go to next link' })
