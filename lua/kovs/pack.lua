@@ -26,6 +26,7 @@ local M = {
     { src = gh 'saecki/crates.nvim' },
     { src = gh 'numToStr/Comment.nvim' },
     { src = gh 'bullets-vim/bullets.vim' },
+    { src = gh 'glacambre/firenvim' },
 
     -- formatting
     { src = gh 'mfussenegger/nvim-lint' },
