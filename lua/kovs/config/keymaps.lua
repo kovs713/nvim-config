@@ -48,10 +48,12 @@ map({ 'n', 'v', 'i', 'c' }, '<M-Space>', '<Nop>', { noremap = true, silent = tru
 
 map('n', '<leader>s', '<CMD>wall<CR><ESC>', { desc = 'Save all buffers' })
 
-pcall(del_map, 'n', 'C-i')
-map('n', '<C-i>', '<C-o>', { desc = 'Switch to previous buffer' })
-pcall(del_map, 'n', 'C-o')
-map('n', '<C-o>', '<C-i>', { desc = 'Switch to next buffer' })
+pcall(del_map, 'n', '<C-i>')
+pcall(del_map, 'n', '<Tab>')
+map('n', '<C-i>', '<C-o>', { desc = 'Jump backward' })
+map('n', '<Tab>', '<C-o>', { desc = 'Jump backward' })
+pcall(del_map, 'n', '<C-o>')
+map('n', '<C-o>', '<C-i>', { desc = 'Jump forward' })
 
 map('n', '<A-h>', '<C-w>h', { desc = 'Move between windows (left)' })
 map('n', '<A-j>', '<C-w>j', { desc = 'Move between windows (down)' })
