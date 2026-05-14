@@ -126,6 +126,24 @@ link('@type', 'Type')
 link('@type.builtin', 'Type')
 link('@type.definition', 'Type')
 
+for _, lang in ipairs { 'javascript', 'javascriptreact', 'jsx', 'typescript', 'typescriptreact', 'tsx' } do
+  hi('@type.' .. lang, { guifg = palette.fg })
+  hi('@type.builtin.' .. lang, { guifg = palette.fg })
+  hi('@type.definition.' .. lang, { guifg = palette.fg })
+
+  hi('@type.annotation.' .. lang, { guifg = palette.fg, gui = 'underline' })
+  hi('@type.annotation.builtin.' .. lang, { guifg = palette.fg, gui = 'underline' })
+  hi('@type.annotation.definition.' .. lang, { guifg = palette.fg, gui = 'underline' })
+end
+
+link('@type.annotation', 'Type')
+link('@type.annotation.builtin', 'Type')
+link('@type.annotation.definition', 'Type')
+
+for _, lang in ipairs { 'javascriptreact', 'jsx', 'typescriptreact', 'tsx' } do
+  hi('@tag.attribute.' .. lang, { guifg = palette.fg })
+end
+
 link('@keyword', 'Keyword')
 link('@keyword.return', 'Keyword')
 link('@keyword.function', 'Keyword')
