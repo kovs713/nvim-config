@@ -35,6 +35,7 @@ pcall(function()
     'blade',
     'twig',
     'rust',
+    'solidity',
     'astro',
     'sql',
     'dockerfile',

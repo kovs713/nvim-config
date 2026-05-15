@@ -170,6 +170,11 @@
       "src": "https://github.com/serenadeai/tree-sitter-scss",
       "version": "c478c6868648eff49eb04a4df90d703dc45b312a"
     },
+    "solidity": {
+      "rev": "048fe686cb1fde267243739b8bdbec8fc3a55272",
+      "src": "https://github.com/JoranHonig/tree-sitter-solidity",
+      "version": "048fe686cb1fde267243739b8bdbec8fc3a55272"
+    },
     "sql": {
       "rev": "851e9cb257ba7c66cc8c14214a31c44d2f1e954e",
       "src": "https://github.com/derekstride/tree-sitter-sql",
