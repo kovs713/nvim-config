@@ -1,4 +1,2 @@
-local set = vim.opt_local
-
-set.textwidth = 80
-set.linebreak = true
+vim.opt_local.textwidth = 80
+vim.opt_local.linebreak = true
