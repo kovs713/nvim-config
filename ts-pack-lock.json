@@ -196,6 +196,11 @@
       "src": "https://github.com/tree-sitter/tree-sitter-typescript",
       "version": "75b3874edb2dc714fb1fd77a32013d0f8699989f"
     },
+    "twig": {
+      "rev": "7195ee573ab5c3b3bb0e91b042e6f83ac1b11104",
+      "src": "https://github.com/gbprod/tree-sitter-twig",
+      "version": "7195ee573ab5c3b3bb0e91b042e6f83ac1b11104"
+    },
     "typescript": {
       "data": {
         "filetype": {

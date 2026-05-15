@@ -33,6 +33,7 @@ pcall(function()
     'scss',
     'php',
     'blade',
+    'twig',
     'rust',
     'astro',
     'sql',
@@ -127,4 +128,3 @@ ts_context.setup {
 vim.keymap.set('n', '[c', function()
   ts_context.go_to_context(vim.v.count1)
 end, { silent = true })
-
