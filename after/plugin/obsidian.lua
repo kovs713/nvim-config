@@ -35,8 +35,9 @@ obsidian.setup {
 }
 
 vim.keymap.set('n', '<leader>od', '<cmd>Obsidian dailies<cr>', { buffer = bufnr, desc = '[O]bsidian [D]ailies' })
-vim.keymap.set('n', '<leader>ont', '<cmd>Obsidian today<cr>', { buffer = bufnr, desc = '[O]bsidian [N]ew [T]oday' })
 vim.keymap.set('n', '<leader>ony', '<cmd>Obsidian yesterday<cr>', { buffer = bufnr, desc = '[O]bsidian [N]ew [Y]esterday' })
+vim.keymap.set('n', '<leader>ont', '<cmd>Obsidian today<cr>', { buffer = bufnr, desc = '[O]bsidian [N]ew [T]oday' })
+vim.keymap.set('n', '<leader>onm', '<cmd>Obsidian tomorrow<cr>', { buffer = bufnr, desc = '[O]bsidian [N]ew to[M]orrow' })
 vim.keymap.set('n', '<leader>onn', '<cmd>Obsidian new<cr>', { buffer = bufnr, desc = '[O]bsidian [N]ew [N]ote' })
 vim.keymap.set('n', '<leader>os', '<cmd>Obsidian search<cr>', { buffer = bufnr, desc = '[O]bsidian [S]earch' })
 
