@@ -22,6 +22,7 @@ local M = {
     -- editing
     { src = gh 'JoosepAlviste/nvim-ts-context-commentstring' },
     { src = gh 'windwp/nvim-ts-autotag' },
+    { src = gh 'folke/todo-comments.nvim' },
     { src = gh 'lewis6991/gitsigns.nvim' },
     { src = gh 'saecki/crates.nvim' },
     { src = gh 'numToStr/Comment.nvim' },
