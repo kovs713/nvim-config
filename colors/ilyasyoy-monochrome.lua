@@ -35,7 +35,7 @@ local palette = {
   change = '#1d2b3a',
   change_text = '#2d4560',
   error = '#ff005f',
-  cursor = '#8787af',
+  cursor = '#ffaf00',
 }
 
 local bg = vim.o.background
