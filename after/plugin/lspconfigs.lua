@@ -1,6 +1,13 @@
 local capabilities = require('blink.cmp').get_lsp_capabilities()
 local detect = require 'kovs.utils.detect'
 
+local drizzle_auto_import_exclude_patterns = {
+  'drizzle-orm/gel-core',
+  'drizzle-orm/mysql-core',
+  'drizzle-orm/sqlite-core',
+  'drizzle-orm/singlestore-core',
+}
+
 local fidget = require 'fidget'
 fidget.setup {}
 
@@ -31,6 +38,16 @@ local vtsls_config = {
     end, { silent = true, desc = 'Organize Imports' })
   end,
   settings = {
+    typescript = {
+      preferences = {
+        autoImportFileExcludePatterns = drizzle_auto_import_exclude_patterns,
+      },
+    },
+    javascript = {
+      preferences = {
+        autoImportFileExcludePatterns = drizzle_auto_import_exclude_patterns,
+      },
+    },
     vtsls = {
       tsserver = {
         globalPlugins = {
@@ -64,6 +81,7 @@ typescript_tools.setup {
   end,
   settings = {
     tsserver_file_preferences = {
+      autoImportFileExcludePatterns = drizzle_auto_import_exclude_patterns,
       includeInlayParameterNameHints = 'all',
       includeInlayParameterNameHintsWhenArgumentMatchesName = true,
       includeInlayFunctionParameterTypeHints = true,
