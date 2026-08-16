@@ -216,6 +216,11 @@ local lua_ls_config = {
       },
     },
   },
+  root_markers = {
+    '.luarc.json',
+    '.luarc.jsonc',
+    '.git',
+  },
 }
 vim.lsp.config('lua_ls', lua_ls_config)
 vim.lsp.enable 'lua_ls'
