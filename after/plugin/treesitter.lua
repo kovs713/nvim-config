@@ -1,51 +1,40 @@
-local ts_pack = require 'ts-pack'
-local library = require 'ts-pack.library'
 local ts_select = require 'nvim-treesitter-textobjects.select'
 local ts_moves = require 'nvim-treesitter-textobjects.move'
 local ts_textobjects = require 'nvim-treesitter-textobjects'
 
-ts_pack.setup {
-  install_jobs = 4,
+require('nvim-treesitter').install {
+  'lua',
+  'markdown',
+  'markdown_inline',
+  'bash',
+  'python',
+  'go',
+  'gomod',
+  'gosum',
+  'javascript',
+  'typescript',
+  'tsx',
+  'vue',
+  'svelte',
+  'json',
+  'json5',
+  'yaml',
+  'toml',
+  'html',
+  'css',
+  'scss',
+  'php',
+  'rust',
+  'solidity',
+  'astro',
+  'sql',
+  'dockerfile',
+  'git_config',
+  'git_rebase',
+  'gitcommit',
+  'gitignore',
+  'http',
 }
-
-pcall(function()
-  ts_pack.add(library.select {
-    'lua',
-    'markdown',
-    'markdown_inline',
-    'bash',
-    'python',
-    'go',
-    'gomod',
-    'gosum',
-    'javascript',
-    'typescript',
-    'tsx',
-    'jsx',
-    'vue',
-    'svelte',
-    'json',
-    'json5',
-    'yaml',
-    'toml',
-    'html',
-    'css',
-    'scss',
-    'php',
-    'blade',
-    'twig',
-    'rust',
-    'solidity',
-    'astro',
-    'sql',
-    'dockerfile',
-    'git_config',
-    'git_rebase',
-    'gitcommit',
-    'gitignore',
-    'http',
-  })
-end)
 
 vim.treesitter.language.register('javascript', 'tsx')
 vim.treesitter.language.register('typescript.tsc', 'tsx')
