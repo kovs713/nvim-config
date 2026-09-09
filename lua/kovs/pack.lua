@@ -61,15 +61,13 @@ local M = {
     { src = gh 'akinsho/toggleterm.nvim' },
 
     -- syntax
-    { src = gh 'IlyasYOY/ts-pack.nvim' },
+    { src = gh 'nvim-treesitter/nvim-treesitter', version = 'main' },
     { src = gh 'nvim-treesitter/nvim-treesitter-textobjects' },
     { src = gh 'nvim-treesitter/nvim-treesitter-context' },
     { src = gh 'brenoprata10/nvim-highlight-colors' },
 
     -- utils
     { src = gh 'nvim-mini/mini.nvim' },
-    { src = gh 'mistweaverco/kulala.nvim' },
-    { src = gh 'oysandvik94/curl.nvim' },
     { src = gh 'vyfor/cord.nvim' },
     { src = gh 'HakonHarnes/img-clip.nvim' },
     { src = gh 'obsidian-nvim/obsidian.nvim' },
@@ -85,5 +83,7 @@ local M = {
 }
 
 vim.pack.add(M.specs)
+
+require 'kovs.utils.prune'
 
 return M
