@@ -68,6 +68,14 @@ vim.lsp.enable 'vtsls'
 
 local typescript_tools_utils = require 'typescript-tools.utils'
 local typescript_tools = require 'typescript-tools'
+local otter = require 'otter'
+
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = { 'typescript', 'typescriptreact' },
+  callback = function()
+    otter.activate { 'sql', 'graphql', 'html', 'css' }
+  end,
+})
 
 typescript_tools.setup {
   root_dir = function(bufnr, on_dir)
@@ -163,38 +171,6 @@ local solidity_ls_config = {
 }
 vim.lsp.config('solidity', solidity_ls_config)
 vim.lsp.enable 'solidity'
-
-local laravel = require 'laravel'
-
-vim.api.nvim_create_autocmd({ 'BufReadPost', 'BufNewFile', 'FileType' }, {
-  pattern = { '<filetype>' },
-  callback = function(filetype)
-    if filetype == 'php' then
-      laravel.setup {
-        notifications = true,
-        debug = false,
-        keymaps = true,
-        sail = {
-          enabled = true,
-          auto_detect = true,
-        },
-      }
-    end
-  end,
-})
-
-local php_ls_config = {
-  capabilities = capabilities,
-  filetypes = { 'php' },
-}
-vim.lsp.config('intelephense', php_ls_config)
-vim.lsp.enable 'intelephense'
-
-vim.lsp.config('twiggy_language_server', {
-  capabilities = capabilities,
-  filetypes = { 'twig' },
-})
-vim.lsp.enable 'twiggy_language_server'
 
 local lua_ls_config = {
   capabilities = capabilities,
@@ -448,9 +424,6 @@ local jsonls_config = {
 vim.lsp.config('jsonls', jsonls_config)
 vim.lsp.enable 'jsonls'
 
-local venv_selector = require 'venv-selector'
-local poetry_nvim = require 'poetry-nvim'
-
 vim.api.nvim_create_autocmd('LspAttach', {
   group = vim.api.nvim_create_augroup('lsp_attach_disable_ruff_hover', { clear = true }),
   callback = function(args)
@@ -502,9 +475,6 @@ local pyright_config = {
 }
 vim.lsp.config('pyright', pyright_config)
 vim.lsp.enable 'pyright'
-
-venv_selector.setup {}
-poetry_nvim.setup {}
 
 local postgres_language_server_config = {
   capabilities = capabilities,

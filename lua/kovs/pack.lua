@@ -42,6 +42,7 @@ local M = {
     { src = gh 'j-hui/fidget.nvim' },
     { src = gh 'nvim-lua/plenary.nvim' },
     { src = gh 'pmizio/typescript-tools.nvim' },
+    { src = gh '/jmbuhr/otter.nvim' },
     { src = gh 'neovim/nvim-lspconfig' },
     { src = gh 'mrcjkb/rustaceanvim' },
     { src = gh 'adibhanna/laravel.nvim' },
