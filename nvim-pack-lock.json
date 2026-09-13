@@ -112,10 +112,6 @@
       "rev": "199b3344d4c0dab13e45483834ce11bb7744fa3a",
       "src": "https://github.com/nvim-mini/mini.nvim"
     },
-    "mini.starter": {
-      "rev": "7bdc9decc8b623f245c1e42a64bc41e61d574c5e",
-      "src": "https://github.com/nvim-mini/mini.starter"
-    },
     "mini.statusline": {
       "rev": "b456bfe845e475e9cec065b7a9a1ef657ad2f41b",
       "src": "https://github.com/nvim-mini/mini.statusline"
@@ -196,10 +192,6 @@
     "screenkey.nvim": {
       "rev": "740e238d1f143cb5f3a9d932f9c5142d3581b986",
       "src": "https://github.com/NStefan002/screenkey.nvim"
-    },
-    "smear-cursor.nvim": {
-      "rev": "9e9378d6ee34bb3782e0e8c63d9ec8ca618b479b",
-      "src": "https://github.com/sphamba/smear-cursor.nvim"
     },
     "snacks.nvim": {
       "rev": "ad9ede6a9cddf16cedbd31b8932d6dcdee9b716e",

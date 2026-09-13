@@ -10,13 +10,13 @@ local M = {
     { src = gh 'neanias/everforest-nvim' },
     { src = gh 'ficcdaf/ashen.nvim' },
     { src = gh 'kepano/flexoki-neovim' },
-    { src = gh 'nvim-mini/mini.statusline' },
-    { src = gh 'sphamba/smear-cursor.nvim' },
     { src = gh 'vimpostor/vim-tpipeline' },
     { src = gh 'NStefan002/screenkey.nvim' },
     { src = gh 'MeanderingProgrammer/render-markdown.nvim' },
-    { src = gh 'nvim-mini/mini.starter' },
     { src = gh 'stevearc/dressing.nvim' },
+    -- { src = gh 'sphamba/smear-cursor.nvim' },
+    -- { src = gh 'nvim-mini/mini.starter' },
+    { src = gh 'nvim-mini/mini.statusline' },
     { src = gh 'nvim-mini/mini.icons' },
 
     -- editing
