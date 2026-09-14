@@ -1,9 +1,8 @@
 local M = {}
 
--- Plugins present on disk but not passed to vim.pack.add this session
--- (i.e. not in pack.lua specs) are marked active=false. Remove them.
 function M.prune()
-  local orphans = vim.iter(vim.pack.get())
+  local orphans = vim
+    .iter(vim.pack.get())
     :filter(function(x)
       return not x.active
     end)

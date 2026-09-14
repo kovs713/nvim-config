@@ -5,29 +5,19 @@ end
 local M = {
   specs = {
     -- appearance
-    { src = gh 'rose-pine/neovim' },
-    { src = gh 'wnkz/monoglow.nvim' },
-    { src = gh 'neanias/everforest-nvim' },
-    { src = gh 'ficcdaf/ashen.nvim' },
-    { src = gh 'kepano/flexoki-neovim' },
     { src = gh 'vimpostor/vim-tpipeline' },
     { src = gh 'NStefan002/screenkey.nvim' },
     { src = gh 'MeanderingProgrammer/render-markdown.nvim' },
     { src = gh 'stevearc/dressing.nvim' },
-    -- { src = gh 'sphamba/smear-cursor.nvim' },
-    -- { src = gh 'nvim-mini/mini.starter' },
     { src = gh 'nvim-mini/mini.statusline' },
     { src = gh 'nvim-mini/mini.icons' },
 
     -- editing
     { src = gh 'JoosepAlviste/nvim-ts-context-commentstring' },
     { src = gh 'windwp/nvim-ts-autotag' },
-    { src = gh 'folke/todo-comments.nvim' },
     { src = gh 'lewis6991/gitsigns.nvim' },
-    { src = gh 'saecki/crates.nvim' },
     { src = gh 'numToStr/Comment.nvim' },
     { src = gh 'bullets-vim/bullets.vim' },
-    { src = gh 'glacambre/firenvim' },
 
     -- formatting
     { src = gh 'mfussenegger/nvim-lint' },
@@ -45,11 +35,8 @@ local M = {
     { src = gh '/jmbuhr/otter.nvim' },
     { src = gh 'neovim/nvim-lspconfig' },
     { src = gh 'mrcjkb/rustaceanvim' },
-    { src = gh 'adibhanna/laravel.nvim' },
-    { src = gh 'ricardoramirezr/blade-nav.nvim' },
-    { src = gh 'linux-cultist/venv-selector.nvim' },
-    { src = gh 'karloskar/poetry-nvim' },
     { src = gh 'rachartier/tiny-code-action.nvim' },
+    { src = gh 'rachartier/tiny-inline-diagnostic.nvim' },
 
     -- navigation
     { src = gh 'folke/snacks.nvim' },
@@ -79,7 +66,6 @@ local M = {
     { src = gh 'rafamadriz/friendly-snippets' },
     { src = gh 'saghen/blink.lib' },
     { src = gh 'saghen/blink.cmp' },
-    { src = gh 'folke/lazydev.nvim' },
   },
 }
 
