@@ -1,7 +1,11 @@
---- diagnostic disable: 113
+require('vim._core.ui2').enable {}
+
+vim.o.cmdheight = 0
 vim.diagnostic.config {
   underline = true,
+  virtual_text = false,
   update_in_insert = false,
+  severity_sort = true,
 }
 
 vim.cmd [[
