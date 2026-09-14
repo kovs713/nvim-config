@@ -53,7 +53,19 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
     opts.desc = '[L]sp Diagnostic Float [E]'
     vim.keymap.set('n', '<leader>le', function()
-      vim.diagnostic.open_float()
+      local tiny = require 'tiny-inline-diagnostic'
+      tiny.disable()
+      local win = vim.diagnostic.open_float()
+      if win == nil then
+        tiny.enable()
+        return
+      end
+      vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI', 'InsertEnter', 'BufLeave', 'WinLeave' }, {
+        once = true,
+        callback = function()
+          tiny.enable()
+        end,
+      })
     end, opts)
 
     opts.desc = '[L]sp [H]over Doc'
