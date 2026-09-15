@@ -46,7 +46,7 @@ map('n', '<leader>yp', copy_project_relative_path, { desc = '[Y]ank project [P]a
 
 map({ 'n', 'v', 'i', 'c' }, '<M-Space>', '<Nop>', { noremap = true, silent = true })
 
-map('n', '<leader>s', '<CMD>wall<CR><ESC>', { desc = 'Save all buffers' })
+map('n', '<leader>s', '<CMD>write<CR><ESC>', { desc = 'Save buffer' })
 
 pcall(del_map, 'n', '<C-i>')
 pcall(del_map, 'n', '<Tab>')
