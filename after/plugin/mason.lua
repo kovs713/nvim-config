@@ -23,6 +23,7 @@ mason_lspconfig.setup {
     'html',
     'cssls',
     'tailwindcss',
+    'tsc',
     'vue_ls',
     'vtsls',
     'lua_ls',

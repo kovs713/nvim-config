@@ -24,4 +24,22 @@ end
 
 vim.api.nvim_create_user_command('PackPrune', M.prune, {})
 
+vim.api.nvim_create_user_command('PackUpdate', function(opts)
+  if #opts.fargs == 0 then
+    vim.pack.update()
+  else
+    vim.pack.update(opts.fargs)
+  end
+end, {
+  nargs = '*',
+  complete = function()
+    return vim
+      .iter(vim.pack.get())
+      :map(function(x)
+        return x.spec.name
+      end)
+      :totable()
+  end,
+})
+
 return M

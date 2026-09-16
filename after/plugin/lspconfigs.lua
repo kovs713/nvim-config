@@ -66,8 +66,31 @@ vtsls_config.capabilities = vim.tbl_deep_extend('force', {}, capabilities, vtsls
 vim.lsp.config('vtsls', vtsls_config)
 vim.lsp.enable 'vtsls'
 
-local typescript_tools_utils = require 'typescript-tools.utils'
-local typescript_tools = require 'typescript-tools'
+local tsc_config = {
+  capabilities = capabilities,
+  filetypes = {
+    'typescript',
+    'javascript',
+    'typescriptreact',
+    'javascriptreact',
+  },
+  on_attach = function(client, bufnr)
+    if detect.is_vue_project(detect.nearest_package_root(bufnr)) then
+      client:stop(true)
+      return
+    end
+    client.server_capabilities.documentFormattingProvider = false
+    vim.keymap.set('n', '<leader>i', function()
+      vim.lsp.buf.code_action {
+        context = { only = { 'source.organizeImports' } },
+        apply = true,
+      }
+    end, { buffer = bufnr, silent = true, desc = 'Organize Imports' })
+  end,
+}
+vim.lsp.config('tsc', tsc_config)
+vim.lsp.enable 'tsc'
+
 local otter = require 'otter'
 
 vim.api.nvim_create_autocmd('FileType', {
@@ -76,35 +99,6 @@ vim.api.nvim_create_autocmd('FileType', {
     otter.activate { 'sql', 'graphql', 'html', 'css' }
   end,
 })
-
-typescript_tools.setup {
-  root_dir = function(bufnr, on_dir)
-    local root = detect.nearest_package_root(bufnr)
-    if detect.is_vue_project(root) then
-      return
-    end
-    vim.keymap.set('n', '<leader>rf', '<cmd>TSToolsRenameFile<CR>', { desc = 'TS Rename File + Fix Imports' })
-    vim.keymap.set('n', '<leader>i', '<cmd>TSToolsOrganizeImports<CR>', { desc = 'TS Tools Organize Imports' })
-    on_dir(typescript_tools_utils.get_root_dir(bufnr))
-  end,
-  settings = {
-    tsserver_file_preferences = {
-      autoImportFileExcludePatterns = drizzle_auto_import_exclude_patterns,
-      includeInlayParameterNameHints = 'all',
-      includeInlayParameterNameHintsWhenArgumentMatchesName = true,
-      includeInlayFunctionParameterTypeHints = true,
-      includeInlayVariableTypeHints = true,
-      includeInlayVariableTypeHintsWhenTypeMatchesName = true,
-      includeInlayPropertyDeclarationTypeHints = true,
-      includeInlayFunctionLikeReturnTypeHints = true,
-      includeInlayEnumMemberValueHints = true,
-    },
-  },
-  on_attach = function(client)
-    client.server_capabilities.documentFormattingProvider = false
-  end,
-}
-
 local astro_ls_config = {
   capabilities = capabilities,
   settings = {

@@ -20,13 +20,12 @@ obsidian.setup {
 
   new_notes_location = 'current_dir',
   completion = {
-    nvim_cmp = false,
     blank = true,
     min_chars = 2,
   },
 
   picker = {
-    name = 'snacks',
+    name = 'snacks.picker',
     note_mappings = {
       new = '<C-n>',
       insert_link = '<C-p>',

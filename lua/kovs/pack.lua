@@ -31,16 +31,15 @@ local M = {
     { src = gh 'WhoIsSethDaniel/mason-tool-installer.nvim' },
     { src = gh 'j-hui/fidget.nvim' },
     { src = gh 'nvim-lua/plenary.nvim' },
-    { src = gh 'pmizio/typescript-tools.nvim' },
     { src = gh '/jmbuhr/otter.nvim' },
     { src = gh 'neovim/nvim-lspconfig' },
     { src = gh 'mrcjkb/rustaceanvim' },
-    { src = gh 'rachartier/tiny-code-action.nvim' },
+    -- { src = gh 'rachartier/tiny-code-action.nvim' },
     { src = gh 'rachartier/tiny-inline-diagnostic.nvim' },
 
     -- navigation
     { src = gh 'folke/snacks.nvim' },
-    { src = gh 'ThePrimeagen/harpoon' },
+    { src = gh 'ThePrimeagen/harpoon', version = 'harpoon2' },
     { src = gh 'folke/which-key.nvim' },
     { src = gh 'folke/trouble.nvim' },
     { src = gh 'stevearc/oil.nvim' },
