@@ -6,6 +6,7 @@ local drizzle_auto_import_exclude_patterns = {
   'drizzle-orm/mysql-core',
   'drizzle-orm/sqlite-core',
   'drizzle-orm/singlestore-core',
+  'drizzle-orm/cockroach-core',
 }
 
 local fidget = require 'fidget'
@@ -73,6 +74,13 @@ local tsc_config = {
     'javascript',
     'typescriptreact',
     'javascriptreact',
+  },
+  settings = {
+    ['js/ts'] = {
+      preferences = {
+        autoImportFileExcludePatterns = drizzle_auto_import_exclude_patterns,
+      },
+    },
   },
   on_attach = function(client, bufnr)
     if detect.is_vue_project(detect.nearest_package_root(bufnr)) then

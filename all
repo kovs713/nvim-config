@@ -64,7 +64,7 @@ map('n', '<A-J>', '<C-w>J', { desc = 'Move window down' })
 map('n', '<A-K>', '<C-w>K', { desc = 'Move window up' })
 map('n', '<A-L>', '<C-w>L', { desc = 'Move window right' })
 map('n', '<A-c>', '<C-w>q', { desc = 'Close window' })
-map('n', '<A-x>', '<CMD>write<CR><C-w>q', { desc = 'Save and close window' })
+map('n', '<A-x>', '<CMD>write<CR><C-w>q', { desc = 'Save and  window' })
 map('n', '<A-v>', '<C-w>v', { desc = 'Vertical split' })
 map('n', '<A-s>', '<C-w>s', { desc = 'Horizontal split' })
 
