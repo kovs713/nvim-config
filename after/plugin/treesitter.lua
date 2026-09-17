@@ -78,10 +78,10 @@ local function setup_moves()
   local buf_opts = { buffer = true }
 
   vim.keymap.set({ 'n', 'o', 'x' }, ']f', function()
-    ts_moves.goto_next_start('@function.outer', 'textobjects')
+    ts_moves.goto_previous_start('@function.outer', 'textobjects')
   end, buf_opts)
   vim.keymap.set({ 'n', 'o', 'x' }, '[f', function()
-    ts_moves.goto_previous_start('@function.outer', 'textobjects')
+    ts_moves.goto_next_start('@function.outer', 'textobjects')
   end, buf_opts)
 end
 

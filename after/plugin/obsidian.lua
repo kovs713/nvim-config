@@ -45,9 +45,9 @@ vim.keymap.set('n', 'gf', function()
 end, { buffer = bufnr, desc = '[G]oto markdown [F]ile', noremap = false, expr = true })
 
 vim.keymap.set('n', ']o', function()
-  require('obsidian.api').nav_link 'next'
-end, { buffer = bufnr, desc = 'Go to next Obsidian link' })
-
-vim.keymap.set('n', '[o', function()
   require('obsidian.api').nav_link 'prev'
 end, { buffer = bufnr, desc = 'Go to previous Obsidian link' })
+
+vim.keymap.set('n', '[o', function()
+  require('obsidian.api').nav_link 'next'
+end, { buffer = bufnr, desc = 'Go to next Obsidian link' })

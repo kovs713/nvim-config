@@ -92,11 +92,11 @@ map({ 'n', 'x', 'o' }, 'L', 'g_', { desc = 'Go to end of line' })
 map('n', '<ESC>', '<CMD>noh<CR>', { silent = true, desc = 'Clear search' })
 
 map('n', '[d', function()
-  vim.diagnostic.jump { count = -1, float = false }
-end, { desc = 'Prev diagnostic' })
-map('n', ']d', function()
   vim.diagnostic.jump { count = 1, float = false }
 end, { desc = 'Next diagnostic' })
+map('n', ']d', function()
+  vim.diagnostic.jump { count = -1, float = false }
+end, { desc = 'Prev diagnostic' })
 
 local function cycle_quickfix(dir)
   local ok, err = pcall(dir == 1 and vim.cmd.cnext or vim.cmd.cprev)
