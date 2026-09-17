@@ -1,1 +1,1 @@
-vim.cmd.colorscheme 'ilyasyoy-monochrome'
+vim.cmd.colorscheme 'monochrome'

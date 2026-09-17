@@ -27,15 +27,24 @@ local palette = {
   muted = '#707070',
   noise = '#191919',
 
-  search = '#00afff',
-  visual = '#ffaf00',
-  -- visual = '#d85f44',
   add = '#416241',
   remove = '#722529',
+
   change = '#1d2b3a',
   change_text = '#2d4560',
+
+  visual = '#d70000',
+  -- visual = '#ffaf00',
+  -- visual = '#d85f44',
+
+  cursor = '#d70000',
+  -- cursor = '#ffaf00',
+
   error = '#ff005f',
-  cursor = '#ffaf00',
+  -- error = '#ffaf00',
+
+  search = '#00d7ff',
+  -- search = '#00afff',
 }
 
 local bg = vim.o.background

@@ -20,7 +20,7 @@ Lua-based config built for TypeScript, Vue, Go, Python, and whatever else needs.
 | Syntax | treesitter |
 | Git | lazygit + gitsigns |
 | Notes | obsidian.nvim |
-| Theme | IlyasYOY's monochrome |
+| Theme | monochrome |
 
 
 ---
