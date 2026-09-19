@@ -18,6 +18,7 @@ local M = {
     { src = gh 'lewis6991/gitsigns.nvim' },
     { src = gh 'numToStr/Comment.nvim' },
     { src = gh 'bullets-vim/bullets.vim' },
+    { src = gh 'chentoast/marks.nvim' },
 
     -- formatting
     { src = gh 'mfussenegger/nvim-lint' },

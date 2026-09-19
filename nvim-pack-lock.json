@@ -61,6 +61,10 @@
       "rev": "99848daf801789dbebe2192b475eb887d375002c",
       "src": "https://github.com/HakonHarnes/img-clip.nvim"
     },
+    "marks.nvim": {
+      "rev": "f353e8c08c50f39e99a9ed474172df7eddd89b72",
+      "src": "https://github.com/chentoast/marks.nvim"
+    },
     "mason-lspconfig.nvim": {
       "rev": "77e06f7d2fc127e6ef0a720b59acbc50757cff19",
       "src": "https://github.com/mason-org/mason-lspconfig.nvim"
