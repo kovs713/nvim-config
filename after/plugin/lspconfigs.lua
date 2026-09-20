@@ -484,3 +484,11 @@ local postgres_language_server_config = {
 }
 vim.lsp.config('postgres-language-server', postgres_language_server_config)
 vim.lsp.enable 'postgres-language-server'
+
+local ellsp_config = {
+  cmd = { 'ellsp' },
+  filetypes = { 'lisp', 'elisp', 'scheme' },
+  root_markers = { '.git', 'Cask', 'Eask' },
+}
+vim.lsp.config('ellsp', ellsp_config)
+vim.lsp.enable 'ellsp'
