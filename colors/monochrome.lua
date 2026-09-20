@@ -16,9 +16,7 @@ local function link(from, to)
   vim.cmd(string.format('hi! link %s %s', from, to))
 end
 
--- =============================================================================
 -- PALETTE
--- =============================================================================
 local palette = {
   bg = '#000000',
   fg = '#dadada',
@@ -67,9 +65,7 @@ vim.cmd 'set termguicolors'
 vim.cmd 'let g:colors_name = "monochrome"'
 vim.cmd('set background=' .. bg)
 
--- =============================================================================
 -- BASE GROUPS
--- =============================================================================
 hi('Normal', { guifg = palette.fg, guibg = palette.bg })
 hi('CursorLine', { guibg = palette.subtle })
 hi('CursorLineNr', { guifg = palette.fg, guibg = palette.subtle })
@@ -82,9 +78,7 @@ hi('Conceal', { guifg = palette.muted })
 hi('NonText', { guifg = palette.noise })
 hi('SpecialKey', { guifg = palette.noise, gui = 'bold' })
 
--- =============================================================================
 -- SYNTAX ELEMENTS
--- =============================================================================
 hi('Comment', { guifg = palette.muted })
 hi('Keyword', { guifg = palette.muted })
 hi('Statement', { guifg = palette.fg })
@@ -117,14 +111,10 @@ hi('SpecialComment', { guifg = palette.fg })
 hi('Underlined', { guifg = palette.fg, gui = 'underline' })
 hi('Ignore', { guifg = palette.fg })
 
--- =============================================================================
 -- Oil
--- =============================================================================
 hi('OilDir', { guifg = palette.fg, gui = 'bold' })
 
--- =============================================================================
 -- TREESITTER LINKS
--- =============================================================================
 link('@function', 'Function')
 link('@function.call', 'Function')
 link('@function.builtin', 'Function')
@@ -199,18 +189,14 @@ link('@punctuation.bracket', 'Delimiter')
 link('@tag', 'Tag')
 link('@tag.attribute', 'Type')
 
--- =============================================================================
 -- SEARCH AND VISUAL
--- =============================================================================
 hi('Search', { guifg = palette.search, guibg = palette.bg, gui = 'reverse' })
 hi('IncSearch', { guifg = palette.visual, guibg = palette.bg, gui = 'reverse' })
 hi('CurSearch', { guifg = palette.visual, guibg = palette.bg, gui = 'reverse' })
 hi('Visual', { guifg = palette.visual, guibg = palette.elevated })
 hi('VisualNOS', { guibg = palette.subtle })
 
--- =============================================================================
 -- DIFF
--- =============================================================================
 hi('DiffAdd', { guibg = palette.add })
 hi('DiffDelete', { guibg = palette.remove })
 hi('DiffChange', { guibg = palette.change })
@@ -223,9 +209,7 @@ link('@diff.delta', 'DiffChange')
 link('diffAdded', 'DiffAdd')
 link('diffRemoved', 'DiffDelete')
 
--- =============================================================================
 -- UI ELEMENTS
--- =============================================================================
 hi('MiniStatuslineFilename', { guifg = palette.fg, guibg = palette.elevated })
 hi('MiniStatuslineDevinfo', { guifg = palette.fg, guibg = palette.elevated })
 hi('MiniStatuslineMode', { guifg = palette.bg, guibg = palette.fg, gui = 'bold' })
@@ -255,9 +239,7 @@ hi('Question', { guifg = palette.fg })
 hi('MoreMsg', { guifg = palette.fg })
 hi('ModeMsg', { guifg = palette.fg, gui = 'bold' })
 
--- =============================================================================
 -- MATCH AND SPELL
--- =============================================================================
 hi('MatchParen', { guifg = palette.visual, gui = 'bold,underline' })
 hi('SpellBad', {
   guifg = palette.error,
@@ -268,17 +250,13 @@ hi('SpellCap', { guisp = palette.error, gui = 'undercurl' })
 hi('SpellLocal', { guisp = palette.error, gui = 'undercurl' })
 hi('SpellRare', { guisp = palette.error, gui = 'undercurl' })
 
--- =============================================================================
 -- ERROR AND TODO
--- =============================================================================
 hi('Error', { guifg = palette.error, guibg = palette.bg, gui = 'bold,reverse' })
 hi('ErrorMsg', { guibg = palette.error })
 hi('WarningMsg', { guifg = palette.fg })
 hi('Todo', { guifg = palette.search, gui = 'bold,reverse' })
 
--- =============================================================================
 -- DIAGNOSTICS
--- =============================================================================
 hi('DiagnosticError', { guifg = palette.error, gui = 'bold' })
 hi('DiagnosticUnderlineError', { guisp = palette.error, gui = 'undercurl' })
 hi('DiagnosticVirtualTextError', { guifg = palette.error })
@@ -305,26 +283,18 @@ link('DiagnosticSignInfo', 'DiagnosticInfo')
 link('DiagnosticSignHint', 'DiagnosticHint')
 link('DiagnosticSignOk', 'DiagnosticOk')
 
--- =============================================================================
 -- CURSOR
--- =============================================================================
 hi('Cursor', { guibg = palette.cursor })
 
--- =============================================================================
 -- SIGN COLUMN
--- =============================================================================
 hi('SignColumn', { guifg = palette.fg })
 hi('LineNr', { guifg = palette.muted })
 
--- =============================================================================
 -- QUICKFIX
--- =============================================================================
 hi('QuickFixLine', { guifg = palette.search, gui = 'reverse' })
 hi('qfFileName', { gui = 'bold' })
 
--- =============================================================================
 -- FUGITIVE
--- =============================================================================
 link('fugitiveStagedHeading', 'Include')
 link('fugitiveUnstagedHeading', 'Macro')
 link('fugitiveUntrackedHeading', 'PreCondit')
@@ -340,9 +310,7 @@ link('fugitiveCount', 'Number')
 link('fugitiveInstruction', 'Type')
 link('fugitiveStop', 'Function')
 
--- =============================================================================
 -- MISC LINKS
--- =============================================================================
 link('Added', 'Normal')
 link('Changed', 'Normal')
 link('Removed', 'Normal')
@@ -360,9 +328,7 @@ link('Debug', 'Special')
 link('define', 'PreProc')
 link('include', 'PreProc')
 
--- =============================================================================
 -- SNACKS PICKER
--- =============================================================================
 hi('SnacksPickerFile', { guifg = palette.fg })
 hi('SnacksPickerDir', { guifg = palette.muted })
 hi('SnacksPickerDirectory', { guifg = palette.fg, gui = 'bold' })
