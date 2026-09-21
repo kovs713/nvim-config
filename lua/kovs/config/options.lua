@@ -1,5 +1,20 @@
 require('vim._core.ui2').enable {}
 
+local has_display = vim.env.DISPLAY ~= nil or vim.env.WAYLAND_DISPLAY ~= nil
+local is_tty = vim.env.TERM == 'linux'
+local is_tmux = vim.env.TMUX ~= nil
+local is_raw_terminal = not has_display and (is_tty or is_tmux)
+
+if is_raw_terminal then
+  vim.o.termguicolors = false
+  vim.g.icons_enabled = false
+  vim.g.have_nerd_font = false
+else
+  vim.o.termguicolors = true
+  vim.g.icons_enabled = true
+  vim.g.have_nerd_font = true
+end
+
 vim.o.cmdheight = 0
 vim.diagnostic.config {
   underline = true,
@@ -25,8 +40,6 @@ vim.opt.langremap = true
 
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
-
-vim.g.have_nerd_font = false
 
 vim.g.deprecation_warnings = false
 
