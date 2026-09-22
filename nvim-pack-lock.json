@@ -9,7 +9,7 @@
       "src": "https://github.com/L3MON4D3/LuaSnip"
     },
     "blink.cmp": {
-      "rev": "473c928d8b9b5b3f638cd085a01899972cf205c6",
+      "rev": "8219b58f1c11a2fb1644d3c7116c509fa8348ec0",
       "src": "https://github.com/saghen/blink.cmp"
     },
     "blink.lib": {
@@ -45,7 +45,7 @@
       "src": "https://github.com/rafamadriz/friendly-snippets"
     },
     "gitsigns.nvim": {
-      "rev": "5eb287fdbd523c3a1b3d01f304f43570e73e259b",
+      "rev": "8d79f2410c76e62b92e51c28c82e28c1c5a3daeb",
       "src": "https://github.com/lewis6991/gitsigns.nvim"
     },
     "guess-indent.nvim": {
@@ -53,7 +53,7 @@
       "src": "https://github.com/NMAC427/guess-indent.nvim"
     },
     "harpoon": {
-      "rev": "1bc17e3e42ea3c46b33c0bbad6a880792692a1b3",
+      "rev": "87b1a3506211538f460786c23f98ec63ad9af4e5",
       "src": "https://github.com/ThePrimeagen/harpoon",
       "version": "'harpoon2'"
     },
@@ -66,7 +66,7 @@
       "src": "https://github.com/chentoast/marks.nvim"
     },
     "mason-lspconfig.nvim": {
-      "rev": "77e06f7d2fc127e6ef0a720b59acbc50757cff19",
+      "rev": "49b16d699f9ca83184330c6eb886737a27f23bdd",
       "src": "https://github.com/mason-org/mason-lspconfig.nvim"
     },
     "mason-tool-installer.nvim": {
@@ -82,7 +82,7 @@
       "src": "https://github.com/nvim-mini/mini.icons"
     },
     "mini.nvim": {
-      "rev": "ac5dffcc52b8378fbb15efeb0497a83e57a0b01c",
+      "rev": "81ed10ebe1144b0eb9a7f289ffae000c22772c20",
       "src": "https://github.com/nvim-mini/mini.nvim"
     },
     "mini.statusline": {
@@ -98,11 +98,11 @@
       "src": "https://github.com/mfussenegger/nvim-lint"
     },
     "nvim-lspconfig": {
-      "rev": "ac9d2f7c4757db6320cab6697fe73e5e8adb2457",
+      "rev": "ffd261c09c3dabd0bf1a438f47a8ae3b22f3c3ff",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "nvim-treesitter": {
-      "rev": "9a168f6357ed21c3a636e1727bc7d382abc451b8",
+      "rev": "f603a2f4da48728f80257fb5fbb90145fd1dc173",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter",
       "version": "'main'"
     },
@@ -123,7 +123,7 @@
       "src": "https://github.com/JoosepAlviste/nvim-ts-context-commentstring"
     },
     "obsidian.nvim": {
-      "rev": "bb63520f86bd32df528ab6359c291dbba5fa7ea7",
+      "rev": "84ca67203a42f3780695e6e39aa9d52e6d45342f",
       "src": "https://github.com/obsidian-nvim/obsidian.nvim"
     },
     "oil-git-status.nvim": {
